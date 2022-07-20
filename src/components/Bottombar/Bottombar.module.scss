@@ -1,0 +1,73 @@
+.bottombar {
+    width: 17vw;
+    height: 52vw;
+    background-color: #383E45;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottombarContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.profileDetails {
+    margin-top: 2rem;
+}
+
+.profileImageDiv {
+    position: relative;
+}
+
+.notifications {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #dc3434;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+}
+
+.userName {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.userWallet {
+    margin-top: 1rem;
+    opacity: 0.6;
+}
+
+.bottombarNav {
+    margin-top: -8rem;
+    margin-bottom: 3rem;
+}
+
+.bottombarNavItem {
+    margin: 2rem 0;
+}
+
+.bottombarNavLink {
+    text-decoration: none;
+    outline: none;
+    color: white;
+    opacity: 0.5;
+    font-size: 18px;
+    font-weight: 500;
+
+    &Active {
+        @extend .bottombarNavLink;
+        opacity: 1;
+    }
+}

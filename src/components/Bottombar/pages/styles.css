@@ -1,0 +1,303 @@
+/* Selectedoptiondiv */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+p {
+    margin: 0;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col-hcenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-hcenter {
+    justify-content: center;
+}
+
+.selectedoption-div {
+    width: 1126px;
+    height: 735px;
+}
+
+.group-080 {
+    width: 100%;
+    height: 100%;
+}
+
+.group-454 {
+    margin-bottom: 41px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.person-4 {
+    padding: 18px 10px 11px 12px;
+    margin-right: 62px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    height: 100%;
+}
+
+.personpicture {
+    width: 113px;
+    height: 114px;
+    margin-bottom: 22px;
+}
+
+.txt-6107 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    width: 64px;
+    height: 37px;
+    word-wrap: break-word;
+    margin-bottom: 17px;
+    text-transform: capitalize;
+}
+
+.txt-971 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    width: 211px;
+    height: 74px;
+    word-wrap: break-word;
+    margin-bottom: 27px;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
+
+.person-8 {
+    margin-right: 62px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    width: 235px;
+    height: 100%;
+}
+
+.txt-307 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.personpicture-1 {
+    width: 113px;
+    height: 114px;
+}
+
+.txt-124 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
+
+.person-5 {
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    width: 235px;
+    height: 100%;
+}
+
+.txt-307 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.personpicture-1 {
+    width: 113px;
+    height: 114px;
+}
+
+.txt-124 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
+
+.group-836 {
+    width: 100%;
+}
+
+.person-4 {
+    padding: 18px 10px 11px 12px;
+    margin-right: 62px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    height: 100%;
+}
+
+.personpicture {
+    width: 113px;
+    height: 114px;
+    margin-bottom: 22px;
+}
+
+.txt-6107 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    width: 64px;
+    height: 37px;
+    word-wrap: break-word;
+    margin-bottom: 17px;
+    text-transform: capitalize;
+}
+
+.txt-971 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    width: 211px;
+    height: 74px;
+    word-wrap: break-word;
+    margin-bottom: 27px;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
+
+.person-8 {
+    margin-right: 62px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    width: 235px;
+    height: 100%;
+}
+
+.txt-307 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.personpicture-1 {
+    width: 113px;
+    height: 114px;
+}
+
+.txt-124 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
+
+.person-5 {
+    border-radius: 10px;
+    background-color: rgba(56, 62, 69, 1);
+    width: 235px;
+    height: 100%;
+}
+
+.txt-307 {
+    font-size: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    line-height: 324%;
+    color: rgba(255, 167, 86, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.personpicture-1 {
+    width: 113px;
+    height: 114px;
+}
+
+.txt-124 {
+    font-size: 16px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    line-height: 183%;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    word-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.smicon {
+    width: 45.78px;
+    height: 24.94px;
+}
