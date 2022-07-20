@@ -1,7 +1,7 @@
 import styles from "./Settings.module.scss"
 import "./settingsStyles.css";
 import { Input } from "web3uikit";
-import defaultImgs from '../../../../assets/png/logo2.png'
+import { defaultImgs } from "../../../../defaultImgs";
 import { useEffect, useRef, useState } from "react";
 import { createInputFiles } from "typescript";
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
@@ -115,6 +115,7 @@ const Settings = () => {
             <div className={styles.settingsTitle}> Settings </div>
             <ul className={styles.inputUl}>
               <li><div className={styles.detailsDiv}>Name</div>
+              
                 <input className={styles.settingsInput} name="NameChange" onChange={(e) => setUsername(e.target.value)} />
               </li>
               <li>

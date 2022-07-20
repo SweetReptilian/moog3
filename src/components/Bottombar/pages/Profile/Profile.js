@@ -1,10 +1,18 @@
 import "./Profile.css"
-import defaultImgs from '../../../../assets/png/logo2.png'
+import { defaultImgs } from "../../../../defaultImgs";
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useMoralis } from "react-moralis";
+import Settings from "../Settings/Settings";
 
 const Profile = () => {
     const { Moralis } = useMoralis();
     const user = Moralis.User.current();
+
+    const navigate = useNavigate();
+
+    const navigateToList = () => {
+        navigate('/Settings');
+    };
     return (
         <>
             <main className="profileBackground">
@@ -30,10 +38,10 @@ const Profile = () => {
                     <section className="sectionWidth">
                         <div className="mWAndAM">My Work</div>
                         <div className="myWork">
-                            <img className="workGallery" src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg" alt="cat" />
-                            <img className="workGallery" src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg" alt="cat" />
-                            <img className="workGallery" src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg" alt="cat" />
-                            <img className="workGallery" src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg" alt="cat" />
+                            <img className="workGallery" src={user.attributes.banner ? user.attributes.banner : defaultImgs[1]} alt="cat" />
+                            <img className="workGallery" src={user.attributes.banner ? user.attributes.banner : defaultImgs[1]} alt="cat" />
+                            <img className="workGallery" src={user.attributes.banner ? user.attributes.banner : defaultImgs[1]} alt="cat" />
+                            <img className="workGallery" src={user.attributes.banner ? user.attributes.banner : defaultImgs[1]} alt="cat" />
                         </div>
                         <div className="aboutMe">
                             <div className="mWAndAM">About Me</div>
@@ -43,7 +51,12 @@ const Profile = () => {
                         </div>
                     </section>
                     <section className="buttonSection">
-                        <button className="buttonStyle" onClick={() => { alert('alert'); }}>Edit</button>
+                        <div>
+                            <button className="buttonStyle"  onClick={navigateToList}>Edit</button>
+                            <Routes>
+                                <Route path="/settings" element={<Settings />} />
+                            </Routes>
+                        </div>
                         <button className="buttonStyle" onClick={() => { alert('alert'); }}>Contact</button>
                     </section>
 

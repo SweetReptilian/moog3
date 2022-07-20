@@ -18,8 +18,8 @@ export default function Bottombar() {
                 <div className={styles.bottombarContent}>
                     <div className={styles.profileDetails}>
                         <div className={styles.profileImageDiv}>
-                            <img /*src={user.attributes.pfp ? user.attributes.pfp : defaultImgs[0]}*/ alt="" />
-                            <p className={styles.notifications}></p>
+                            <img className={styles.pfpStyle} src={user.attributes.pfp ? user.attributes.pfp : defaultImgs[0]} alt="" />
+                           
                         </div>
                         <p className={styles.userName}>{user.attributes.username.slice(0, 6)}</p>
                         <p className={styles.userWallet}>{`${user.attributes.ethAddress.slice(0, 4)}...
