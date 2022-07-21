@@ -2,6 +2,7 @@ import './SelectedList.css'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
 
+
 export default function SelectedList() {
     
     const [infoArray, setInfoArray] = useState();
@@ -27,7 +28,7 @@ export default function SelectedList() {
 
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -37,7 +38,7 @@ export default function SelectedList() {
                                 </li>
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -48,7 +49,7 @@ export default function SelectedList() {
 
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -58,7 +59,7 @@ export default function SelectedList() {
                                 </li>
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -70,7 +71,7 @@ export default function SelectedList() {
                             <ul className="flexContainer">
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -80,7 +81,7 @@ export default function SelectedList() {
                                 </li>
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -90,7 +91,7 @@ export default function SelectedList() {
                                 </li>
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
@@ -100,7 +101,7 @@ export default function SelectedList() {
                                 </li>
                                 <li className="flexItem">
                                     <img
-                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pv5darhy8fp-272%3A262?alt=media&token=534d8a81-80ed-4d01-a28c-701a1d52f6bf"
+                                        src="https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/g4fz9keldva-107%3A110?alt=media&token=c03f289b-8a31-47ef-bb3d-64ddde87f9b0"
                                         alt="Not Found"
                                         className="personpicture"
                                     />
