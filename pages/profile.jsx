@@ -1,18 +1,10 @@
-import "./Profile.css";
-import { defaultImgs } from "../../../defaultImgs";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useMoralis } from "react-moralis";
-import Settings from "../Settings/Settings";
+import "../styles/Profile.module.css";
+import { defaultImgs } from "../constants/defaultImgs";
+import Link from "next/link";
 
 const Profile = () => {
     const { Moralis } = useMoralis();
     const user = Moralis.User.current();
-
-    const navigate = useNavigate();
-
-    const navigateToList = () => {
-        navigate("/Settings");
-    };
     return (
         <>
             <main className="profileBackground">
@@ -103,18 +95,11 @@ const Profile = () => {
                     </section>
                     <section className="buttonSection">
                         <div>
-                            <button
-                                className="buttonStyle"
-                                onClick={navigateToList}
-                            >
-                                Edit
+                            <button className="buttonStyle">
+                                <Link href="/Settings">
+                                    <a>Edit</a>
+                                </Link>
                             </button>
-                            <Routes>
-                                <Route
-                                    path="/settings"
-                                    element={<Settings />}
-                                />
-                            </Routes>
                         </div>
                         <button
                             className="buttonStyle"

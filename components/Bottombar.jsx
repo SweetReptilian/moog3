@@ -1,25 +1,16 @@
 import React from "react";
-import styles from "./Bottombar.module.scss";
-import { defaultImgs } from "./../../defaultImgs";
-import { Link, useLocation } from "react-router-dom";
-import { useMoralis } from "react-moralis";
-import { sequence } from "0xsequence";
-import { log, warn } from "console-browserify";
-import { useCookies } from "react-cookie";
+import styles from "../styles/Bottombar.module.scss";
+import { defaultImgs } from "../constants/defaultImgs";
+import { getCookie } from "cookies-next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const bottombarNavLinks = ["profile", "messages", "settings", "team"];
 export default function Bottombar() {
-    const [cookies, setCookie] = useCookies(["wallet", "loggedIn"]);
-    const [address, setAddress] = React.useState(cookies.wallet || "");
+    const [address] = React.useState(getCookie("wallet") || "");
 
     let user;
-    const getWalletAddress = async () => {
-        const wallet = sequence.getWallet();
-        const address = await wallet.getAddress();
-        setAddress(address);
-    };
-    (async () => await getWalletAddress())();
-    const location = useLocation();
+    const router = useRouter();
 
     return (
         <>
@@ -54,12 +45,12 @@ export default function Bottombar() {
                                 >
                                     <Link
                                         className={
-                                            location.pathname ===
+                                            router.pathname ===
                                             `/${bottombarNavLink}`
                                                 ? styles.bottombarNavLinkActive
                                                 : styles.bottombarNavLink
                                         }
-                                        to={`/${bottombarNavLink}`}
+                                        href={`/${bottombarNavLink}`}
                                     >
                                         {bottombarNavLink
                                             .charAt(0)

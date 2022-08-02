@@ -1,77 +1,76 @@
 {
-  "name": "dashboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@0xsequence/ethauth": "^0.7.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.42",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "@types/react-router-dom": "^5.3.3",
-    "0xsequence": "^0.40.4",
-    "crypto": "^1.0.1",
-    "http": "^0.0.1-security",
-    "http-browserify": "^1.7.0",
-    "moralis": "^1.8.1",
-    "node-sass": "^7.0.1",
-    "react": "^18.2.0",
-    "react-cookie": "^4.1.1",
-    "react-dom": "^18.2.0",
-    "react-file-uploader": "^1.0.0",
-    "react-ipfs-uploader": "^1.2.6",
-    "react-moralis": "^1.4.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "react-webkit": "^0.0.0",
-    "resolve": "^1.22.1",
-    "stream": "^0.0.2",
-    "typescript": "^4.7.4",
-    "web-vitals": "^2.1.4",
-    "web3uikit": "^0.1.166"
-  },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@0xsequence/utils": "^0.40.4",
-    "assert": "^2.0.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
-    "https-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "process": "^0.11.10",
-    "react-app-rewired": "^2.2.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "url": "^0.11.0"
-  },
-  "resolve-fallback": {
-    "crypto": false,
-    "os": false
-  }
+    "name": "dashboard",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@0xsequence/ethauth": "^0.7.0",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.3.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^16.11.42",
+        "@types/react": "^18.0.14",
+        "@types/react-dom": "^18.0.5",
+        "@types/react-router-dom": "^5.3.3",
+        "0xsequence": "^0.40.4",
+        "cookies-next": "^2.1.1",
+        "crypto": "^1.0.1",
+        "http": "^0.0.1-security",
+        "http-browserify": "^1.7.0",
+        "moralis": "^1.8.1",
+        "next": "^12.2.3",
+        "node-sass": "^7.0.1",
+        "react": "^18.2.0",
+        "react-cookie": "^4.1.1",
+        "react-dom": "^18.2.0",
+        "react-file-uploader": "^1.0.0",
+        "react-ipfs-uploader": "^1.2.6",
+        "react-moralis": "^1.4.0",
+        "react-webkit": "^0.0.0",
+        "resolve": "^1.22.1",
+        "stream": "^0.0.2",
+        "typescript": "^4.7.4",
+        "web-vitals": "^2.1.4",
+        "web3uikit": "^0.1.166"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@0xsequence/utils": "^0.40.4",
+        "assert": "^2.0.0",
+        "buffer": "^6.0.3",
+        "crypto-browserify": "^3.12.0",
+        "https-browserify": "^1.0.0",
+        "os-browserify": "^0.3.0",
+        "process": "^0.11.10",
+        "react-app-rewired": "^2.2.1",
+        "stream-browserify": "^3.0.0",
+        "stream-http": "^3.2.0",
+        "url": "^0.11.0"
+    },
+    "resolve-fallback": {
+        "crypto": false,
+        "os": false
+    }
 }

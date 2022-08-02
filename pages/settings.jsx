@@ -1,10 +1,6 @@
-import styles from "./Settings.module.scss";
-import "./settingsStyles.css";
-import { Input } from "web3uikit";
-import { defaultImgs } from "../../../defaultImgs";
+import styles from "../styles/SettingsStyles.module.css";
+import { defaultImgs } from "../constants/defaultImgs";
 import { useEffect, useRef, useState } from "react";
-import { createInputFiles } from "typescript";
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 
 const Settings = () => {
     const [pfps, setPfps] = useState([]);
