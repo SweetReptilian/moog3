@@ -1,0 +1,20 @@
+.page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomBar {
+    position: fixed;
+    width: calc((100vw - 800px) * 0.45);
+    height: 100vh;
+}
+.logout {
+    display: flex;
+    position: relative;
+    left: 70px;
+    margin-top: -100px;
+    font-weight: bold;
+}
+.logout:hover {
+    cursor: pointer;
+}
