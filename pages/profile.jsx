@@ -3,8 +3,6 @@ import { defaultImgs } from "../constants/defaultImgs";
 import Link from "next/link";
 
 const Profile = () => {
-    const { Moralis } = useMoralis();
-    const user = Moralis.User.current();
     return (
         <>
             <main className="profileBackground">
@@ -15,34 +13,21 @@ const Profile = () => {
                     <section>
                         <img
                             className="profileBanner"
-                            src={
-                                user.attributes.banner
-                                    ? user.attributes.banner
-                                    : defaultImgs[1]
-                            }
+
                         ></img>
                         <div className="pfpContainer">
                             <img
                                 className="profilePFP"
-                                src={
-                                    user.attributes.pfp
-                                        ? user.attributes.pfp
-                                        : defaultImgs[0]
-                                }
                                 alt=""
                             ></img>
 
                             <div className="profileName">
-                                {user.attributes.username.slice(0, 6)}
+                                Somebody's Name
                             </div>
 
-                            <div className="profileWallet">{`${user.attributes.ethAddress.slice(
-                                0,
-                                4
-                            )}...
-            ${user.attributes.ethAddress.slice(38)}`}</div>
+                            <div className="profileWallet">0X14....349</div>
                             <div className="profileBio">
-                                {user.attributes.bio}
+                                Something here about the person
                             </div>
                         </div>
                     </section>
@@ -51,45 +36,29 @@ const Profile = () => {
                         <div className="myWork">
                             <img
                                 className="workGallery"
-                                src={
-                                    user.attributes.banner
-                                        ? user.attributes.banner
-                                        : defaultImgs[1]
-                                }
+                               
                                 alt="cat"
                             />
                             <img
                                 className="workGallery"
-                                src={
-                                    user.attributes.banner
-                                        ? user.attributes.banner
-                                        : defaultImgs[1]
-                                }
+                               
                                 alt="cat"
                             />
                             <img
                                 className="workGallery"
-                                src={
-                                    user.attributes.banner
-                                        ? user.attributes.banner
-                                        : defaultImgs[1]
-                                }
+                               
                                 alt="cat"
                             />
                             <img
                                 className="workGallery"
-                                src={
-                                    user.attributes.banner
-                                        ? user.attributes.banner
-                                        : defaultImgs[1]
-                                }
+                               
                                 alt="cat"
                             />
                         </div>
                         <div className="aboutMe">
                             <div className="mWAndAM">About Me</div>
                             <div className="personDesc">
-                                {user.attributes.about}
+                              
                             </div>
                         </div>
                     </section>

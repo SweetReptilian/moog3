@@ -1,0 +1,79 @@
+.html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:  rgb(231, 215, 247);
+    overflow: hidden;
+
+    .container {
+        background-image: url("../public/log.png");
+       // width: auto;
+        //height: auto;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 97px 110px 121px 59px;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+        overflow-x: hidden;
+
+    }
+
+    .logoGif {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .welcomeText {
+        font-size: 20px;
+        font-weight: 800;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .connText {
+        padding: 10px 0px 30px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .styleButtonConn {
+        align-self: center;
+        background-color: #ffe2e2;
+        border: none;
+        padding: 10px 20px;
+        color: #4e4646;
+        font-size: 13px;
+        font-weight: 800;
+        border-radius: 20px;
+    }
+
+    .styleButtonConn:hover {
+        cursor: pointer;
+        background-color: #4e4646;
+        color: #ffe2e2;
+        border-color: #f8e1e1;
+
+    }
+
+    .sponsorSvgsSection {
+        display: flex;
+    }
+
+    .sponsorSvgs {
+        width: 30px;
+        height: 30px;
+        padding: 25px;
+        border-radius: 83px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .html {
+        padding: 0,1px;
+    }
+}

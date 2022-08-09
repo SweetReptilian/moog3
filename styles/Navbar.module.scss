@@ -1,0 +1,55 @@
+.navbar {
+  display: flex;
+  padding: 10px 80px;
+  align-items: center;
+  scroll-snap-align: start;
+  justify-content: space-between;
+  font-family: 'Poppins';
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: rgb(249, 245, 252);
+  //height: auto;
+  //width: auto;
+  margin: 0;
+
+  .mooglesM {
+    gap: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .imgG {
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .actions {
+    gap: 1.2rem;
+    display: flex;
+    font-size: 20px;
+    align-items: flex-end;
+  }
+}
+
+.styleButtonConn {
+  align-self: center;
+  background-color: rgb(234, 223, 243);
+  border: none;
+  padding: 10px 20px;
+  color: #313131;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 20px;
+}
+.styleButtonConn:hover {
+  cursor: pointer;
+  background-color: #3c4472;
+  color: rgb(234, 223, 243);
+  border-color: #f8e1e1;
+
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    padding: 4px 20px;
+  }
+}

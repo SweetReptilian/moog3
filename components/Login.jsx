@@ -1,13 +1,16 @@
-import { sequence } from "0xsequence"
-import { ETHAuth } from "@0xsequence/ethauth"
-import { setCookie, getCookie, deleteCookie } from "cookies-next"
-import React, { useState } from "react"
-import Link from "next/link"
-import "../styles/App.module.css"
-import Bottombar from "../components/Bottombar"
+import {sequence} from "0xsequence"
+import {ETHAuth} from "@0xsequence/ethauth"
+import {setCookie, getCookie, deleteCookie} from "cookies-next"
+import React, {useState} from "react"
+import styles from "../styles/LoginStyle.module.scss"
+import settingStyles from "../styles/SettingStyles.module.scss"
+import Navbar from "../components/Navbar";
+import NavbarSettings from "./NavbarSettings"
+import {TailSpin} from 'react-loader-spinner'
 
 export default function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
+    const [isLoading, setIsLoading] = useState(false)
     const connect = async () => {
         const wallet = sequence.getWallet()
         const connectDetails = await wallet.connect({
@@ -23,7 +26,7 @@ export default function Login() {
                 },
             },
         })
-        console.warn("connectDetails", { connectDetails })
+        console.warn("connectDetails", {connectDetails})
 
         const ethAuth = new ETHAuth()
         if (connectDetails.proof) {
@@ -35,8 +38,8 @@ export default function Login() {
                 await wallet.getAuthChainId()
             )
             console.log("isValid?", isValid)
-            setCookie("wallet", await wallet.getAddress(), { path: "/" })
-            setCookie("loggedIn", isValid, { path: "/" })
+            setCookie("wallet", await wallet.getAddress(), {path: "/"})
+            setCookie("loggedIn", isValid, {path: "/"})
             if (!isValid) throw new Error("sig invalid")
         }
     }
@@ -44,50 +47,70 @@ export default function Login() {
     const disconnet = async () => {
         const wallet = sequence.getWallet()
         wallet.disconnect()
-        deleteCookie("wallet", { path: "/" })
-        deleteCookie("loggedIn", { path: "/" })
+        deleteCookie("wallet", {path: "/"})
+        deleteCookie("loggedIn", {path: "/"})
         setIsLoggedIn(false)
     }
+
+
     return (
         <>
+
             {isLoggedIn ? (
-                <div className="page">
-                    <div className="bottomBar">
-                        <Bottombar />
-                        <div className="logout" onClick={async () => await disconnet()}>
-                            Logout
+
+                <html className={settingStyles.html}>
+                <div className={settingStyles.backgroundImg}>
+                    <NavbarSettings/>
+                </div>
+                <div className="logout" onClick={async () => await disconnet()}>
+                    Logout
+                </div>
+                </html>
+
+            ) : (
+                <html className={styles.html}>
+                <Navbar/>
+
+
+                <div className={styles.backgroundImg}>
+
+                    <div className={styles.container}>
+
+                        <img className={styles.logoGif}
+                             alt={"logoGIf"}
+                             src="https://ipfs.io/ipfs/bafybeicggcet7yfifxhavfv6ysx24zcjilylrv2ls6y7rys4iob3wxaabm"/>
+                        <div className={styles.welcomeText}>Welcome to Moog3!</div>
+                        <div className={styles.connText}>To get started, please connect your Sequence Wallet</div>
+                        <button className={styles.styleButtonConn}
+                                onClick={async () => {
+                                    setIsLoading(true)
+                                    await connect()
+                                    setIsLoggedIn(getCookie("loggedIn") || false)
+                                }}
+                        >
+                            {isLoading ? <TailSpin
+                                height="15"
+                                width="15"
+                                color="#4e4646"
+                                ariaLabel="tail-spin-loading"
+                                radius="1"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            /> : "Connect Wallet"}
+                        </button>
+                        <div className={styles.sponsorSvgsSection}>
+                            <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="spheron.ico"/>
+                            <img className={styles.sponsorSvgs} alt={"sponsor-logo"}
+                                 src="https://ipfs.io/ipfs/bafkreiewn7tto6i7uesmr7cavijj5ffumr7e2mob4hrztvt7t32rlsuqmi"/>
+                            <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="ipfs.ico"/>
+
                         </div>
                     </div>
-                    <div className="mainWindow">
-                        <Link href="/profile">
-                            <a>Profile</a>
-                        </Link>
-                        <Link href="/settings">
-                            <a>Settings</a>
-                        </Link>
-                        <Link href="/selectedList">
-                            <a>Selected List</a>
-                        </Link>
-                        <Link href="/findYN">
-                            <a>Find Your Network</a>
-                        </Link>
-                        <Link href="/messages">
-                            <a>Messages</a>
-                        </Link>
-                    </div>
                 </div>
-            ) : (
-                <div>
-                    <button
-                        onClick={async () => {
-                            await connect()
-                            setIsLoggedIn(getCookie("loggedIn") || false)
-                        }}
-                    >
-                        Login with Sequence Wallet
-                    </button>
-                </div>
-            )}
+                </html>
+            )
+            }
         </>
     )
 }
