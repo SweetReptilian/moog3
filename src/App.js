@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
+import styles from "../App.module.css";
+import "./styles/global.css";
 import Bottombar from "./components/Bottombar/Bottombar";
-import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import FindYN from "./components/pages/FindYourNetwork/FindYN";
 import Profile from "./components/pages/Profile/Profile";
@@ -101,7 +101,7 @@ function App() {
                 </div>
             ) : (
                 <div>
-                    <button onClick={() => connect()}>
+                    <button className={styles.buttonStyle} onClick={() => connect()}>
                         Login via Sequence Wallet
                     </button>
                 </div>

@@ -1,0 +1,137 @@
+.backgroundImg {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+
+    .container {
+        // width: auto;
+        //height: auto;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 97px 110px 50px 59px;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+        overflow-x: hidden;
+
+    }
+
+    .pfp {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid rgb(234, 223, 243);
+    }
+
+    .banner {
+        width: auto;
+        height: 200px;
+        border-radius: 10px;
+        border: 5px solid rgb(234, 223, 243);
+    }
+
+    .welcomeText {
+        font-size: 20px;
+        font-weight: 800;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .setText {
+        font-size: 20px;
+        font-weight: 700;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .connText {
+        padding: 10px 0px 30px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .textArea {
+        width: 400px;
+        height: 150px;
+        border-radius: 10px;
+        border: 5px solid rgb(234, 223, 243);
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        overflow: auto;
+        outline: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .inputName {
+        width: auto;
+        height: auto;
+        border-radius: 10px;
+        border: 5px solid rgb(234, 223, 243);
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        overflow: auto;
+        outline: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+
+    ::placeholder {
+        color: rgb(64, 63, 65);
+        opacity: 0.5;
+        font-style: italic;
+    }
+
+    .styleButtonConn {
+        align-self: center;
+        background-color: #ffe2e2;
+        border: none;
+        padding: 10px 20px;
+        color: #4e4646;
+        font-size: 13px;
+        font-weight: 800;
+        border-radius: 20px;
+    }
+
+    .styleButtonConn:hover {
+        cursor: pointer;
+        background-color: #4e4646;
+        color: #ffe2e2;
+        border-color: #f8e1e1;
+
+    }
+
+    .links {
+        display: flex;
+        justify-content: right;
+        padding-right: 120px;
+
+    }
+
+    .arrow {
+
+        border: solid rgb(234, 223, 243);
+        border-width: 0 6px 6px 0;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(-45deg);
+
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .backgroundImg {
+        padding: 0, 1px;
+    }
+}
