@@ -29,6 +29,7 @@
         "react-dom": "^18.2.0",
         "react-file-uploader": "^1.0.0",
         "react-ipfs-uploader": "^1.2.6",
+        "react-loader-spinner": "^5.1.7-beta.1",
         "react-moralis": "^1.4.0",
         "react-scroll": "^1.8.7",
         "react-webkit": "^0.0.0",
