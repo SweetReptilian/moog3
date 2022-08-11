@@ -121,13 +121,37 @@
 
     .arrow {
 
-        border: solid rgb(234, 223, 243);
+        border: solid rgb(226, 206, 241);
         border-width: 0 6px 6px 0;
         display: inline-block;
         padding: 10px;
         transform: rotate(-45deg);
 
     }
+    .arrow:hover {
+        
+        cursor: pointer;
+        border: solid rgb(176, 151, 196);
+        border-width: 0 6px 6px 0;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(-45deg);
+
+    }
+
+    .setProfileStepsButton {
+    
+        border-radius: 50%;
+        align-self: center;
+        background-color: #ffe2e2;
+        border: none;
+        padding: 20px;
+        color: #4e4646;
+        border-radius: 20px;
+       
+    }
+
+    .setProfileStepsButton:hover {}
 }
 
 @media only screen and (max-width: 768px) {

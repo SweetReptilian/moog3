@@ -58,17 +58,17 @@ export default function Login() {
 
             {isLoggedIn ? (
 
-                <html className={settingStyles.html}>
+                <div className={settingStyles.html}>
                 <div className={settingStyles.backgroundImg}>
                     <NavbarSettings/>
                 </div>
                 <div className="logout" onClick={async () => await disconnet()}>
                     Logout
                 </div>
-                </html>
+                </div>
 
             ) : (
-                <html className={styles.html}>
+                <div className={styles.html}>
                 <Navbar/>
 
 
@@ -108,7 +108,7 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-                </html>
+                </div>
             )
             }
         </>
