@@ -1,8 +1,5 @@
 import NavbarSettings from "../components/NavbarSettings"
-import settingStyles from "../styles/SettingStyles.module.scss"
-import { motion } from "framer-motion"
 import Link from "next/link"
-
 
 export function Dashboard() {
     return (
@@ -15,9 +12,6 @@ export function Dashboard() {
                 <Link href="#">
                 <button>Contributors</button>
                 </Link>
-
-               
-                
             </div>
         </div>
     )

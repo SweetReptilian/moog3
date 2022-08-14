@@ -1,12 +1,8 @@
 import styles from "../styles/Navbar2.module.scss";
 
-
 export function Navbar2() {
 
-
     return (
-
-
         <html className={styles.htmlStyle}>
             <div id="sidebar" className={styles.sidebar}>
                 <div className={styles.logoDetails}>
