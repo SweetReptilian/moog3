@@ -7,10 +7,13 @@ configureLogger({ logLevel: "DEBUG" });
 
 function MyApp({ Component, pageProps }) {
     useEffect(() => {
-        const network = "mumbai";
-        sequence.initWallet(network, {
-            networkRpcUrl: "https://matic-mumbai.chainstacklabs.com",
-        });
+        const connect = async () => {
+            const network = "mumbai";
+            await sequence.initWallet(network, {
+                networkRpcUrl: "https://matic-mumbai.chainstacklabs.com",
+            });
+        }
+        connect().then(() => console.log("Connected sequence wallet"))
     }, []);
     return <Component {...pageProps} />;
 }
