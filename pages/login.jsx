@@ -1,5 +1,5 @@
 import NavbarSettings from "../components/NavbarSettings"
-import settingStyles from "../styles/SettingStyles.module.scss"
+import formStyles from "../styles/Forms.module.scss"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Checkbox, Spacer } from "@nextui-org/react";
@@ -213,7 +213,7 @@ export function LogIn() {
         }
 
     }
-    
+
     const [name, setName] = useState(true);
     const [pfp, setPfp] = useState(false);
     const [banner, setBanner] = useState(false);
@@ -223,94 +223,94 @@ export function LogIn() {
     const [allDone, setAllDone] = useState(false);
 
     const Name =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={settingStyles.welcomeText}>Alright! Just few more steps before creating...</div>
+                    <div className={formStyles.welcomeText}>Alright! Just few more steps before creating...</div>
 
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={settingStyles.setText}>Your name</div>
+                    <div className={formStyles.setText}>Let's start with your name</div>
                 </motion.div>
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <input type="text" placeholder="Moogle1" className={settingStyles.inputName}></input>
+                    <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(2)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(2)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </div>;
     const Pfp =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={item2}>
-                    <div className={settingStyles.connText}>Set your PFP</div>
+                    <div className={formStyles.setText}>Set your PFP</div>
 
                 </motion.div>
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}>
-                    <img className={settingStyles.pfp} src="./mooglesnft2.png" draggable={false} />
+                    <img className={formStyles.pfp} src="./mooglesnft2.png" draggable={false} />
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(3)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(3)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
 
         </div>;
     const Banner =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={settingStyles.setText}>Set your banner</div>
+                    <div className={formStyles.setText}>Set your banner</div>
                 </motion.div>
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <img className={settingStyles.banner} src="./logo3.png" draggable={false} />
+                    <img className={formStyles.banner} src="./logo3.png" draggable={false} />
                 </motion.div>
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(4)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(4)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </div>;
     const About =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={settingStyles.setText}>Write something about you</div>
+                    <div className={formStyles.setText}>Write something about you</div>
                 </motion.div>
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <textarea placeholder="I love learning about Web3..." className={settingStyles.textArea}></textarea>
+                    <textarea placeholder="I love learning about Web3..." className={formStyles.textArea}></textarea>
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(5)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </div>;
     const Skills =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                    <div className={settingStyles.setText}>Your skills</div>
+                    <div className={formStyles.setText}>Your skills</div>
                 </motion.div>
                 <Spacer />
                 <motion.div className="loader">
@@ -324,38 +324,38 @@ export function LogIn() {
                     >
                         <motion.div variants={checkBox} id="check-1">
                             <Checkbox color="primary" defaultSelected={false}>
-                                Development
+                                <div className={formStyles.checkLetters} > Development</div>
                             </Checkbox>
 
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-2">
                             <Checkbox color="secondary" defaultSelected={false}>
-                                Design
+                                <div className={formStyles.checkLetters} >Design</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-3">
                             <Checkbox color="success" defaultSelected={false}>
-                                Marketing Digital
+                                <div className={formStyles.checkLetters} >Marketing Digital</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-4">
                             <Checkbox color="warning" defaultSelected={false}>
-                                Project Managment
+                                <div className={formStyles.checkLetters} >Project Managment</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-5">
                             <Checkbox color="error" defaultSelected={false}>
-                                Investment
+                                <div className={formStyles.checkLetters} > Investment</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-5">
                             <Checkbox color="gradient" defaultSelected={false}>
-                                Others
+                                <div className={formStyles.checkLetters} >Others</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
@@ -364,18 +364,18 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(6)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </div>;
     const Interests =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                    <div className={settingStyles.setText}>Your interests</div>
+                    <div className={formStyles.setText}>Your interests</div>
                 </motion.div>
                 <Spacer />
                 <motion.div className="loader">
@@ -389,38 +389,38 @@ export function LogIn() {
                     >
                         <motion.div variants={checkBox} id="check-1">
                             <Checkbox color="primary" defaultSelected={false}>
-                                NFTs
+                                <div className={formStyles.checkLetters} >NFTs</div>
                             </Checkbox>
 
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-2">
                             <Checkbox color="secondary" defaultSelected={false}>
-                                DeFis
+                                <div className={formStyles.checkLetters} >DeFis</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-3">
                             <Checkbox color="success" defaultSelected={false}>
-                                DAOs
+                                <div className={formStyles.checkLetters} >DAOs</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-4">
                             <Checkbox color="warning" defaultSelected={false}>
-                                Cryptos
+                                <div className={formStyles.checkLetters} >Cryptos</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-5">
                             <Checkbox color="error" defaultSelected={false}>
-                                DIDs
+                                <div className={formStyles.checkLetters} >DIDs</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
                         <motion.div variants={checkBox} id="check-5">
                             <Checkbox color="gradient" defaultSelected={false}>
-                                Others
+                                <div className={formStyles.checkLetters} >Others</div>
                             </Checkbox>
                         </motion.div>
                         <Spacer />
@@ -429,33 +429,33 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
-                <div className={settingStyles.links}>
-                    <a onClick={() => setContent(7)}><i className={settingStyles.arrow}></i></a>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </div>;
     const AllDone =
-        <div className={settingStyles.backgroundImg}>
-            <div className={settingStyles.container}>
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={item2}>
-                    <div className={settingStyles.welcomeText}>You're all set!!</div>
+                    <div className={formStyles.welcomeText}>You're all set!!</div>
 
                 </motion.div>
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}>
-                    <img className={settingStyles.pfp} src="./mooglesnft2.png" draggable={false} />
+                    <img className={formStyles.pfp} src="./mooglesnft2.png" draggable={false} />
                 </motion.div>
 
                 <motion.div initial="hidden" animate="visible" variants={party}>
-                    <div className={settingStyles.welcomeText}><span role="img" aria-label="party">🥳🥳🥳🥳🥳🥳🥳</span>
+                    <div className={formStyles.welcomeText}><span role="img" aria-label="party">🥳🥳🥳🥳🥳🥳🥳</span>
                     </div>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
                         <Link href="/">
-                            <button className={settingStyles.styleButtonConn}> Let's go!</button>
+                            <button className={formStyles.styleButton}> Let's go!</button>
 
                         </Link>
                     </div>
@@ -474,9 +474,9 @@ export function LogIn() {
     }
     return (
 
-        <div className={settingStyles.backgroundImg}>
-            <NavbarSettings />
-            <div className={settingStyles.setProfileStepsDiv}>
+        <div className={formStyles.backgroundImg}>
+
+            <div className={formStyles.setProfileStepsDiv}>
                 {name && <div>{Name}</div>}
                 {pfp && <div>{Pfp}</div>}
                 {banner && <div>{Banner}</div>}
