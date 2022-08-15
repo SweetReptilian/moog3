@@ -1,18 +1,13 @@
 import React from "react";
-import styles from "../App.module.css";
-import "./styles/global.css";
-import Bottombar from "./components/Bottombar/Bottombar";
-import { Route, Routes } from "react-router-dom";
-import FindYN from "./components/pages/FindYourNetwork/FindYN";
-import Profile from "./components/pages/Profile/Profile";
-import Settings from "./components/pages/Settings/Settings";
-import Messages from "./components/pages/Messages/Messages";
-import SelectedList from "./components/pages/SelectedList/SelectedList";
+import styles from "../styles/App.module.scss";
 import { sequence } from "0xsequence";
 import { ETHAuth, Proof } from "@0xsequence/ethauth";
 import { configureLogger } from "@0xsequence/utils";
 import { log, warn } from "console-browserify";
 import { useCookies } from "react-cookie";
+import Sidebar from "../components/Sidebar.js"
+import Home from "../pages/home";
+
 
 configureLogger({ logLevel: "DEBUG" });
 
@@ -72,8 +67,10 @@ function App() {
             {isLoggedIn ? (
                 <div className="page">
                     <div className="bottomBar">
-                        <Bottombar />
-                        <div
+                        <Sidebar />
+                        <Home/>
+
+                        {/* <button
                             className="logout"
                             onClick={() => {
                                 const wallet = sequence.getWallet();
@@ -84,20 +81,9 @@ function App() {
                             }}
                         >
                             Logout
-                        </div>
+                        </button> */}
                     </div>
-                    <div className="mainWindow">
-                        <Routes>
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="/settings" element={<Settings />} />
-                            <Route
-                                path="/SelectedList"
-                                element={<SelectedList />}
-                            />
-                            <Route path="/team" element={<FindYN />} />
-                            <Route path="/messages" element={<Messages />} />
-                        </Routes>
-                    </div>
+
                 </div>
             ) : (
                 <div>
