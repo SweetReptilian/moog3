@@ -1,9 +1,15 @@
+$shadow-opacity: 0.30;
+
 .backgroundImg {
     height: 100%;
+    min-height: 700px;
     margin: 0;
     padding: 0;
-    background-color: rgb(255, 255, 255);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background-image: url("../public/log.png");
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 
     .container {
         // width: auto;
@@ -18,7 +24,185 @@
         box-sizing: border-box;
         overflow-x: hidden;
 
+
     }
+
+    .filters {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .check {
+        color: white;
+        font-weight: 400;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.233);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.479);
+    }
+
+    .check:hover {
+        background: rgba(255, 255, 255, 0.534);
+        cursor: pointer;
+    }
+
+    .projUsersMaincontainer {
+        // width: auto;
+        //height: auto;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 50px 0px 50px 0px;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .projUsersMaincontainer .searchBox {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        transition: 0.4s linear;
+        overflow: hidden;
+        padding: 10px;
+        margin: 10px;
+        position: relative;
+
+    }
+
+    .inputBar {
+        border-radius: 10px;
+        border: none;
+        height: 39px;
+        background-color: #f8e1e150;
+        box-sizing: border-box;
+        padding-left: 2.5rem;
+    }
+
+    .projUsersMaincontainer .searchBox .searchIcon {
+        position: absolute;
+        top: 50%;
+        left: 19px;
+        transform: translateY(-50%);
+    }
+
+    .title {
+        font-size: 25px;
+        text-transform: uppercase;
+        padding: 33px;
+        color: #ffffff;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .projectUsersContainer {
+        display: flex;
+        justify-content: center;
+        gap: 37px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .projectUsersDiv {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.233);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.479);
+        border-radius: 10px;
+        margin: 10px;
+        width: 150px;
+        height: 250px;
+        padding: 15px;
+        flex-basis: 23.3333%;
+
+    }
+
+    .projectUsersDiv:hover {
+        transition: 0.5s;
+        background: rgba(255, 255, 255, 0.479);
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersPic {
+        width: 30%;
+        border-radius: 50%;
+
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersTitle {
+        font-size: 17px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersDescription {
+
+        font-size: 13px;
+        font-weight: 400;
+        color: #1a1818;
+    }
+
+    .projectUserButtonBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #ffe2e200;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUserButtonBox:hover {
+        background-color: #fcfcfc;
+        cursor: pointer;
+        transition: .4s all ease-in-out;
+
+    }
+
+    .projectUsersSMIcons {
+        padding: 0 10px 0px 10px;
+    }
+
+    .bigProjCard {
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .buttonContainer {
+        // width: auto;
+        //height: auto;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        flex-direction: row;
+        padding: 114px 43px 50px 59px;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+        overflow-x: hidden;
+
+
+    }
+
 
     .pfp {
         width: 150px;
@@ -35,10 +219,17 @@
     }
 
     .welcomeText {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 20px;
-        font-weight: 800;
+        font-weight: 600;
         padding: 20px;
         text-align: center;
+        text-transform: uppercase;
+        color: white;
+        width: 600px;
+        line-height: 50px;
     }
 
     .setText {
@@ -112,6 +303,27 @@
 
     }
 
+    .projUserButton {
+        background-color: #74BDE0;
+        outline: 0;
+        border: none;
+        width: auto;
+        height: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+
+    }
+
+    .projUserButton:hover {
+        cursor: pointer;
+        background-color: #74bee067;
+        transition: .4s all ease-in-out;
+
+    }
+
+
     .links {
         display: flex;
         justify-content: right;
@@ -128,8 +340,9 @@
         transform: rotate(-45deg);
 
     }
+
     .arrow:hover {
-        
+
         cursor: pointer;
         border: solid rgb(176, 151, 196);
         border-width: 0 6px 6px 0;
@@ -140,7 +353,7 @@
     }
 
     .setProfileStepsButton {
-    
+
         border-radius: 50%;
         align-self: center;
         background-color: #ffe2e2;
@@ -148,7 +361,7 @@
         padding: 20px;
         color: #4e4646;
         border-radius: 20px;
-       
+
     }
 
     .setProfileStepsButton:hover {}
@@ -157,5 +370,18 @@
 @media only screen and (max-width: 768px) {
     .backgroundImg {
         padding: 0, 1px;
+    }
+
+    .projectUsersDiv {
+        flex: 20%;
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .projectUsersContainer {
+        flex-direction: column;
     }
 }

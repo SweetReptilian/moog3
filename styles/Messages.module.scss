@@ -1,0 +1,95 @@
+$shadow-opacity: 0.30;
+
+.mainBox {
+    font-family: 'Poppins', sans-serif;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background-image: url("../public/log.png");
+
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+
+    .glassBox {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin: 50px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+    }
+
+    .leftAndRight {
+        display: flex;
+        justify-content: space-around;
+        gap: 2rem;
+        flex-wrap: nowrap;
+    }
+
+    .leftSideObjects {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .rightSideObjects {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .contactsDiv {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.39);
+    }
+
+    .userData {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5px;
+    }
+
+    .userPic {
+        width: 50px;
+        height: auto;
+        padding-right: 10px;
+    }
+
+}

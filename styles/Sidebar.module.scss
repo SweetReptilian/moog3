@@ -1,0 +1,125 @@
+.all {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+    .sideNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 200px;
+        z-index: 100;
+        box-shadow: 1px 1px 8px -1px #313131;
+        border-radius: 10px;
+
+    }
+
+    .innerNav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        backdrop-filter: blur(20px) saturate(181%);
+        -webkit-backdrop-filter: blur(11px) saturate(181%);
+        background: rgb(255, 255, 255);
+        background: radial-gradient(circle, rgba(238, 174, 202, 0.356) 0%, rgba(148, 188, 233, 0.295) 100%);
+        border-radius: 2px;
+        border: 1px solid rgba(209, 213, 219, 0.3);
+
+
+    }
+
+    .toggle {
+        background-color: #fffffff3;
+        z-index: 101;
+        position: fixed;
+        outline: 0;
+        border: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        top: 18px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .sideNav .innerNav .sideUl {
+        padding-left: 25px;
+        position: relative;
+        top: 90px;
+        margin: 0;
+        // border-top: 0.1px solid #74BDE0;
+
+    }
+
+
+    .sideNav .innerNav .sideLi {
+        list-style: none;
+        cursor: pointer;
+        line-height: 3;
+        padding: 0.25px;
+        // border-bottom: 0.1px solid #74BDE0;
+
+    }
+
+    .sideNav .innerNav .sideLi .sideA {
+        font-size: 16px;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        transition: .4s all ease-in-out;
+        display: flex;
+        align-content: center;
+    }
+
+    .sideNav .innerNav .sideLi:hover .sideA {
+        color: #ffffffce;
+    }
+
+    .sideNav .innerNav .sideLi .sideA:focus {
+        color: #ffffff;
+    }
+
+    .icons {
+        padding-top: 10px;
+        width: 25%;
+    }
+
+    .buttonSpace {
+        padding: 38px;
+    }
+
+    .sideNav .innerNav .sideLi .sideButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffffce;
+        position: fixed;
+        outline: 0;
+        border: none;
+        width: auto;
+        height: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+
+    }
+
+    .sideNav .innerNav .sideLi .sideButton:hover {
+        cursor: pointer;
+        background-color: #74bee067;
+        transition: .4s all ease-in-out;
+
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .all {
+        padding: 0, 1px;
+    }
+}

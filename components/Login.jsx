@@ -1,51 +1,55 @@
 import {sequence} from "0xsequence"
+import {ETHAuth} from "@0xsequence/ethauth"
 import {setCookie, getCookie, deleteCookie} from "cookies-next"
-import {useState} from "react"
+import React, { useState} from "react"
 import styles from "../styles/LoginStyle.module.scss"
-import settingStyles from "../styles/SettingStyles.module.scss"
 import Navbar from "../components/Navbar";
-import NavbarSettings from "./NavbarSettings"
 import {TailSpin} from 'react-loader-spinner'
-import {ConnectSequenceWallet} from "../utils/ConnectSequenceWallet";
+import {useRouter} from "next/router";
 
 export default function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
     const connect = async () => {
-        const {walletAddress, isValid} = await ConnectSequenceWallet()
-        setCookie("wallet", walletAddress, {path: "/"})
-        setCookie("loggedIn", isValid, {path: "/"})
-    }
-
-    const disconnect = async () => {
         const wallet = sequence.getWallet()
-        wallet.disconnect()
-        deleteCookie("wallet", {path: "/"})
-        deleteCookie("loggedIn", {path: "/"})
-        setIsLoggedIn(false)
-        setIsLoading(false)
+        const connectDetails = await wallet.connect({
+            app: "Moog3",
+            authorize: true,
+            // keepWalletOpened: true,
+            ...{
+                settings: {
+                    theme: "indigoDark",
+                    includedPaymentProviders: ["moonpay"],
+                    defaultFundingCurrency: "matic",
+                    defaultPurchaseAmount: 111,
+                },
+            },
+        })
+        console.warn("connectDetails", {connectDetails})
+
+        const ethAuth = new ETHAuth()
+        if (connectDetails.proof) {
+            const decodedProof = await ethAuth.decodeProof(connectDetails.proof.proofString, true)
+            const isValid = await wallet.utils.isValidTypedDataSignature(
+                await wallet.getAddress(),
+                connectDetails.proof.typedData,
+                decodedProof.signature,
+                await wallet.getAuthChainId()
+            )
+            console.log("isValid?", isValid)
+            setCookie("wallet", await wallet.getAddress(), {path: "/"})
+            setCookie("loggedIn", isValid, {path: "/"})
+            if (!isValid) throw new Error("sig invalid")
+        }
     }
 
+    if(isLoggedIn) router.push("/home")
     return (
         <>
-            {isLoggedIn ? (
-
-                <div className={settingStyles.html}>
-                    <div className={settingStyles.backgroundImg}>
-                        <NavbarSettings/>
-                    </div>
-                    <div className="logout" onClick={async () => {
-                        await disconnect();
-                    }}>
-                        <button>Logout</button>
-                    </div>
-                </div>
-
-            ) : (
+            {!isLoggedIn &&
                 <div className={styles.html}>
                     <Navbar/>
-
-
                     <div className={styles.backgroundImg}>
 
                         <div className={styles.container}>
@@ -83,7 +87,6 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-            )
             }
         </>
     )
