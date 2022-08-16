@@ -1,218 +1,22 @@
-import NavbarSettings from "../components/NavbarSettings"
 import formStyles from "../styles/Forms.module.scss"
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 import Link from "next/link"
-import { Checkbox, Spacer } from "@nextui-org/react";
-import React, { useState } from 'react';
-
+import {Checkbox, Spacer} from "@nextui-org/react";
+import React, {useState} from 'react';
+import {
+    arrow2,
+    item,
+    item2,
+    arrow,
+    checkBox,
+    checkBox2,
+    button,
+    container,
+    item3,
+    party
+} from "../animations/applyFormAnimations"
 
 export function ApplyForm() {
-    const container = {
-        show: {
-            transition: {
-                staggerChildren: 0.35,
-            },
-        },
-    };
-    const checkBox = {
-        hidden: { opacity: 0, y: 200 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                ease: [0.6, 0.01, -0.05, 0.95],
-                duration: 1.6,
-            },
-        },
-        exit: {
-            opacity: 0,
-            y: -200,
-            transition: {
-                ease: "easeInOut",
-                duration: 0.8,
-            },
-        },
-    };
-    const checkBox2 = {
-        hidden: {
-            x: 100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0
-            }
-        },
-
-    }
-    const item = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.3,
-                delay: 0.4
-            }
-        },
-
-    }
-    const item2 = {
-        hidden: {
-            x: 100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0.6
-            }
-        },
-
-    }
-    const item3 = {
-        hidden: {
-            y: -100,
-            scale: 1,
-            opacity: 0
-
-        },
-        visible: {
-            y: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0.9
-            }
-        },
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-
-    const party = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const button = {
-        hidden: {
-            scale: 0,
-            opacity: 0,
-
-        },
-        visible: {
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1.1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const arrow = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const arrow2 = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 2.7
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
 
     const [first, setFirst] = useState(true);
     const [second, setSecond] = useState(false);
@@ -224,7 +28,9 @@ export function ApplyForm() {
             <div className={formStyles.applyTitle}> APPLY FORM</div>
             <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.welcomeText}>We are looking for a blockchain dev to build a SC for a NFT minter page. This work needs to be done in one week.</div>
+                    <div className={formStyles.welcomeText}>We are looking for a blockchain dev to build a SC for a NFT
+                        minter page. This work needs to be done in one week.
+                    </div>
 
                 </motion.div>
 
@@ -249,7 +55,8 @@ export function ApplyForm() {
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <textarea placeholder="I've been creating couple of Smart Contracts for different bussines..." className={formStyles.textArea}></textarea>
+                    <textarea placeholder="I've been creating couple of Smart Contracts for different bussines..."
+                              className={formStyles.textArea}></textarea>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
@@ -282,7 +89,7 @@ export function ApplyForm() {
                     <div className={formStyles.setText}> Please, mark those who fit perfect with you</div>
                 </motion.div>
 
-                <Spacer />
+                <Spacer/>
                 <motion.div className="loader">
                     <motion.div
                         variants={container}
@@ -294,28 +101,28 @@ export function ApplyForm() {
                     >
                         <motion.div variants={checkBox} id="check-1">
                             <Checkbox color="primary" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Availability (5 hs/ day one week)</div>
+                                <div className={formStyles.checkLetters}>Availability (5 hs/ day one week)</div>
                             </Checkbox>
                         </motion.div>
-                        <Spacer />
+                        <Spacer/>
                         <motion.div variants={checkBox} id="check-2">
                             <Checkbox color="secondary" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Previous experience - attach in next page</div>
+                                <div className={formStyles.checkLetters}>Previous experience - attach in next page</div>
                             </Checkbox>
                         </motion.div>
-                        <Spacer />
+                        <Spacer/>
                         <motion.div variants={checkBox} id="check-3">
                             <Checkbox color="success" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Requirement #3</div>
+                                <div className={formStyles.checkLetters}>Requirement #3</div>
                             </Checkbox>
                         </motion.div>
-                        <Spacer />
+                        <Spacer/>
                         <motion.div variants={checkBox} id="check-3">
                             <Checkbox color="success" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Requirement #4</div>
+                                <div className={formStyles.checkLetters}>Requirement #4</div>
                             </Checkbox>
                         </motion.div>
-                        <Spacer />
+                        <Spacer/>
                     </motion.div>
                 </motion.div>
             </div>
@@ -352,6 +159,7 @@ export function ApplyForm() {
         setThird(id === 3);
         setFourth(id === 4);
     }
+
     return (
 
         <div className={formStyles.backgroundImg}>
@@ -369,4 +177,5 @@ export function ApplyForm() {
     )
 
 }
+
 export default ApplyForm

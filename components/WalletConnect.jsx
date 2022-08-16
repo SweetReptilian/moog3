@@ -1,7 +1,8 @@
-import { sequence } from "0xsequence"
-import { ETHAuth } from "@0xsequence/ethauth"
-import { setCookie, getCookie, deleteCookie } from "cookies-next"
-import React, { useState } from "react"
+import {sequence} from "0xsequence"
+import {ETHAuth} from "@0xsequence/ethauth"
+import {setCookie, getCookie, deleteCookie} from "cookies-next"
+import React, {useState} from "react"
+import App from "../src/App";
 
 export default function WalletConect() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
@@ -21,7 +22,7 @@ export default function WalletConect() {
                 },
             },
         })
-        console.warn("connectDetails", { connectDetails })
+        console.warn("connectDetails", {connectDetails})
 
         const ethAuth = new ETHAuth()
         if (connectDetails.proof) {
@@ -33,8 +34,8 @@ export default function WalletConect() {
                 await wallet.getAuthChainId()
             )
             console.log("isValid?", isValid)
-            setCookie("wallet", await wallet.getAddress(), { path: "/" })
-            setCookie("loggedIn", isValid, { path: "/" })
+            setCookie("wallet", await wallet.getAddress(), {path: "/"})
+            setCookie("loggedIn", isValid, {path: "/"})
             if (!isValid) throw new Error("sig invalid")
         }
     }
@@ -42,29 +43,19 @@ export default function WalletConect() {
     const disconnet = async () => {
         const wallet = sequence.getWallet()
         wallet.disconnect()
-        deleteCookie("wallet", { path: "/" })
-        deleteCookie("loggedIn", { path: "/" })
+        deleteCookie("wallet", {path: "/"})
+        deleteCookie("loggedIn", {path: "/"})
         setIsLoggedIn(false)
     }
 
-
     return (
         <>
-
             {
-
                 <html className={settingStyles.html}>
-                    <div className={settingStyles.backgroundImg}>
-
-                        <App />
-                    </div>
-
-                    {/* <button className="logout" onClick={async () => await disconnet()}>
-                        Logout
-                    </button> */}
+                <div className={settingStyles.backgroundImg}>
+                    <App/>
+                </div>
                 </html>
-
-            
             }
         </>
     )
