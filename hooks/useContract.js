@@ -18,8 +18,8 @@ const useContract = () => {
 
     const addUserProfile = async (user) => {
         const contract = await getContract()
-        const {name, imageURI, profileURI} = user
-        const res = await contract.createUserProfile(name, imageURI, profileURI)
+        const {name, image, profileUri} = user
+        const res = await contract.createUserProfile(name, image, profileUri)
         console.log("response", res)
     }
 

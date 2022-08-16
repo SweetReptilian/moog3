@@ -7,15 +7,11 @@ const useUploadToStorage = () => {
     const storage = new NFTStorage({endpoint, token})
 
     const uploadFile = async (file) => {
-        const blob = new Blob([file], {type: "image/png"})
+        const blob = new Blob([file], {type: ["image/png", "image/jpg"]})
         return await storage.storeBlob(blob)
     }
 
-    const uploadJson = async (jsonObject) => {
-        return await storage.store(jsonObject)
-    }
-
-    return {uploadFile, uploadJson}
+    return {uploadFile}
 }
 
 export default useUploadToStorage
