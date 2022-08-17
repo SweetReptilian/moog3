@@ -104,7 +104,10 @@ const Sidebar = () => {
                                         </motion.li>
 
                                         <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/settings"> <HiOutlineCog /> Settings</a>
+                                            {/* in case that that person doesn't have any projects then redirect to settings
+                                        <a className={sideStyles.sideA} href="/settings"> <HiOutlineCog /> Settings</a>
+                                            */}
+                                            <a className={sideStyles.sideA} href="/proj-prof-settings"> <HiOutlineCog /> Settings</a>
                                         </motion.li>
 
                                         <motion.li
