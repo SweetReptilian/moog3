@@ -17,6 +17,7 @@ export function LogIn() {
 
         <div className={formStyles.backgroundImg}>
             <Sidebar />
+            {/* settings for users */}
             <div className={formStyles.mainContainer}>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>Name</div>
@@ -119,6 +120,83 @@ export function LogIn() {
 
                 <button className={formStyles.styleButton}>Save</button>
                 {/* for projects also we can add an edit function in their profiles or in the dashboard, when on right click they can either edit it or eraser */}
+
+            </div>
+
+            {/* settings for projects */}
+            <div className={formStyles.mainContainer}>
+                <div className={formStyles.container2}>
+                    <div className={formStyles.setText}>Project's Name</div>
+                    <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
+                </div>
+                <div className={formStyles.container2}>
+                    <div className={formStyles.setText}>PFP here</div>
+                    <img className={formStyles.pfp} src="./mooglesnft2.png" draggable={false} />
+
+                </div>
+                <div className={formStyles.container2}>
+                    <div className={formStyles.setText}>Banner here</div>
+                    <img className={formStyles.banner} src="./logo3.png" draggable={false} />
+                </div>
+                <div className={formStyles.container2}>
+                    <div className={formStyles.setText}>What this is all about?</div>
+                    <textarea placeholder="This is something different..." className={formStyles.textArea}></textarea>
+                </div>
+
+                <div className={formStyles.containerCheck}>
+                    <div className={formStyles.setText}>Cathegories</div>
+                    <Spacer />
+                    <Checkbox color="primary" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >NFTs</div>
+                    </Checkbox>
+                    <Spacer />
+                    <Checkbox color="secondary" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >DeFis</div>
+                    </Checkbox>
+                    <Spacer />
+                    <Checkbox color="success" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >DAOs</div>
+                    </Checkbox>
+                    <Spacer />
+                    <Checkbox color="warning" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >Cryptos</div>
+                    </Checkbox>
+                    <Spacer />
+                    <Checkbox color="error" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >DIDs</div>
+                    </Checkbox>
+                    <Spacer />
+                    <Checkbox color="gradient" defaultSelected={false}>
+                        <div className={formStyles.checkLetters} >Others</div>
+                    </Checkbox>
+                    <Spacer />
+                </div>
+                <div>
+                    <div className={formStyles.setText}>Project links</div>
+                </div>
+                <div className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><AiFillGithub /></div><input type="text" placeholder="moogUser1" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </div>
+                <div className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><MdComputer /></div><input type="text" placeholder="www.moog3.com" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </div>
+                <div className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><FiTwitter /></div><input type="text" placeholder="@mymoog" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </div>
+                <div className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><TbBrandDiscord /></div><input type="text" placeholder="#serverlink" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </div>
+
+
+                <button className={formStyles.styleButton}>Save</button>
 
             </div>
 
