@@ -26,6 +26,7 @@
         "http-browserify": "^1.7.0",
         "moralis": "^1.8.1",
         "next": "^12.2.3",
+        "nft.storage": "^7.0.0",
         "node-sass": "^7.0.1",
         "react": "^18.2.0",
         "react-cookie": "^4.1.1",

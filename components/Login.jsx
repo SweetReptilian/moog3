@@ -3,15 +3,14 @@ import { ETHAuth } from "@0xsequence/ethauth"
 import { setCookie, getCookie, deleteCookie } from "cookies-next"
 import React, { useState } from "react"
 import styles from "../styles/LoginStyle.module.scss"
-import settingStyles from "../styles/SettingStyles.module.scss"
 import Navbar from "../components/Navbar";
-import NavbarSettings from "./NavbarSettings"
 import { TailSpin } from 'react-loader-spinner'
-import App from "../src/App.js"
+import { useRouter } from "next/router";
 
 export default function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
     const connect = async () => {
         const wallet = sequence.getWallet()
         const connectDetails = await wallet.connect({
@@ -45,36 +44,12 @@ export default function Login() {
         }
     }
 
-    const disconnet = async () => {
-        const wallet = sequence.getWallet()
-        wallet.disconnect()
-        deleteCookie("wallet", { path: "/" })
-        deleteCookie("loggedIn", { path: "/" })
-        setIsLoggedIn(false)
-    }
-
-
+    if (isLoggedIn) router.push("/home")
     return (
         <>
-
-            {isLoggedIn ? (
-
-                <html className={settingStyles.html}>
-                    <div className={settingStyles.backgroundImg}>
-
-                        <App />
-                    </div>
-
-                    <button className="logout" onClick={async () => await disconnet()}>
-                        Logout
-                    </button>
-                </html>
-
-            ) : (
-                <html className={styles.html}>
+            {!isLoggedIn &&
+                <div className={styles.html}>
                     <Navbar />
-
-
                     <div className={styles.backgroundImg}>
 
                         <div className={styles.container}>
@@ -111,8 +86,7 @@ export default function Login() {
                             </div>
                         </div>
                     </div>
-                </html>
-            )
+                </div>
             }
         </>
     )

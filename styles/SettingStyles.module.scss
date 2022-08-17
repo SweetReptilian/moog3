@@ -5,11 +5,11 @@ $shadow-opacity: 0.30;
     min-height: 700px;
     margin: 0;
     padding: 0;
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-    background-image: url("../public/log.png");
+    background: rgb(85, 47, 128);
+    background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 1) 100%);
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    color: white;
 
     .container {
         // width: auto;

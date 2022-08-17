@@ -8,6 +8,9 @@ import { IconContext } from "react-icons"
 import { FaRegUserCircle } from "react-icons/fa"
 import { BiNetworkChart } from "react-icons/bi"
 import { HiOutlineCog } from "react-icons/hi"
+import { sequence } from "0xsequence";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 
 
@@ -33,6 +36,15 @@ const showAnimation = {
 const Sidebar = () => {
 
     const [show, setShow] = useState(false);
+    const router = useRouter()
+    const disconnect = async () => {
+        const wallet = sequence.getWallet()
+        console.log("wallet", await wallet.getAddress())
+        wallet.disconnect()
+        deleteCookie("wallet", { path: "/" })
+        deleteCookie("loggedIn", { path: "/" })
+        router.push("/")
+    }
 
     return (
 
@@ -92,7 +104,7 @@ const Sidebar = () => {
                                         <motion.li
                                             className={sideStyles.sideLi}>
                                             <div className={sideStyles.buttonSpace}>
-                                                <button className={sideStyles.sideButton} href="#">Logout</button>
+                                                <button className={sideStyles.sideButton} onClick={async () => await disconnect()}>Logout</button>
                                             </div>
                                         </motion.li>
 

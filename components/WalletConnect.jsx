@@ -2,6 +2,7 @@ import { sequence } from "0xsequence"
 import { ETHAuth } from "@0xsequence/ethauth"
 import { setCookie, getCookie, deleteCookie } from "cookies-next"
 import React, { useState } from "react"
+import App from "../src/App";
 
 export default function WalletConect() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
@@ -47,24 +48,14 @@ export default function WalletConect() {
         setIsLoggedIn(false)
     }
 
-
     return (
         <>
-
             {
-
                 <html className={settingStyles.html}>
                     <div className={settingStyles.backgroundImg}>
-
                         <App />
                     </div>
-
-                    {/* <button className="logout" onClick={async () => await disconnet()}>
-                        Logout
-                    </button> */}
                 </html>
-
-            
             }
         </>
     )

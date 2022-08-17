@@ -1,218 +1,32 @@
-import NavbarSettings from "../components/NavbarSettings"
+
 import formStyles from "../styles/Forms.module.scss"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Checkbox, Spacer } from "@nextui-org/react";
 import React, { useState } from 'react';
+import { AiFillGithub } from "react-icons/ai";
+import { MdComputer } from "react-icons/md";
+import { FiTwitter } from "react-icons/fi";
+import { TbBrandDiscord } from "react-icons/tb";
+import { IconContext } from "react-icons";
+import { TbTrashX } from "react-icons/tb";
+import {
+    checkBox,
+    item,
+    item2,
+    arrow,
+    checkBox2,
+    button,
+    item3,
+    arrow2,
+    party,
+    container
+} from "../animations/registrationAnimations"
+
 
 
 export function LogIn() {
-    const container = {
-        show: {
-            transition: {
-                staggerChildren: 0.35,
-            },
-        },
-    };
-    const checkBox = {
-        hidden: { opacity: 0, y: 200 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                ease: [0.6, 0.01, -0.05, 0.95],
-                duration: 1.6,
-            },
-        },
-        exit: {
-            opacity: 0,
-            y: -200,
-            transition: {
-                ease: "easeInOut",
-                duration: 0.8,
-            },
-        },
-    };
-    const checkBox2 = {
-        hidden: {
-            x: 100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0
-            }
-        },
-
-    }
-    const item = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.3,
-                delay: 0.4
-            }
-        },
-
-    }
-    const item2 = {
-        hidden: {
-            x: 100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0.6
-            }
-        },
-
-    }
-    const item3 = {
-        hidden: {
-            y: -100,
-            scale: 1,
-            opacity: 0
-
-        },
-        visible: {
-            y: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.4,
-                delay: 0.9
-            }
-        },
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-
-    const party = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const button = {
-        hidden: {
-            scale: 0,
-            opacity: 0,
-
-        },
-        visible: {
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1.1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const arrow = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 1
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
-    const arrow2 = {
-        hidden: {
-            x: -100,
-            scale: 1,
-            opacity: 0,
-
-        },
-        visible: {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            transition: {
-                ease: "easeIn",
-                duration: 0.5,
-                delay: 2.7
-            }
-        },
-
-        exit: {
-            y: 200,
-            scale: 0,
-            opacity: 0
-        }
-
-    }
+   
 
     const [name, setName] = useState(true);
     const [pfp, setPfp] = useState(false);
@@ -220,17 +34,18 @@ export function LogIn() {
     const [about, setAbout] = useState(false);
     const [skills, setSkills] = useState(false);
     const [interests, setInterests] = useState(false);
+    const [gallery, setGallery] = useState(false);
     const [allDone, setAllDone] = useState(false);
 
     const Name =
-        <div className={formStyles.backgroundImg}>
+        <>
             <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.welcomeText}>Alright! Just few more steps before creating...</div>
+                    <div className={formStyles.welcomeText}>Great choise! It's time to create something else</div>
 
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.setText}>Let's start with your name</div>
+                    <div className={formStyles.setText}>What is the name of the project?</div>
                 </motion.div>
 
 
@@ -244,13 +59,13 @@ export function LogIn() {
                 </div>
 
             </motion.div>
-        </div>;
+        </>;
     const Pfp =
-        <div className={formStyles.backgroundImg}>
+        <>
             <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={item2}>
-                    <div className={formStyles.setText}>Set your PFP</div>
+                    <div className={formStyles.setText}>Set a nice pfp</div>
 
                 </motion.div>
 
@@ -265,12 +80,12 @@ export function LogIn() {
 
             </motion.div>
 
-        </div>;
+        </>;
     const Banner =
-        <div className={formStyles.backgroundImg}>
+        <>
             <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.setText}>Set your banner</div>
+                    <div className={formStyles.setText}>Now the banner</div>
                 </motion.div>
 
 
@@ -285,17 +100,22 @@ export function LogIn() {
                 </div>
 
             </motion.div>
-        </div>;
-    const About =
-        <div className={formStyles.backgroundImg}>
+        </>;
+
+    const Gallery =
+        <>
             <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.setText}>Write something about you</div>
+                    <div className={formStyles.welcomeText}>Some more pics</div>
+
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" variants={item}>
+                    <div className={formStyles.setText}>This goes for the gallery</div>
                 </motion.div>
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <textarea placeholder="I love learning about Web3..." className={formStyles.textArea}></textarea>
+                    <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -304,13 +124,124 @@ export function LogIn() {
                 </div>
 
             </motion.div>
-        </div>;
+        </>;
+    const About =
+        <>
+            <div className={formStyles.container}>
+                <motion.div initial="hidden" animate="visible" variants={item}>
+                    <div className={formStyles.setText}>Now, this project is all about...</div>
+                </motion.div>
+
+
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
+                    <textarea placeholder="A begginer-friendly app for learning about web3!" className={formStyles.textArea}></textarea>
+                </motion.div>
+
+                <motion.div initial="hidden" animate="visible" variants={item}>
+                    <div className={formStyles.setText}>Let's add some links</div>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3} className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><AiFillGithub /></div><input type="text" placeholder="moogUser1" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3} className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><MdComputer /></div><input type="text" placeholder="www.moog3.com" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3} className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><FiTwitter /></div><input type="text" placeholder="@mymoog" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3} className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div ><TbBrandDiscord /></div><input type="text" placeholder="#serverlink" className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+
+            </div>
+            <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
+                </div>
+
+            </motion.div>
+        </>;
     const Skills =
-        <div className={formStyles.backgroundImg}>
+        <>
             <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                    <div className={formStyles.setText}>Your skills</div>
+                    <div className={formStyles.setText}>Let's pick a cathegory for (project's name)</div>
+                </motion.div>
+                <Spacer />
+                <motion.div className="loader">
+                    <motion.div
+                        variants={container}
+
+                        initial="hidden"
+                        animate="show"
+                        exit="exit"
+                        className="loader-inner"
+                    >
+                        <motion.div variants={checkBox} id="check-1">
+                            <Checkbox color="primary" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >NFTs</div>
+                            </Checkbox>
+
+                        </motion.div>
+                        <Spacer />
+                        <motion.div variants={checkBox} id="check-2">
+                            <Checkbox color="secondary" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >DeFis</div>
+                            </Checkbox>
+                        </motion.div>
+                        <Spacer />
+                        <motion.div variants={checkBox} id="check-3">
+                            <Checkbox color="success" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >DAOs</div>
+                            </Checkbox>
+                        </motion.div>
+                        <Spacer />
+                        <motion.div variants={checkBox} id="check-4">
+                            <Checkbox color="warning" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >Cryptos</div>
+                            </Checkbox>
+                        </motion.div>
+                        <Spacer />
+                        <motion.div variants={checkBox} id="check-5">
+                            <Checkbox color="error" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >DIDs</div>
+                            </Checkbox>
+                        </motion.div>
+                        <Spacer />
+                        <motion.div variants={checkBox} id="check-5">
+                            <Checkbox color="gradient" defaultSelected={false}>
+                                <div className={formStyles.checkLetters} >Others</div>
+                            </Checkbox>
+                        </motion.div>
+                        <Spacer />
+                    </motion.div>
+                </motion.div>
+
+
+
+            </div>
+            <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
+                <div className={formStyles.links}>
+                    <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
+                </div>
+
+            </motion.div>
+        </>;
+    const Interests =
+        <>
+            <div className={formStyles.container}>
+
+                <motion.div initial="hidden" animate="visible" variants={checkBox2}>
+                    <div className={formStyles.setText}>If you are looking for contributors, please specify</div>
                 </motion.div>
                 <Spacer />
                 <motion.div className="loader">
@@ -365,121 +296,59 @@ export function LogIn() {
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                 <div className={formStyles.links}>
-                    <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
+                    <a onClick={() => setContent(8)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
-        </div>;
-    const Interests =
-        <div className={formStyles.backgroundImg}>
-            <div className={formStyles.container}>
-
-                <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                    <div className={formStyles.setText}>Your interests</div>
-                </motion.div>
-                <Spacer />
-                <motion.div className="loader">
-                    <motion.div
-                        variants={container}
-
-                        initial="hidden"
-                        animate="show"
-                        exit="exit"
-                        className="loader-inner"
-                    >
-                        <motion.div variants={checkBox} id="check-1">
-                            <Checkbox color="primary" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >NFTs</div>
-                            </Checkbox>
-
-                        </motion.div>
-                        <Spacer />
-                        <motion.div variants={checkBox} id="check-2">
-                            <Checkbox color="secondary" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >DeFis</div>
-                            </Checkbox>
-                        </motion.div>
-                        <Spacer />
-                        <motion.div variants={checkBox} id="check-3">
-                            <Checkbox color="success" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >DAOs</div>
-                            </Checkbox>
-                        </motion.div>
-                        <Spacer />
-                        <motion.div variants={checkBox} id="check-4">
-                            <Checkbox color="warning" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Cryptos</div>
-                            </Checkbox>
-                        </motion.div>
-                        <Spacer />
-                        <motion.div variants={checkBox} id="check-5">
-                            <Checkbox color="error" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >DIDs</div>
-                            </Checkbox>
-                        </motion.div>
-                        <Spacer />
-                        <motion.div variants={checkBox} id="check-5">
-                            <Checkbox color="gradient" defaultSelected={false}>
-                                <div className={formStyles.checkLetters} >Others</div>
-                            </Checkbox>
-                        </motion.div>
-                        <Spacer />
-                    </motion.div>
-                </motion.div>
-
-            </div>
-            <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
-                <div className={formStyles.links}>
-                    <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
-                </div>
-
-            </motion.div>
-        </div>;
+        </>;
     const AllDone =
-        <div className={formStyles.backgroundImg}>
+        <>
             <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={item2}>
-                    <div className={formStyles.welcomeText}>You're all set!!</div>
+                    <div className={formStyles.welcomeText}>(Project's name) Project has been created!</div>
 
                 </motion.div>
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}>
-                    <img className={formStyles.pfp} src="./mooglesnft2.png" draggable={false} />
                 </motion.div>
 
                 <motion.div initial="hidden" animate="visible" variants={party}>
-                    <div className={formStyles.welcomeText}><span role="img" aria-label="party">🥳🥳🥳🥳🥳🥳🥳</span>
+                    <div className={formStyles.checkLetters}><span role="img" aria-label="party">Let's check how it looks</span>
                     </div>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
-                        <Link href="/">
-                            <button className={formStyles.styleButton}> Let's go!</button>
+                        <Link href="/profile">
+                            <button className={formStyles.styleButton}>Take me there!</button>
 
                         </Link>
                     </div>
 
                 </motion.div>
             </div>
-        </div>;
+        </>;
     function setContent(id) {
         setName(id === 1);
         setPfp(id === 2);
         setBanner(id === 3);
-        setAbout(id === 4);
-        setSkills(id === 5);
-        setInterests(id === 6);
-        setAllDone(id === 7);
+        setGallery(id === 4);
+        setAbout(id === 5);
+        setSkills(id === 6);
+        setInterests(id === 7);
+        setAllDone(id === 8);
     }
     return (
 
         <div className={formStyles.backgroundImg}>
 
-            <div className={formStyles.setProfileStepsDiv}>
+            <div className={formStyles.secondDiv}>
+                <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
+                    <a className={formStyles.trashA} href="/home"><TbTrashX /></a></IconContext.Provider>
                 {name && <div>{Name}</div>}
                 {pfp && <div>{Pfp}</div>}
                 {banner && <div>{Banner}</div>}
+                {gallery && <div>{Gallery}</div>}
                 {about && <div>{About}</div>}
                 {skills && <div>{Skills}</div>}
                 {interests && <div>{Interests}</div>}

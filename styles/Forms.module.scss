@@ -1,15 +1,27 @@
 $shadow-opacity: 0.30;
 
+.secondDiv {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+
+
 .backgroundImg {
     height: 100%;
-    min-height: 700px;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-    background-image: url("../public/log.png");
+    background: rgb(85, 47, 128);
+    background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 1) 100%);
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    color: white;
+    font-weight: 600;
+
+
 
     .applyTitle {
         display: flex;
@@ -78,7 +90,7 @@ $shadow-opacity: 0.30;
     .secondContainer {
         display: flex;
         justify-content: space-around;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         padding: 25px;
@@ -93,6 +105,48 @@ $shadow-opacity: 0.30;
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.18);
         flex-wrap: wrap;
+    }
+
+    .mainContainer {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin: 50px;
+        margin-top: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.151);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        flex-wrap: wrap;
+    }
+
+
+    .secondContainer2 {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin: 50px;
+        margin-top: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.158);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        flex-wrap: wrap;
+        align-content: center;
     }
 
 
@@ -159,17 +213,26 @@ $shadow-opacity: 0.30;
 
     }
 
+    .linksBox {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding-bottom: 10px;
+    }
+
     .textArea {
         width: 400px;
         height: 150px;
         border-radius: 10px;
-        border: 5px solid rgb(234, 223, 243);
+        border: 2px solid rgb(234, 223, 243);
         background-color: #f8f8f8;
         font-size: 16px;
         resize: none;
         overflow: auto;
         outline: none;
-
+        padding: 10px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
@@ -177,13 +240,15 @@ $shadow-opacity: 0.30;
 
     .checkLetters {
         font-size: 15px;
+        color: white;
     }
 
     .inputName {
         width: auto;
         height: auto;
         border-radius: 10px;
-        border: 5px solid rgb(234, 223, 243);
+        padding: 10px;
+        border: 2px solid rgb(234, 223, 243);
         background-color: #f8f8f8;
         font-size: 15px;
         font-style: italic;
@@ -195,10 +260,38 @@ $shadow-opacity: 0.30;
         box-shadow: none;
     }
 
+    .someFlex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
     .connText {
         padding: 10px 0px 30px;
         font-weight: 600;
         text-align: center;
+    }
+
+
+    input[type=file]::-webkit-file-upload-button {
+        background: rgba(255, 255, 255, 0.233);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.479);
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        padding: 6px;
+    }
+
+    input[type=file]::-webkit-file-upload-button:hover {
+        transition: 0.5s;
+        background: rgba(255, 255, 255, 0.479);
+        border-radius: 10px;
+        cursor: pointer;
     }
 
     .banner {

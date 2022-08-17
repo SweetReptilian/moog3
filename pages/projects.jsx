@@ -15,6 +15,8 @@ export function Projects() {
             <div className={styles.backgroundImg}>
                 <div className={styles.bigProjCard}>
                     <div className={styles.projUsersMaincontainer}>
+                        {/* for projects and contributors, maybe changing the view as either proj or user 
+                        this can also change thus the name and icon (projects to contributors and ) on the sidebar and vice versa*/}
                         <div className={styles.title}>Go ahead and find the perfect project for you!</div>
                         <SearchBar />
                     </div>

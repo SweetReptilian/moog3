@@ -5,29 +5,29 @@ import { AiOutlineEye } from "react-icons/ai"
 import { IconContext } from "react-icons";
 import { AiOutlineGithub } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
-import { TbBrandDiscord } from "react-icons/tb"
+import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TiInputCheckedOutline } from "react-icons/ti"
+import { HiOutlinePencilAlt } from "react-icons/hi"
+import { FcDislike, FcLike } from "react-icons/fc"
 
 const Profile = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
-
+    const [connect, setConnect] = useState(false);
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
             <div className={styles.bigCard}>
+                <div className={styles.projectNumber}>
+                    {/* here will say project's names and with it will show each one of them*/}
+                    <button className={styles.projectButton}>1</button>
+                    <button className={styles.projectButton}>2</button>
+                    <button className={styles.projectButton}>3</button>
+                </div>
                 <div className={styles.presentation}>
                     <img src="./log.png" alt="" className={styles.banner} />
-                    {/* <div className={styles.likeDiv}>
-                        <IconContext.Provider value={{ size: "29px" }}>
-                            <div className={styles.iconLabel}><FcLikePlaceholder /> <div className={styles.thisLabel}>300</div></div>
 
-                            <div className={styles.iconLabel}><AiOutlineEye /> <div className={styles.thisLabel}>200</div></div>
-                        </IconContext.Provider>
-
-                    </div> */}
                     <div className={styles.sides}>
                         <img src="./mooglesnft2.png" alt="pfp" className={styles.pfp} />
                         <div className={styles.name}>NFT Motion</div>
@@ -44,16 +44,23 @@ const Profile = () => {
 
 
                         <div className={styles.description}>This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs</div>
-                        <div className={styles.gallery}></div>
+                        <AnimatePresence>
+                            <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}>
+                                {/* this heart goes only on the users profiles */}
+                                <IconContext.Provider value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+
+                                    {connect ? <FcDislike /> : <FcLike />}
+                                </IconContext.Provider>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
 
                 </div>
             </div>
-            {/* <div className={styles.bigCardLikes}> */}
-
-            {/* </div> */}
+            {/* <this section only goes for projects*/}
             <div className={styles.bigCard}>
-                {/* <div className={styles.line} /> */}
+
                 <div className={styles.lookingForTitle}>We are looking for...</div>
 
                 <div className={styles.lookingForSection}>
@@ -78,19 +85,22 @@ const Profile = () => {
 
                 </div>
             </div>
-
-            {/* this will be shown only on users profiles
-                <div className={styles.line} />
-                <div className={styles.lookingForTitle}>My contributions</div>
-
-                <div className={styles.line} />
-                <div className={styles.lookingForTitle}>My projects</div>
-                */}
-
-            {/* <div className={styles.line} /> */}
+            {/* gallery for projects (or may not) also contributors */}
 
             <div className={styles.bigCard}>
+
                 <div className={styles.lookingForTitle}>Posts</div>
+                <AnimatePresence>
+                    <motion.div className={styles.iconSpaceWrite} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 1 }}
+                        whileTap={{ scale: 1 }}>
+                        <input type="text" placeholder="Any updates?" />
+                        {/* this heart goes only on the users profiles */}
+                        <IconContext.Provider value={{ size: "45px", color: "white", className: styles.checkedIcon2 }}>
+
+                            {connect ? <TbPencilOff /> : <HiOutlinePencilAlt />}
+                        </IconContext.Provider>
+                    </motion.div>
+                </AnimatePresence>
                 <div className={styles.printPosts}>
                     <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>
@@ -118,6 +128,15 @@ const Profile = () => {
                 </div>
 
             </div>
+
+
+            <div className={styles.bigCard}>
+                <div className={styles.lookingForTitle}>Gallery</div>
+
+
+            </div>
+
+
             <div className={styles.lookingForTitle}>Contributors</div>
             <div className={styles.contributorsSection} >
                 <img src="./mooglesnft.png" alt="contributor" className={styles.contributorsPic} />
