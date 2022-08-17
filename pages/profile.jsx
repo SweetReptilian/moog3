@@ -11,6 +11,8 @@ import { useState } from "react";
 import { TiInputCheckedOutline } from "react-icons/ti"
 import { HiOutlinePencilAlt } from "react-icons/hi"
 import { FcDislike, FcLike } from "react-icons/fc"
+import { RiSendPlaneLine } from "react-icons/ri"
+
 
 const Profile = () => {
 
@@ -91,16 +93,19 @@ const Profile = () => {
 
                 <div className={styles.lookingForTitle}>Posts</div>
                 <AnimatePresence>
-                    <motion.div className={styles.iconSpaceWrite} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 1 }}
-                        whileTap={{ scale: 1 }}>
-                        <input type="text" placeholder="Any updates?" />
-                        {/* this heart goes only on the users profiles */}
-                        <IconContext.Provider value={{ size: "45px", color: "white", className: styles.checkedIcon2 }}>
+                    <div className={styles.iconSpaceWrite}>
+                        <textarea className={styles.textArea} placeholder="Any updates?" />
 
-                            {connect ? <TbPencilOff /> : <HiOutlinePencilAlt />}
-                        </IconContext.Provider>
-                    </motion.div>
+                        <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
+                            whileTap={{ scale: 1 }}>
+                            {/* this heart goes only on the users profiles */}
+                            <IconContext.Provider value={{ size: "39px", color: "white", className: styles.checkedIcon2 }}>
+                                <RiSendPlaneLine />
+                            </IconContext.Provider>
+                        </motion.div>
+                    </div>
                 </AnimatePresence>
+
                 <div className={styles.printPosts}>
                     <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>

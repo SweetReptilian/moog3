@@ -177,11 +177,29 @@ $shadow-opacity: 0.30;
     .iconSpaceWrite {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
-        padding-right: 50px;
+        justify-content: center;
         padding-bottom: 20px;
+        align-items: center;
+        gap: 1rem;
+        padding-left: 65px;
     }
 
+    .textArea {
+        width: 474px;
+        height: 81px;
+        border-radius: 10px;
+        border: 5px solid #eadff3;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+        overflow: auto;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .checkedIcon2:hover {
+        cursor: pointer;
+    }
 
     .thisLabel {
         padding: 10px;
