@@ -87,7 +87,7 @@ const Sidebar = () => {
                                         </motion.li>
 
                                         <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/proj-profile"> <MdOutlineManageAccounts /> Projects Profile</a>
+                                            <a className={sideStyles.sideA} href="/choose-one"> <MdOutlineManageAccounts /> Projects Profile</a>
                                         </motion.li>
 
 

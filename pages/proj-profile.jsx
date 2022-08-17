@@ -8,9 +8,6 @@ import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { TiInputCheckedOutline } from "react-icons/ti"
-import { HiOutlinePencilAlt } from "react-icons/hi"
-import { FcDislike, FcLike } from "react-icons/fc"
 import { RiSendPlaneLine } from "react-icons/ri"
 
 
