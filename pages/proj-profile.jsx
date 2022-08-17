@@ -21,6 +21,7 @@ const Profile = () => {
         <div className={styles.mainContainer}>
             <Sidebar />
             <div className={styles.bigCard}>
+
                 <div className={styles.presentation}>
                     <img src="./log.png" alt="" className={styles.banner} />
 
@@ -39,20 +40,41 @@ const Profile = () => {
                         </IconContext.Provider>
 
 
-                        <div className={styles.description}>This is a profile  sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs</div>
-                        <AnimatePresence>
-                            <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                                whileTap={{ scale: 1 }}>
-                                <IconContext.Provider value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+                        <div className={styles.description}>This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs</div>
 
-                                    {connect ? <FcDislike /> : <FcLike />}
-                                </IconContext.Provider>
-                            </motion.div>
-                        </AnimatePresence>
                     </div>
 
                 </div>
             </div>
+            {/* <this section only goes for projects*/}
+            <div className={styles.bigCard}>
+
+                <div className={styles.lookingForTitle}>We are looking for...</div>
+
+                <div className={styles.lookingForSection}>
+                    <motion.button whileHover={{ scale: 1.0 }} whileTap={{ scale: 0.9 }} className={styles.lookingForOptions}>
+
+                        {/* <a className={styles.aDecor} href="/apply-form"> */}
+                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                            <div className={styles.checkedIcon}><FcLikePlaceholder /></div>
+                        </IconContext.Provider>
+                        <div className={styles.lookingForName}>Blockchain Developer</div>
+                        {/* </a> */}
+                    </motion.button>
+                    <motion.button whileHover={{ scale: 1.0 }} whileTap={{ scale: 0.9 }} className={styles.lookingForOptions}>
+
+                        {/* <a className={styles.aDecor} href="/apply-form"> */}
+                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                            <div className={styles.checkedIcon}><FcLikePlaceholder /></div>
+                        </IconContext.Provider>
+                        <div className={styles.lookingForName}>Marketing Digital</div>
+                        {/* </a> */}
+                    </motion.button>
+
+                </div>
+            </div>
+            {/* gallery for projects (or may not) also contributors */}
+
             <div className={styles.bigCard}>
 
                 <div className={styles.lookingForTitle}>Posts</div>
@@ -99,9 +121,20 @@ const Profile = () => {
             </div>
 
 
+            <div className={styles.bigCard}>
+                <div className={styles.lookingForTitle}>Gallery</div>
 
 
+            </div>
 
+
+            <div className={styles.lookingForTitle}>Contributors</div>
+            <div className={styles.contributorsSection} >
+                <img src="./mooglesnft.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="./mooglesnft3.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="./mooglesnft4.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="./mooglesnft2.png" alt="contributor" className={styles.contributorsPic} />
+            </div>
             <div></div>
 
 

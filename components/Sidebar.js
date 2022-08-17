@@ -7,6 +7,7 @@ import { BiHomeAlt } from 'react-icons/bi'
 import { IconContext } from "react-icons"
 import { FaRegUserCircle } from "react-icons/fa"
 import { BiNetworkChart } from "react-icons/bi"
+import { MdOutlineManageAccounts } from "react-icons/md"
 import { HiOutlineCog } from "react-icons/hi"
 import { sequence } from "0xsequence";
 import { deleteCookie } from "cookies-next";
@@ -84,6 +85,11 @@ const Sidebar = () => {
                                         <motion.li className={sideStyles.sideLi}>
                                             <a className={sideStyles.sideA} href="/profile"> <FaRegUserCircle /> Profile</a>
                                         </motion.li>
+
+                                        <motion.li className={sideStyles.sideLi}>
+                                            <a className={sideStyles.sideA} href="/proj-profile"> <MdOutlineManageAccounts /> Projects Profile</a>
+                                        </motion.li>
+
 
                                         <motion.li className={sideStyles.sideLi}>
                                             <a className={sideStyles.sideA} href="/projects"> <AiOutlineFundProjectionScreen /> Projects</a>
