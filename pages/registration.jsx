@@ -1,41 +1,34 @@
 import formStyles from "../styles/Forms.module.scss"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Checkbox, Spacer } from "@nextui-org/react";
-import React, { useEffect, useState } from 'react';
+import { Checkbox, Spacer } from "@nextui-org/react"
+import React, { useEffect, useState } from "react"
 import {
-    checkBox,
-    item,
-    item2,
-    arrow,
-    checkBox2,
-    button,
-    item3,
-    arrow2,
-    party,
-    container
+    checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container
 } from "../animations/registrationAnimations"
 import useUploadToStorage from "../hooks/useUploadToStorage"
-import useContract from "../hooks/useContract";
-import { TailSpin } from 'react-loader-spinner';
+import useContract from "../hooks/useContract"
+import { TailSpin } from "react-loader-spinner"
+import { getCookies } from "cookies-next"
 
 export function Registration() {
     const [isLoading, setIsLoading] = useState(false)
     const { uploadFile } = useUploadToStorage()
     const { addUserProfile } = useContract()
+    const {wallet} = getCookies()
     const [formData, setFormData] = useState({
         name: "moogle1",
         pfp: "https://ipfs.io/ipfs/bafkreic2mr4bcejdcfrpya6aiev37vmhdy3pjtxbni4lh3cdmy7kovrswe",
         banner: "https://ipfs.io/ipfs/bafkreigxiia7k4ct7tnynfaikgu4ghn2zqzvpak3tdozf2u4deb4ag26si",
-        about: "I love learning about Web3...",
+        about: "I love learning about Web3..."
     })
-    const [name, setName] = useState(true);
-    const [pfp, setPfp] = useState(false);
-    const [banner, setBanner] = useState(false);
-    const [about, setAbout] = useState(false);
-    const [skills, setSkills] = useState(false);
-    const [interests, setInterests] = useState(false);
-    const [allDone, setAllDone] = useState(false);
+    const [name, setName] = useState(true)
+    const [pfp, setPfp] = useState(false)
+    const [banner, setBanner] = useState(false)
+    const [about, setAbout] = useState(false)
+    const [skills, setSkills] = useState(false)
+    const [interests, setInterests] = useState(false)
+    const [allDone, setAllDone] = useState(false)
     const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
 
@@ -113,7 +106,7 @@ export function Registration() {
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
                     <input onChange={handleChange} name="name" type="text" placeholder="Moogle1"
-                        className={formStyles.inputName} required></input>
+                           className={formStyles.inputName} required></input>
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -123,7 +116,7 @@ export function Registration() {
 
             </motion.div>
 
-        </>;
+        </>
     const Pfp =
         <>
 
@@ -134,7 +127,8 @@ export function Registration() {
 
                 </motion.div>
 
-                <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit" variants={item3}>
+                <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit"
+                            variants={item3}>
                     <img className={formStyles.pfp} src={formData.pfp} draggable={false} alt={"user pfp"} />
                     <input className={formStyles.uploadFiles} name="pfp" type={"file"} onChange={handlePfpChange} />
                 </motion.div>
@@ -146,7 +140,7 @@ export function Registration() {
 
             </motion.div>
 
-        </>;
+        </>
     const Banner =
         <>
             <div className={formStyles.container}>
@@ -155,7 +149,8 @@ export function Registration() {
                 </motion.div>
 
 
-                <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit" variants={item2}>
+                <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit"
+                            variants={item2}>
                     <img className={formStyles.banner} src={formData.banner} draggable={false} alt={"banner"} />
                     <input name="banner" type={"file"} onChange={handleBannerChange} />
                 </motion.div>
@@ -167,7 +162,7 @@ export function Registration() {
                 </div>
 
             </motion.div>
-        </>;
+        </>
     const About =
         <>
             <div className={formStyles.container}>
@@ -178,7 +173,7 @@ export function Registration() {
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
                     <textarea name="about" value={formData.about} onChange={handleChange}
-                        placeholder="I love learning about Web3..." className={formStyles.textArea}></textarea>
+                              placeholder="I love learning about Web3..." className={formStyles.textArea}></textarea>
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -187,7 +182,7 @@ export function Registration() {
                 </div>
 
             </motion.div>
-        </>;
+        </>
     const Skills =
         <>
             <div className={formStyles.container}>
@@ -208,7 +203,7 @@ export function Registration() {
                         >
                             <motion.div variants={checkBox} id="check-1">
                                 <Checkbox name={"Development"} value={"Development"}
-                                    color="primary" defaultSelected={false}>
+                                          color="primary" defaultSelected={false}>
                                     <div className={formStyles.checkLetters}> Development</div>
                                 </Checkbox>
 
@@ -216,35 +211,35 @@ export function Registration() {
                             <Spacer />
                             <motion.div variants={checkBox} id="check-2">
                                 <Checkbox name={"Design"} value={"Design"}
-                                    color="secondary" defaultSelected={false}>
+                                          color="secondary" defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Design</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-3">
                                 <Checkbox name={"Digital Marketing"}
-                                    value={"Digital Marketing"} color="success" defaultSelected={false}>
+                                          value={"Digital Marketing"} color="success" defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Digital Marketing</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-4">
                                 <Checkbox name={"Project Management"}
-                                    value={"Project Management"} color="warning" defaultSelected={false}>
+                                          value={"Project Management"} color="warning" defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Project Management</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-5">
                                 <Checkbox name={"Investment"} value={"Investment"}
-                                    color="error" defaultSelected={false}>
+                                          color="error" defaultSelected={false}>
                                     <div className={formStyles.checkLetters}> Investment</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-5">
                                 <Checkbox name={"Others"} value={"Others"} color="gradient"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Others</div>
                                 </Checkbox>
                             </motion.div>
@@ -260,7 +255,7 @@ export function Registration() {
                 </div>
 
             </motion.div>
-        </>;
+        </>
     const Interests =
         <>
             <div className={formStyles.container}>
@@ -281,7 +276,7 @@ export function Registration() {
                         >
                             <motion.div variants={checkBox} id="check-1">
                                 <Checkbox value={"NFTs"} color="primary"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>NFTs</div>
                                 </Checkbox>
 
@@ -289,35 +284,35 @@ export function Registration() {
                             <Spacer />
                             <motion.div variants={checkBox} id="check-2">
                                 <Checkbox value={"DeFi"} color="secondary"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>DeFi</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-3">
                                 <Checkbox value={"DAOs"} color="success"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>DAOs</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-4">
                                 <Checkbox value={"Crypto"} color="warning"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Crypto</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-5">
                                 <Checkbox value={"DIDs"} color="error"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>DIDs</div>
                                 </Checkbox>
                             </motion.div>
                             <Spacer />
                             <motion.div variants={checkBox} id="check-5">
                                 <Checkbox value={"Others"} color="gradient"
-                                    defaultSelected={false}>
+                                          defaultSelected={false}>
                                     <div className={formStyles.checkLetters}>Others</div>
                                 </Checkbox>
                             </motion.div>
@@ -333,7 +328,7 @@ export function Registration() {
                 </div>
 
             </motion.div>
-        </>;
+        </>
     const AllDone =
         <>
             <div className={formStyles.container}>
@@ -353,28 +348,28 @@ export function Registration() {
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
-                        <Link href="/home">
+                        <Link href={`/home/${wallet}`}>
                             <button className={formStyles.styleButton}> Let's go!</button>
                         </Link>
                     </div>
                 </motion.div>
             </div>
-        </>;
+        </>
 
     function setContent(id) {
-        setName(id === 1);
-        setPfp(id === 2);
-        setBanner(id === 3);
-        setAbout(id === 4);
-        setSkills(id === 5);
-        setInterests(id === 6);
-        setAllDone(id === 7);
+        setName(id === 1)
+        setPfp(id === 2)
+        setBanner(id === 3)
+        setAbout(id === 4)
+        setSkills(id === 5)
+        setInterests(id === 6)
+        setAllDone(id === 7)
     }
 
     return (
 
         <div className={formStyles.backgroundImg}>
-            
+
             <div className={formStyles.secondDiv}>
 
                 {name && <div>{Name}</div>}

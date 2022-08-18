@@ -1,4 +1,3 @@
-
 import formStyles from "../styles/Forms.module.scss"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -22,12 +21,10 @@ import {
     party,
     container
 } from "../animations/registrationAnimations"
-
-
+import { getCookies } from "cookies-next"
 
 export function LogIn() {
-
-
+    const {wallet} = getCookies()
     const [name, setName] = useState(true);
     const [pfp, setPfp] = useState(false);
     const [banner, setBanner] = useState(false);
@@ -344,7 +341,8 @@ export function LogIn() {
 
             <div className={formStyles.secondDiv}>
                 <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
-                    <a className={formStyles.trashA} href="/home"><TbTrashX /></a></IconContext.Provider>
+                    <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a>
+                </IconContext.Provider>
                 {name && <div>{Name}</div>}
                 {pfp && <div>{Pfp}</div>}
                 {banner && <div>{Banner}</div>}

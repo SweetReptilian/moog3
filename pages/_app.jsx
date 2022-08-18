@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
         const network = "mumbai";
         sequence.initWallet(network, {
             networkRpcUrl: "https://matic-mumbai.chainstacklabs.com",
-        });
+        }).then();
     }, []);
     return <Component {...pageProps} />;
 }

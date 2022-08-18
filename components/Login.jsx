@@ -3,9 +3,9 @@ import { ETHAuth } from "@0xsequence/ethauth"
 import { setCookie, getCookie, deleteCookie } from "cookies-next"
 import React, { useState } from "react"
 import styles from "../styles/LoginStyle.module.scss"
-import Navbar from "../components/Navbar";
-import { TailSpin } from 'react-loader-spinner'
-import { useRouter } from "next/router";
+import Navbar from "../components/Navbar"
+import { TailSpin } from "react-loader-spinner"
+import { useRouter } from "next/router"
 
 export default function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(getCookie("loggedIn") || false)
@@ -38,7 +38,7 @@ export default function Login() {
                 await wallet.getAuthChainId()
             )
             console.log("isValid?", isValid)
-            setCookie("wallet", await wallet.getAddress(), { path: "/" })
+            setCookie("wallet", (await wallet.getAddress()).toLowerCase(), { path: "/" })
             setCookie("loggedIn", isValid, { path: "/" })
             if (!isValid) throw new Error("sig invalid")
         }
@@ -47,47 +47,64 @@ export default function Login() {
     if (isLoggedIn) router.push("/home")
     return (
         <>
-            {!isLoggedIn &&
+            {!isLoggedIn && (
                 <div className={styles.html}>
                     <Navbar />
                     <div className={styles.backgroundImg}>
-
                         <div className={styles.container}>
-
-                            <img className={styles.logoGif}
+                            <img
+                                className={styles.logoGif}
                                 alt={"logoGIf"}
-                                src="https://ipfs.io/ipfs/bafybeicggcet7yfifxhavfv6ysx24zcjilylrv2ls6y7rys4iob3wxaabm" />
+                                src="https://ipfs.io/ipfs/bafybeicggcet7yfifxhavfv6ysx24zcjilylrv2ls6y7rys4iob3wxaabm"
+                            />
                             <div className={styles.welcomeText}>Welcome to Moog3!</div>
-                            <div className={styles.connText}>To get started, please connect your Sequence Wallet</div>
-                            <button className={styles.styleButtonConn}
+                            <div className={styles.connText}>
+                                To get started, please connect your Sequence Wallet
+                            </div>
+                            <button
+                                className={styles.styleButtonConn}
                                 onClick={async () => {
                                     setIsLoading(true)
                                     await connect()
                                     setIsLoggedIn(getCookie("loggedIn") || false)
                                 }}
                             >
-                                {isLoading ? <TailSpin
-                                    height="15"
-                                    width="15"
-                                    color="#4e4646"
-                                    ariaLabel="tail-spin-loading"
-                                    radius="1"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                /> : "Connect Wallet"}
+                                {isLoading ? (
+                                    <TailSpin
+                                        height="15"
+                                        width="15"
+                                        color="#4e4646"
+                                        ariaLabel="tail-spin-loading"
+                                        radius="1"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
+                                    />
+                                ) : (
+                                    "Connect Wallet"
+                                )}
                             </button>
                             <div className={styles.sponsorSvgsSection}>
-                                <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="spheron.ico" />
-                                <img className={styles.sponsorSvgs} alt={"sponsor-logo"}
-                                    src="https://ipfs.io/ipfs/bafkreiewn7tto6i7uesmr7cavijj5ffumr7e2mob4hrztvt7t32rlsuqmi" />
-                                <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="ipfs.ico" />
-
+                                <img
+                                    className={styles.sponsorSvgs}
+                                    alt={"sponsor-logo"}
+                                    src="spheron.ico"
+                                />
+                                <img
+                                    className={styles.sponsorSvgs}
+                                    alt={"sponsor-logo"}
+                                    src="https://ipfs.io/ipfs/bafkreiewn7tto6i7uesmr7cavijj5ffumr7e2mob4hrztvt7t32rlsuqmi"
+                                />
+                                <img
+                                    className={styles.sponsorSvgs}
+                                    alt={"sponsor-logo"}
+                                    src="ipfs.ico"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+            )}
         </>
     )
 }

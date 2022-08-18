@@ -1,31 +1,25 @@
-import React from "react";
-import styles from "../styles/App.module.scss";
-import { sequence } from "0xsequence";
-import { ETHAuth, Proof } from "@0xsequence/ethauth";
-import { configureLogger } from "@0xsequence/utils";
-import { log, warn } from "console-browserify";
-import { useCookies } from "react-cookie";
+import React from "react"
+import styles from "../styles/App.module.scss"
+import { sequence } from "0xsequence"
+import { ETHAuth, Proof } from "@0xsequence/ethauth"
+import { configureLogger } from "@0xsequence/utils"
+import { log, warn } from "console-browserify"
+import { useCookies } from "react-cookie"
 import Sidebar from "../components/Sidebar.js"
-import Home from "../pages/home";
+import Home from "../pages/home/[profAddress]"
 
+configureLogger({ logLevel: "DEBUG" })
 
-configureLogger({ logLevel: "DEBUG" });
-
-const network = "mumbai";
+const network = "mumbai"
 sequence.initWallet(network, {
     networkRpcUrl: "https://matic-mumbai.chainstacklabs.com",
-});
+})
 
 function App() {
-    const [cookies, setCookie, removeCookie] = useCookies([
-        "wallet",
-        "loggedIn",
-    ]);
-    const [isLoggedIn, setIsLoggedIn] = React.useState(
-        cookies.loggedIn || false
-    );
+    const [cookies, setCookie, removeCookie] = useCookies(["wallet", "loggedIn"])
+    const [isLoggedIn, setIsLoggedIn] = React.useState(cookies.loggedIn || false)
     const connect = async () => {
-        const wallet = sequence.getWallet();
+        const wallet = sequence.getWallet()
 
         const connectDetails = await wallet.connect({
             app: "Moog3",
@@ -39,28 +33,25 @@ function App() {
                     defaultPurchaseAmount: 111,
                 },
             },
-        });
-        warn("connectDetails", { connectDetails });
+        })
+        warn("connectDetails", { connectDetails })
 
-        const ethAuth = new ETHAuth();
+        const ethAuth = new ETHAuth()
         if (connectDetails.proof) {
-            const decodedProof = await ethAuth.decodeProof(
-                connectDetails.proof.proofString,
-                true
-            );
+            const decodedProof = await ethAuth.decodeProof(connectDetails.proof.proofString, true)
             const isValid = await wallet.utils.isValidTypedDataSignature(
                 await wallet.getAddress(),
                 connectDetails.proof.typedData,
                 decodedProof.signature,
                 await wallet.getAuthChainId()
-            );
-            log("isValid?", isValid);
-            setIsLoggedIn(isValid);
-            setCookie("wallet", await wallet.getAddress(), { path: "/" });
-            setCookie("loggedIn", isValid, { path: "/" });
-            if (!isValid) throw new Error("sig invalid");
+            )
+            log("isValid?", isValid)
+            setIsLoggedIn(isValid)
+            setCookie("wallet", await wallet.getAddress(), { path: "/" })
+            setCookie("loggedIn", isValid, { path: "/" })
+            if (!isValid) throw new Error("sig invalid")
         }
-    };
+    }
 
     return (
         <>
@@ -68,7 +59,7 @@ function App() {
                 <div className="page">
                     <div className="bottomBar">
                         <Sidebar />
-                        <Home/>
+                        <Home />
 
                         {/* <button
                             className="logout"
@@ -83,7 +74,6 @@ function App() {
                             Logout
                         </button> */}
                     </div>
-
                 </div>
             ) : (
                 <div>
@@ -93,7 +83,7 @@ function App() {
                 </div>
             )}
         </>
-    );
+    )
 }
 
-export default App;
+export default App
