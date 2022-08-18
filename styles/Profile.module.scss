@@ -4,8 +4,6 @@ $shadow-opacity: 0.30;
     height: 100%;
     margin: 0;
     padding: 0;
-    background: rgb(85, 47, 128);
-    background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 1) 100%);
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
 
@@ -400,7 +398,7 @@ $shadow-opacity: 0.30;
         display: none;
     }
 
-    
+
 
     .postsBigBox {
         display: flex;
