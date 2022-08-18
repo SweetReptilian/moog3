@@ -1,22 +1,70 @@
 import styles from "../styles/Profile.module.scss";
-import { FcLikePlaceholder } from "react-icons/fc"
+import modalStyles from "../styles/Modal.module.scss"
 import Sidebar from "../components/Sidebar";
 import { TbHammer, TbHammerOff } from "react-icons/tb"
 import { IconContext } from "react-icons";
-import { AiOutlineGithub, AiOutlinePicture } from "react-icons/ai"
+import { AiOutlineGithub, AiOutlinePicture, AiOutlineCloseCircle } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { RiSendPlaneLine } from "react-icons/ri"
+import {
+    backdrop,
+    modal
+} from "../animations/modalAnimations"
+
 
 
 const Profile = () => {
 
     const [connect, setConnect] = useState(false);
+    const [show, setShow] = useState(false);
+
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
+            <AnimatePresence exitBeforeEnter>
+                {show && (
+                    <motion.div className={modalStyles.backdropProfile}
+                        variants={backdrop}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden">
+
+                        <motion.div className={modalStyles.printPostsModal}
+                            variants={modal}>
+                            <AnimatePresence>
+                                <IconContext.Provider value={{ size: "25px", color: "white" }}>
+                                    <motion.div whileHover={{ scale: 0.99 }}
+                                        whileTap={{ scale: 1 }}
+                                        className={modalStyles.modalCloseIcon}
+                                        onClick={() => setShow(false)}>
+                                        <AiOutlineCloseCircle />
+                                    </motion.div>
+                                </IconContext.Provider>
+                            </AnimatePresence>
+                            <div className={modalStyles.postsModal}>
+                                <div className={modalStyles.postsTitleModal}>Project 1</div>
+                                <div className={modalStyles.postsContentModal}>We implemented a new function</div>
+                                <div className={modalStyles.picturePostModal}> Picture preview</div>
+
+                            </div>
+
+
+
+                            {/* <p className={modalStyles.modalPProfile}>Want to connect with Userx?</p>
+
+                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">Yes!</a></button>
+
+                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">View Profile</a></button>
+
+                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">Maybe not</a></button> */}
+                        </motion.div>
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
             <div className={styles.bigCard}>
 
                 <div className={styles.presentation}>
@@ -117,7 +165,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className={styles.printPosts}>
-                    <div className={styles.posts}>
+                    <div className={styles.posts} onClick={() => setShow(show => !show)}>
                         <div className={styles.postsTitle}>Project 1</div>
                         <div className={styles.postsContent}>We implemented a new function</div>
                         <div className={styles.picturePost}> Picture preview</div>

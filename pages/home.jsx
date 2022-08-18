@@ -1,30 +1,19 @@
 import styles from "../styles/Home.module.scss"
 import modalStyles from "../styles/Modal.module.scss"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
 import Sidebar from "../components/Sidebar"
 import { FiMessageSquare } from "react-icons/fi"
 import { RiHeartsLine } from "react-icons/ri"
-import { AiOutlineHeart, AiOutlinePlusCircle } from "react-icons/ai"
+import { AiOutlineHeart, AiOutlinePlusCircle, AiOutlineCloseCircle } from "react-icons/ai"
 import { RiSendPlaneLine } from "react-icons/ri"
 import { TiInputCheckedOutline } from "react-icons/ti"
 import { IconContext } from "react-icons"
 import { useState } from "react"
+import {
+    backdrop,
+    modal
+} from "../animations/modalAnimations"
 
-
-
-const backdrop = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
-}
-const modal = {
-    hidden: { y: "-100vh", opacity: 0 },
-    visible: {
-        y: "200px", opacity: 1,
-        transition: { delay: 0.5 }
-    },
-
-}
 
 
 export function Home() {
@@ -35,9 +24,6 @@ export function Home() {
 
         <div className={styles.mainBox}>
             <Sidebar />
-            {/* <div className={anotherStyles.titleSet}>
-                <div className={anotherStyles.settingsTitle}>Home</div>
-            </div> */}
             <AnimatePresence exitBeforeEnter>
                 {show && (
                     <motion.div className={modalStyles.backdrop}
@@ -48,6 +34,12 @@ export function Home() {
                         <motion.div className={modalStyles.modal}
                             variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
+                                <motion.div whileHover={{ scale: 0.99 }}
+                                    whileTap={{ scale: 1 }}
+                                    className={modalStyles.modalCloseIcon}
+                                    onClick={() => setShow(false)}>
+                                    <AiOutlineCloseCircle />
+                                </motion.div>
                                 <div ><RiHeartsLine /></div>
                             </IconContext.Provider>
                             <p className={modalStyles.modalP}>Want to connect with Userx?</p>
@@ -56,7 +48,7 @@ export function Home() {
 
                             <button className={modalStyles.modalButton}><a className={modalStyles.modalA} href="/">View Profile</a></button>
 
-                            <button className={modalStyles.modalButton}><a className={modalStyles.modalA} href="/">Maybe not</a></button>
+                            <button className={modalStyles.modalButton}><a onClick={() => setShow(false)} className={modalStyles.modalA}>Maybe not</a></button>
                         </motion.div>
 
                     </motion.div>
