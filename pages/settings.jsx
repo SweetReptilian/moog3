@@ -144,7 +144,7 @@ export function LogIn() {
                 </div>
 
                 <div className={formStyles.containerCheck}>
-                    <div className={formStyles.setText}>Cathegories</div>
+                    <div className={formStyles.setText}>Categories</div>
                     <Spacer />
                     <Checkbox color="primary" defaultSelected={false}>
                         <div className={formStyles.checkLetters} >NFTs</div>

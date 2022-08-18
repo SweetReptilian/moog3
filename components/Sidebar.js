@@ -87,16 +87,16 @@ const Sidebar = () => {
                                         </motion.li>
 
                                         <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/choose-one"> <MdOutlineManageAccounts /> Projects Profile</a>
+                                            <a className={sideStyles.sideA} href="/choose-one"> <AiOutlineFundProjectionScreen /> Projects Profile</a>
                                         </motion.li>
 
-
+                                        {/* 
                                         <motion.li className={sideStyles.sideLi}>
                                             <a className={sideStyles.sideA} href="/projects"> <AiOutlineFundProjectionScreen /> Projects</a>
-                                        </motion.li>
+                                        </motion.li> */}
 
                                         <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/projects"> <BiNetworkChart /> Contributors</a>
+                                            <a className={sideStyles.sideA} href="/network"> <BiNetworkChart /> Network</a>
                                         </motion.li>
 
                                         <motion.li className={sideStyles.sideLi}>

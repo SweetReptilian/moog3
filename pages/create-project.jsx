@@ -26,7 +26,7 @@ import {
 
 
 export function LogIn() {
-   
+
 
     const [name, setName] = useState(true);
     const [pfp, setPfp] = useState(false);
@@ -34,7 +34,7 @@ export function LogIn() {
     const [about, setAbout] = useState(false);
     const [skills, setSkills] = useState(false);
     const [interests, setInterests] = useState(false);
-    const [gallery, setGallery] = useState(false);
+    // const [gallery, setGallery] = useState(false);
     const [allDone, setAllDone] = useState(false);
 
     const Name =
@@ -54,7 +54,7 @@ export function LogIn() {
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(2)}><i className={formStyles.arrow}></i></a>
                 </div>
 
@@ -74,7 +74,7 @@ export function LogIn() {
                 </motion.div>
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(3)}><i className={formStyles.arrow}></i></a>
                 </div>
 
@@ -95,36 +95,36 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={formStyles.links}>
-                    <a onClick={() => setContent(4)}><i className={formStyles.arrow}></i></a>
-                </div>
-
-            </motion.div>
-        </>;
-
-    const Gallery =
-        <>
-            <div className={formStyles.container}>
-                <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.welcomeText}>Some more pics</div>
-
-                </motion.div>
-                <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.setText}>This goes for the gallery</div>
-                </motion.div>
-
-
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
-                </motion.div>
-            </div>
-            <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
                 </div>
 
             </motion.div>
         </>;
+
+    // const Gallery =
+    //     <>
+    //         <div className={formStyles.container}>
+    //             <motion.div initial="hidden" animate="visible" variants={item}>
+    //                 <div className={formStyles.welcomeText}>Some more pics</div>
+
+    //             </motion.div>
+    //             <motion.div initial="hidden" animate="visible" variants={item}>
+    //                 <div className={formStyles.setText}>This goes for the gallery</div>
+    //             </motion.div>
+
+
+    //             <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
+    //                 <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
+    //             </motion.div>
+    //         </div>
+    //         <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
+    //             <div className={formStyles.links2}>
+    //                 <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
+    //             </div>
+
+    //         </motion.div>
+    //     </>;
     const About =
         <>
             <div className={formStyles.container}>
@@ -163,7 +163,7 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
                 </div>
 
@@ -174,7 +174,7 @@ export function LogIn() {
             <div className={formStyles.container}>
 
                 <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                    <div className={formStyles.setText}>Let's pick a cathegory for (project's name)</div>
+                    <div className={formStyles.setText}>Let's pick a category for (project's name)</div>
                 </motion.div>
                 <Spacer />
                 <motion.div className="loader">
@@ -230,7 +230,7 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
                 </div>
 
@@ -295,7 +295,7 @@ export function LogIn() {
 
             </div>
             <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
-                <div className={formStyles.links}>
+                <div className={formStyles.links2}>
                     <a onClick={() => setContent(8)}><i className={formStyles.arrow}></i></a>
                 </div>
 
@@ -319,7 +319,7 @@ export function LogIn() {
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
-                        <Link href="/profile">
+                        <Link href="/proj-profile">
                             <button className={formStyles.styleButton}>Take me there!</button>
 
                         </Link>
@@ -332,7 +332,7 @@ export function LogIn() {
         setName(id === 1);
         setPfp(id === 2);
         setBanner(id === 3);
-        setGallery(id === 4);
+        // setGallery(id === 4);
         setAbout(id === 5);
         setSkills(id === 6);
         setInterests(id === 7);
@@ -348,7 +348,7 @@ export function LogIn() {
                 {name && <div>{Name}</div>}
                 {pfp && <div>{Pfp}</div>}
                 {banner && <div>{Banner}</div>}
-                {gallery && <div>{Gallery}</div>}
+                {/* {gallery && <div>{Gallery}</div>} */}
                 {about && <div>{About}</div>}
                 {skills && <div>{Skills}</div>}
                 {interests && <div>{Interests}</div>}

@@ -14,6 +14,11 @@ $shadow-opacity: 0.30;
     align-items: center;
 }
 
+.someFlex2 {
+    display: flex;
+    justify-content: flex-end;
+
+}
 
 
 .backgroundImg {
@@ -198,7 +203,12 @@ $shadow-opacity: 0.30;
         padding-right: 120px;
 
     }
+    .links2 {
+        display: flex;
+        justify-content: right;
+        padding-right: 20px;
 
+    }
     .arrow {
 
         border: solid rgb(226, 206, 241);

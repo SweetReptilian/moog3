@@ -12,6 +12,7 @@ import { TiInputCheckedOutline } from "react-icons/ti"
 import { HiOutlinePencilAlt } from "react-icons/hi"
 import { FcDislike, FcLike } from "react-icons/fc"
 import { RiSendPlaneLine } from "react-icons/ri"
+import { TbPlugConnected, TbPlugConnectedX } from "react-icons/tb"
 
 
 const Profile = () => {
@@ -39,13 +40,19 @@ const Profile = () => {
                         </IconContext.Provider>
 
 
-                        <div className={styles.description}>This is a profile  sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs</div>
+                        <div className={styles.description}>This is a profile  sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is
+                            a project which goal is sakjkfasdjlkasfdjk d
+                            fanfjkzasd fdjafjs This is a project which goal is
+                            sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a pr
+                            oject which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdj
+                            afjs</div>
                         <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
                                 whileTap={{ scale: 1 }}>
+                                <div>Connect</div>
                                 <IconContext.Provider value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
 
-                                    {connect ? <FcDislike /> : <FcLike />}
+                                    {connect ? <TbPlugConnectedX /> : <TbPlugConnected />}
                                 </IconContext.Provider>
                             </motion.div>
                         </AnimatePresence>
@@ -53,7 +60,7 @@ const Profile = () => {
 
                 </div>
             </div>
-            <div className={styles.bigCard}>
+            {/* <div className={styles.bigCard}>
 
                 <div className={styles.lookingForTitle}>Posts</div>
                 <AnimatePresence>
@@ -62,7 +69,6 @@ const Profile = () => {
 
                         <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
                             whileTap={{ scale: 1 }}>
-                            {/* this heart goes only on the users profiles */}
                             <IconContext.Provider value={{ size: "39px", color: "white", className: styles.checkedIcon2 }}>
                                 <RiSendPlaneLine />
                             </IconContext.Provider>
@@ -94,26 +100,11 @@ const Profile = () => {
                         <div className={styles.postsContent}>We implemented a new function</div>
 
                     </div>
-                </div>
+                </div> 
 
-            </div>
+            </div> */}
 
-
-
-
-
-            <div></div>
-
-
-
-
-
-
-
-
-
-
-        </div >
+        </div>
 
     );
 };

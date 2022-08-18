@@ -1,9 +1,9 @@
 import styles from "../styles/Profile.module.scss";
 import { FcLikePlaceholder } from "react-icons/fc"
 import Sidebar from "../components/Sidebar";
-import { AiOutlineEye } from "react-icons/ai"
+import { TbHammer, TbHammerOff } from "react-icons/tb"
 import { IconContext } from "react-icons";
-import { AiOutlineGithub } from "react-icons/ai"
+import { AiOutlineGithub, AiOutlinePicture } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,62 +37,91 @@ const Profile = () => {
                         </IconContext.Provider>
 
 
-                        <div className={styles.description}>This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjs</div>
+                        <div className={styles.description}>This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sa
+                            kjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a
+                            project which goal is sakjkfasdjlkasfdjk dfanfjk
+                            zasd fdjafjs This is a project which goal is sakjkfasd
+                            jlkasfdjk dfanfjkzasd fdjafjs</div>
+
 
                     </div>
 
                 </div>
             </div>
-            {/* <this section only goes for projects*/}
             <div className={styles.bigCard}>
 
                 <div className={styles.lookingForTitle}>We are looking for...</div>
 
                 <div className={styles.lookingForSection}>
-                    <motion.button whileHover={{ scale: 1.0 }} whileTap={{ scale: 0.9 }} className={styles.lookingForOptions}>
-
+                    <motion.button className={styles.lookingForOptions}>
                         {/* <a className={styles.aDecor} href="/apply-form"> */}
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.checkedIcon}><FcLikePlaceholder /></div>
+                            <div className={styles.checkedIcon}></div>
                         </IconContext.Provider>
                         <div className={styles.lookingForName}>Blockchain Developer</div>
                         {/* </a> */}
                     </motion.button>
-                    <motion.button whileHover={{ scale: 1.0 }} whileTap={{ scale: 0.9 }} className={styles.lookingForOptions}>
+                    <motion.button className={styles.lookingForOptions}>
 
                         {/* <a className={styles.aDecor} href="/apply-form"> */}
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.checkedIcon}><FcLikePlaceholder /></div>
+                            <div className={styles.checkedIcon}></div>
                         </IconContext.Provider>
                         <div className={styles.lookingForName}>Marketing Digital</div>
                         {/* </a> */}
                     </motion.button>
 
+                    <AnimatePresence>
+                        <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
+                            whileTap={{ scale: 1 }}>
+                            <div>Contribute</div>
+                            <IconContext.Provider value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+
+                                {connect ? <TbHammerOff /> : <TbHammer />}
+                            </IconContext.Provider>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
+
             </div>
-            {/* gallery for projects (or may not) also contributors */}
 
             <div className={styles.bigCard}>
 
                 <div className={styles.lookingForTitle}>Posts</div>
-                <AnimatePresence>
-                    <div className={styles.iconSpaceWrite}>
-                        <textarea className={styles.textArea} placeholder="Any updates?" />
+                <div className={styles.container}>
 
-                        <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                            whileTap={{ scale: 1 }}>
-                            {/* this heart goes only on the users profiles */}
-                            <IconContext.Provider value={{ size: "39px", color: "white", className: styles.checkedIcon2 }}>
-                                <RiSendPlaneLine />
-                            </IconContext.Provider>
-                        </motion.div>
+                    <div className={styles.postsBox}>
+                        <input className={styles.inputText} placeholder="An attractive title" type="text" />
+
+                        <AnimatePresence>
+                            <div className={styles.iconSpaceWrite}>
+                                <textarea className={styles.textArea} placeholder="Any updates?" />
+                                <div className={styles.iconSpace}> Picture preview</div>
+
+                                <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
+                                    whileTap={{ scale: 1 }}>
+                                    <IconContext.Provider value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
+                                        <RiSendPlaneLine />
+                                    </IconContext.Provider>
+                                </motion.div>
+                                <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
+                                    whileTap={{ scale: 1 }}>
+                                    <IconContext.Provider value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
+                                        <AiOutlinePicture />
+                                    </IconContext.Provider>
+                                </motion.div>
+
+                            </div>
+
+                        </AnimatePresence>
                     </div>
-                </AnimatePresence>
-
+                </div>
                 <div className={styles.printPosts}>
                     <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>
                         <div className={styles.postsContent}>We implemented a new function</div>
+                        <div className={styles.picturePost}> Picture preview</div>
+
                     </div>
                     <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>
@@ -118,11 +147,11 @@ const Profile = () => {
             </div>
 
 
-            <div className={styles.bigCard}>
+            {/* <div className={styles.bigCard}>
                 <div className={styles.lookingForTitle}>Gallery</div>
 
 
-            </div>
+            </div> */}
 
 
             <div className={styles.lookingForTitle}>Contributors</div>

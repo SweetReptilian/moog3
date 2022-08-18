@@ -19,9 +19,8 @@ function SearchBar() {
 
             </div>
             <div className={searchStyles.filters}>
-                <div className={searchStyles.check} >DeFi</div>
-                <div className={searchStyles.check} >NFTs</div>
-                <div className={searchStyles.check} >Etc</div>
+                <div className={searchStyles.check} >Projects</div>
+                <div className={searchStyles.check} >Contributors</div>
             </div>
 
 

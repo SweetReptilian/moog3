@@ -29,12 +29,7 @@ export default function PickAProj() {
                             <div className={styles.projTitle}>My project's Name</div>
                             <a className={styles.projSectionA}><img className={styles.pfp} src="./M.png" /></a>
                         </div>
-                        <div className={styles.projSection}>
 
-                            <IconContext.Provider value={{ size: "50px", color: "white" }}>
-                                <div className={styles.projTitle}>New Project</div>
-                                <a className={styles.moreIcon} href="/create-project"><AiOutlinePlusCircle /></a></IconContext.Provider>
-                        </div>
                     </div>
                 </div>
             </div>
