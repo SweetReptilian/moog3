@@ -2,12 +2,14 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color:  rgb(231, 215, 247);
+    // background-color: rgb(231, 215, 247);
     overflow: hidden;
 
+    font-family: "Poppins", sans-serif;
+
     .container {
-        background-image: url("../public/log.png");
-       // width: auto;
+        //  background-image: url("../public/log.png");
+        // width: auto;
         //height: auto;
         display: flex;
         flex-flow: column wrap;
@@ -15,7 +17,6 @@
         flex-direction: column;
         padding: 97px 110px 121px 59px;
         align-items: center;
-        font-family: "Poppins", sans-serif;
         box-sizing: border-box;
         overflow-x: hidden;
 
@@ -28,6 +29,12 @@
         padding: 10px;
     }
 
+    .mainImgHeroSection {
+        width: 400px;
+        height: auto;
+        padding: 10px;
+    }
+
     .welcomeText {
         font-size: 20px;
         font-weight: 800;
@@ -35,28 +42,89 @@
         text-align: center;
     }
 
+    .welcomeTextHeroSection {
+        font-size: 50px;
+        font-weight: 600;
+        padding: 20px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .welcomeTextHeroSection span {
+        color: rgb(150, 82, 238);
+        text-transform: uppercase;
+    }
+
+    .connText span {
+        color: rgb(150, 82, 238);
+        text-transform: uppercase;
+    }
+
     .connText {
         padding: 10px 0px 30px;
         font-weight: 600;
         text-align: center;
+        color: white;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .connText2 span {
+        color: rgb(150, 82, 238);
+        text-transform: uppercase;
+    }
+
+    .connText2 {
+        padding: 30px;
+        padding-bottom: 60px;
+        font-weight: 600;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .twoColDiv {
+        padding: 40px;
+        padding-top: 110px;
+        display: flex;
+        gap: 7rem;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+    }
+
+    .colOne {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .styleButtonConn {
         align-self: center;
-        background-color: #ffe2e2;
+        background: rgba(255, 255, 255, 0.233);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.479);
         border: none;
         padding: 10px 20px;
-        color: #4e4646;
+        color: #fffefe80;
         font-size: 13px;
         font-weight: 800;
-        border-radius: 20px;
+        border-radius: 15px;
     }
 
+
     .styleButtonConn:hover {
+        transition: 0.5s;
+        background: rgba(255, 255, 255, 0.479);
+        border-radius: 20px;
         cursor: pointer;
-        background-color: #4e4646;
-        color: #ffe2e2;
-        border-color: #f8e1e1;
+        color: white;
 
     }
 
@@ -70,10 +138,110 @@
         padding: 25px;
         border-radius: 83px;
     }
+
+    .projectUsersContainer {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .projectUsersDiv {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        background: rgba(0, 0, 0, 0.39);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.479);
+        border-radius: 10px;
+        margin: 10px;
+        width: 150px;
+        height: 250px;
+        padding: 20px;
+
+    }
+
+    .projectUsersDiv:hover {
+        transition: 0.5s;
+        background: rgba(0, 0, 0, 0.479);
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersPic {
+        width: 40%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.712);
+
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersTitle {
+        font-size: 18px;
+        font-weight: 600;
+        color: rgb(150, 82, 238);
+        text-transform: uppercase;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersDescription {
+
+        font-size: 16px;
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 23px;
+        font-weight: 600;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUsersDescription span {
+        text-transform: uppercase;
+        color: rgb(150, 82, 238);
+
+    }
+
+
+
+    .projectUserButtonBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #ffe2e200;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+    }
+
+    .projectUsersContainer .projectUsersDiv .projectUserButtonBox:hover {
+        background-color: #fcfcfc;
+        cursor: pointer;
+        transition: .4s all ease-in-out;
+
+    }
+
+    .secondContainer {
+        padding: 30px;
+    }
+
+    .thirdContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        align-content: space-around;
+    }
 }
+
 
 @media only screen and (max-width: 768px) {
     .html {
-        padding: 0,1px;
+        padding: 0, 1px;
     }
 }

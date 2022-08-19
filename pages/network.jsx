@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar"
 import { AiFillGithub, AiOutlinePlusCircle } from "react-icons/ai"
 import SearchBar from "../components/SearchBar"
 import { IconContext } from "react-icons/lib"
+import { FiTwitter } from "react-icons/fi";
+import { TbBrandDiscord } from "react-icons/tb";
 
 
 export function Projects() {
@@ -30,7 +32,24 @@ export function Projects() {
                             <IconContext.Provider
                                 value={{ size: "25px", color: "white", className: styles.projectUsersSMIcons }}
                             >
-                                <div><AiFillGithub /><AiFillGithub /><AiFillGithub /></div>
+                                <div><AiFillGithub /><FiTwitter /><AiFillGithub /></div>
+                            </IconContext.Provider>
+                            {/* <Link href="#">
+                                <IconContext.Provider
+                                    value={{ size: "60px", color: "white" }}
+                                >
+                                    <button className={styles.projectUserButtonBox}><AiOutlinePlusCircle /></button>
+                                </IconContext.Provider>
+                            </Link> */}
+                        </div>
+                        <div className={styles.projectUsersDiv}>
+                            <img className={styles.projectUsersPic} src="./dlogo.jpg" draggable={false} />
+                            <div className={styles.projectUsersTitle}>DIDs World</div>
+                            <div className={styles.projectUsersDescription}>You're the only one who should get access to your personal data when...</div>
+                            <IconContext.Provider
+                                value={{ size: "25px", color: "white", className: styles.projectUsersSMIcons }}
+                            >
+                                <div><AiFillGithub /><FiTwitter /><TbBrandDiscord /></div>
                             </IconContext.Provider>
                             {/* <Link href="#">
                                 <IconContext.Provider
@@ -42,30 +61,12 @@ export function Projects() {
                         </div>
                         <div className={styles.projectUsersDiv}>
                             <img className={styles.projectUsersPic} src="./logo512.png" draggable={false} />
-                            <div className={styles.projectUsersTitle}>DIDs</div>
-                            <div className={styles.projectUsersDescription}>This is a short description about thi
-                                s projectabout this projectabout this projectabout this projectabout this projectabout this projectabout this projectabout this project </div>
+                            <div className={styles.projectUsersTitle}>DIDs World</div>
+                            <div className={styles.projectUsersDescription}></div>
                             <IconContext.Provider
                                 value={{ size: "25px", color: "white", className: styles.projectUsersSMIcons }}
                             >
-                                <div><AiFillGithub /><AiFillGithub /><AiFillGithub /></div>
-                            </IconContext.Provider>
-                            {/* <Link href="#">
-                                <IconContext.Provider
-                                    value={{ size: "60px", color: "white" }}
-                                >
-                                    <button className={styles.projectUserButtonBox}><AiOutlinePlusCircle /></button>
-                                </IconContext.Provider>
-                            </Link> */}
-                        </div>
-                        <div className={styles.projectUsersDiv}>
-                            <img className={styles.projectUsersPic} src="./logo512.png" draggable={false} />
-                            <div className={styles.projectUsersTitle}>DIDs</div>
-                            <div className={styles.projectUsersDescription}>This is a short description about this project</div>
-                            <IconContext.Provider
-                                value={{ size: "25px", color: "white", className: styles.projectUsersSMIcons }}
-                            >
-                                <div><AiFillGithub /><AiFillGithub /><AiFillGithub /></div>
+                                <div><AiFillGithub /><FiTwitter /><AiFillGithub /></div>
                             </IconContext.Provider>
                             {/* <Link href="#">
                                 <IconContext.Provider
