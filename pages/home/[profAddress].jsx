@@ -12,19 +12,24 @@ import { useState, useEffect } from "react"
 import { backdrop, modal } from "../../animations/modalAnimations"
 import { useRouter } from "next/router"
 import getProfileData from "../../utils/getProfileData"
+import { getCookies } from "cookies-next"
 
 export function Home() {
     const [show, setShow] = useState(false)
     const router = useRouter()
     const [data, setData] = useState({})
     useEffect(() => {
+        const { loggedIn } = getCookies()
+        if (typeof window !== "undefined" && !loggedIn) {
+            router.push("/").then()
+        }
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const profAddress = router.query.profAddress
                 let temp = await getProfileData(profAddress)
                 setData(temp)
             }
-            getData().then(() => console.log("got back data"))
+            getData().then()
         }
     }, [router.query])
 
@@ -271,7 +276,7 @@ export function Home() {
                             <div className={styles.alignDiv}>
                                 <div className={styles.projSection}>
                                     <div className={styles.projTitle}>My project's Name</div>
-                                    <a href="/profile" className={styles.projSectionA}>
+                                    <a href="/profile/[profAddress].jsx" className={styles.projSectionA}>
                                         <img className={styles.pfp} src="../public/M.png" />
                                     </a>
                                 </div>
@@ -290,7 +295,7 @@ export function Home() {
                                 <div className={styles.projSection}>
                                     <IconContext.Provider value={{ size: "50px", color: "white" }}>
                                         <div className={styles.projTitle}>New Project</div>
-                                        <a className={styles.moreIcon} href="/create-project">
+                                        <a className={styles.moreIcon} href="/CreateProject">
                                             <AiOutlinePlusCircle />
                                         </a>
                                     </IconContext.Provider>
@@ -319,7 +324,7 @@ export function Home() {
                                     </IconContext.Provider>
                                 </div>
                                 <div className={styles.printPosts}>
-                                    <a className={styles.aClass} href="/profile">
+                                    <a className={styles.aClass} href="/profile/[profAddress].jsx">
                                         <div className={styles.posts}>
                                             <div className={styles.postsTitle}>Project 1</div>
                                             <div className={styles.postsContent}>

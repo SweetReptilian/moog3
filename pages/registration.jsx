@@ -10,12 +10,14 @@ import useUploadToStorage from "../hooks/useUploadToStorage"
 import useContract from "../hooks/useContract"
 import { TailSpin } from "react-loader-spinner"
 import { getCookies } from "cookies-next"
+import { useRouter } from "next/router"
+import getProfileData from "../utils/getProfileData"
 
 export function Registration() {
-    const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
     const { uploadFile } = useUploadToStorage()
     const { addUserProfile } = useContract()
-    const {wallet} = getCookies()
+    const {wallet, loggedIn} = getCookies()
     const [formData, setFormData] = useState({
         name: "moogle1",
         pfp: "https://ipfs.io/ipfs/bafkreic2mr4bcejdcfrpya6aiev37vmhdy3pjtxbni4lh3cdmy7kovrswe",
@@ -92,6 +94,18 @@ export function Registration() {
         }
         (async () => await upload())()
     }, [allDone])
+
+    useEffect(() => {
+        if(typeof window !== "undefined" && loggedIn){
+            getProfileData(wallet).then(res => {
+                if(res.response !== "data not found"){
+                    router.push(`/home/${wallet}`).then()
+                }
+            })
+        } else if (!loggedIn) {
+            router.push("/").then()
+        }
+    }, [])
 
     const Name =
         <>

@@ -40,11 +40,10 @@ const Sidebar = () => {
     const { wallet } = getCookies()
     const disconnect = async () => {
         const wallet = sequence.getWallet()
-        console.log("wallet", await wallet.getAddress())
         wallet.disconnect()
         deleteCookie("wallet", { path: "/" })
         deleteCookie("loggedIn", { path: "/" })
-        router.push("/")
+        router.push("/").then()
     }
 
     return (
@@ -85,7 +84,7 @@ const Sidebar = () => {
                                         </motion.li>
 
                                         <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/profile">
+                                            <a className={sideStyles.sideA} href={`/profile/${wallet}`}>
                                                 {" "}
                                                 <FaRegUserCircle /> Profile
                                             </a>

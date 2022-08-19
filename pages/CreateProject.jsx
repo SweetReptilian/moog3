@@ -9,22 +9,12 @@ import { FiTwitter } from "react-icons/fi";
 import { TbBrandDiscord } from "react-icons/tb";
 import { IconContext } from "react-icons";
 import { TbTrashX } from "react-icons/tb";
-import {
-    checkBox,
-    item,
-    item2,
-    arrow,
-    checkBox2,
-    button,
-    item3,
-    arrow2,
-    party,
-    container
-} from "../animations/registrationAnimations"
-import { getCookies } from "cookies-next"
+import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container } from "../animations/registrationAnimations"
+import getWalletAddress from "../utils/getWalletAddress"
 
-export function LogIn() {
-    const {wallet} = getCookies()
+export function CreateProject() {
+    const [wallet, setWallet] = useState("")
+    getWalletAddress().then(res => setWallet(res))
     const [name, setName] = useState(true);
     const [pfp, setPfp] = useState(false);
     const [banner, setBanner] = useState(false);
@@ -38,7 +28,7 @@ export function LogIn() {
         <>
             <div className={formStyles.container}>
                 <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.welcomeText}>Great choise! It's time to create something else</div>
+                    <div className={formStyles.welcomeText}>Great choice! It's time to create something new</div>
 
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" variants={item}>
@@ -98,30 +88,6 @@ export function LogIn() {
 
             </motion.div>
         </>;
-
-    // const Gallery =
-    //     <>
-    //         <div className={formStyles.container}>
-    //             <motion.div initial="hidden" animate="visible" variants={item}>
-    //                 <div className={formStyles.welcomeText}>Some more pics</div>
-
-    //             </motion.div>
-    //             <motion.div initial="hidden" animate="visible" variants={item}>
-    //                 <div className={formStyles.setText}>This goes for the gallery</div>
-    //             </motion.div>
-
-
-    //             <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-    //                 <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
-    //             </motion.div>
-    //         </div>
-    //         <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
-    //             <div className={formStyles.links2}>
-    //                 <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
-    //             </div>
-
-    //         </motion.div>
-    //     </>;
     const About =
         <>
             <div className={formStyles.container}>
@@ -341,7 +307,7 @@ export function LogIn() {
 
             <div className={formStyles.secondDiv}>
                 <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
-                    <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a>
+                    <a className={formStyles.trashA} href={`/home`}><TbTrashX /></a>
                 </IconContext.Provider>
                 {name && <div>{Name}</div>}
                 {pfp && <div>{Pfp}</div>}
@@ -360,4 +326,29 @@ export function LogIn() {
     )
 
 }
-export default LogIn
+export default CreateProject
+
+
+// const Gallery =
+//     <>
+//         <div className={formStyles.container}>
+//             <motion.div initial="hidden" animate="visible" variants={item}>
+//                 <div className={formStyles.welcomeText}>Some more pics</div>
+
+//             </motion.div>
+//             <motion.div initial="hidden" animate="visible" variants={item}>
+//                 <div className={formStyles.setText}>This goes for the gallery</div>
+//             </motion.div>
+
+
+//             <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
+//                 <input type="text" placeholder="Moogle1" className={formStyles.inputName}></input>
+//             </motion.div>
+//         </div>
+//         <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
+//             <div className={formStyles.links2}>
+//                 <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
+//             </div>
+
+//         </motion.div>
+//     </>;

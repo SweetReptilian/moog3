@@ -1,5 +1,4 @@
 const getProfileData = async (profAddress) => {
-    console.log("profAddress", profAddress)
 
     const apiReq = await fetch("/api/fetchUserProfile", {
         method: "POST",
@@ -10,8 +9,7 @@ const getProfileData = async (profAddress) => {
             data: profAddress,
         }),
     })
-    const apiResponse = await apiReq.json()
-    return apiResponse
+    return await apiReq.json()
 }
 
 export default getProfileData

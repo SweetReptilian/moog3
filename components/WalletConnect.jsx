@@ -22,7 +22,6 @@ export default function WalletConect() {
                 },
             },
         })
-        console.warn("connectDetails", { connectDetails })
 
         const ethAuth = new ETHAuth()
         if (connectDetails.proof) {
@@ -33,7 +32,6 @@ export default function WalletConect() {
                 decodedProof.signature,
                 await wallet.getAuthChainId()
             )
-            console.log("isValid?", isValid)
             setCookie("wallet", await wallet.getAddress(), { path: "/" })
             setCookie("loggedIn", isValid, { path: "/" })
             if (!isValid) throw new Error("sig invalid")

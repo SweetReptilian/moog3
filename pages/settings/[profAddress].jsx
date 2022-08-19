@@ -12,6 +12,7 @@ import getProfileData from "../../utils/getProfileData"
 import useUploadToStorage from "../../hooks/useUploadToStorage"
 import toast, { Toaster } from "react-hot-toast"
 import useContract from "../../hooks/useContract"
+import { getCookies } from "cookies-next"
 
 export function LogIn() {
     const router = useRouter()
@@ -19,20 +20,16 @@ export function LogIn() {
     const { updateUserProf } = useContract()
     const [data, setData] = useState({})
     const [userFormData, setUserFormData] = useState({
-        name: data.name,
-        pfp: data.imageUri,
-        banner: data.banner,
-        about: data.about,
-        skills: data.skills,
-        interests: data.interests,
-        discord: data.discord,
-        website: data.website,
-        twitter: data.twitter,
-        github: data.github
+        name: data.name, pfp: data.imageUri, banner: data.banner, about: data.about, skills: data.skills, interests: data.interests, discord: data.discord, website: data.website, twitter: data.twitter, github: data.github
     })
     const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
     useEffect(() => {
+        const { loggedIn } = getCookies()
+        if (typeof window !== "undefined" && !loggedIn) {
+            router.push("/").then()
+        }
+
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const profAddress = router.query.profAddress
