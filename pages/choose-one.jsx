@@ -19,7 +19,7 @@ export default function PickAProj() {
                     <div className={styles.alignDivProj}>
                         <div className={styles.projSection}>
                             <div className={styles.projTitle}>My project's Name</div>
-                            <a href="/proj-profile" className={styles.projSectionA}><img className={styles.pfp} src="./M.png" /></a>
+                            <a href="/proj-profile/[profAddress]/[id].jsx" className={styles.projSectionA}><img className={styles.pfp} src="./M.png" /></a>
                         </div>
                         <div className={styles.projSection}>
                             <div className={styles.projTitle}>My project's Name</div>

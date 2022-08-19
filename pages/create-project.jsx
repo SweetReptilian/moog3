@@ -9,7 +9,18 @@ import { FiTwitter } from "react-icons/fi"
 import { TbBrandDiscord } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { TbTrashX } from "react-icons/tb"
-import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container } from "../animations/registrationAnimations"
+import {
+    checkBox,
+    item,
+    item2,
+    arrow,
+    checkBox2,
+    button,
+    item3,
+    arrow2,
+    party,
+    container
+} from "../animations/registrationAnimations"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
 import useUploadToStorage from "../hooks/useUploadToStorage"
@@ -18,7 +29,7 @@ import useContract from "../hooks/useContract"
 export function CreateProject() {
     const router = useRouter()
     const { uploadFile } = useUploadToStorage()
-    const {addProjectProfile} = useContract()
+    const { addProjectProfile } = useContract()
     const [wallet, setWallet] = useState("")
     const [formData, setFormData] = useState({
         name: "moogle1",
@@ -100,6 +111,7 @@ export function CreateProject() {
                     profileUri: profileCid
                 }
                 await addProjectProfile(projectProfileObject)
+                await router.push("/proj-profile")
             }
         }
         (async () => await upload())()
@@ -190,7 +202,8 @@ export function CreateProject() {
 
 
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <textarea name="about" value={formData.about} onChange={handleChange} placeholder="A beginner-friendly app for learning about web3!"
+                    <textarea name="about" onChange={handleChange}
+                              placeholder="A beginner-friendly app for learning about web3!"
                               className={formStyles.textArea}></textarea>
                 </motion.div>
 
@@ -201,28 +214,32 @@ export function CreateProject() {
                             className={formStyles.linksBox}>
                     <IconContext.Provider value={{ size: "35px", color: "white" }}>
                         <div><AiFillGithub /></div>
-                        <input onChange={handleChange} name="github" type="text" placeholder="moogUser1" className={formStyles.inputName}></input>
+                        <input onChange={handleChange} name="github" type="text" placeholder="moogUser1"
+                               className={formStyles.inputName}></input>
                     </IconContext.Provider>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
                             className={formStyles.linksBox}>
                     <IconContext.Provider value={{ size: "35px", color: "white" }}>
                         <div><MdComputer /></div>
-                        <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com" className={formStyles.inputName}></input>
+                        <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com"
+                               className={formStyles.inputName}></input>
                     </IconContext.Provider>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
                             className={formStyles.linksBox}>
                     <IconContext.Provider value={{ size: "35px", color: "white" }}>
                         <div><FiTwitter /></div>
-                        <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog" className={formStyles.inputName}></input>
+                        <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog"
+                               className={formStyles.inputName}></input>
                     </IconContext.Provider>
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
                             className={formStyles.linksBox}>
                     <IconContext.Provider value={{ size: "35px", color: "white" }}>
                         <div><TbBrandDiscord /></div>
-                        <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink" className={formStyles.inputName}></input>
+                        <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink"
+                               className={formStyles.inputName}></input>
                     </IconContext.Provider>
                 </motion.div>
 
@@ -399,10 +416,7 @@ export function CreateProject() {
                 </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
-                        <Link href="/proj-profile">
-                            <button className={formStyles.styleButton}>Take me there!</button>
-
-                        </Link>
+                        <button className={formStyles.styleButton}>Take me there!</button>
                     </div>
 
                 </motion.div>
@@ -421,9 +435,7 @@ export function CreateProject() {
     }
 
     return (
-
         <div className={formStyles.backgroundImg}>
-
             <div className={formStyles.secondDiv}>
                 <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
                     <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
@@ -436,13 +448,8 @@ export function CreateProject() {
                 {interests && <div>{Interests}</div>}
                 {allDone && <div>{AllDone}</div>}
             </div>
-
-
         </div>
-
-
     )
-
 }
 
 export default CreateProject

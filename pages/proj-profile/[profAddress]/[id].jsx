@@ -1,25 +1,37 @@
-import styles from "../styles/Profile.module.scss";
-import modalStyles from "../styles/Modal.module.scss"
-import Sidebar from "../components/Sidebar";
+import styles from "../../../styles/Profile.module.scss";
+import modalStyles from "../../../styles/Modal.module.scss"
+import Sidebar from "../../../components/Sidebar";
 import { TbHammer, TbHammerOff } from "react-icons/tb"
 import { IconContext } from "react-icons";
 import { AiOutlineGithub, AiOutlinePicture, AiOutlineCloseCircle } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react"
 import { RiSendPlaneLine } from "react-icons/ri"
-import {
-    backdrop,
-    modal
-} from "../animations/modalAnimations"
-
+import { backdrop, modal } from "../../../animations/modalAnimations"
+import { getCookies } from "cookies-next"
+import { useRouter } from "next/router"
 
 
 const Profile = () => {
 
     const [connect, setConnect] = useState(false);
     const [show, setShow] = useState(false);
+    const router = useRouter()
+    useEffect(() => {
+        const { loggedIn } = getCookies()
+        if (typeof window !== "undefined" && !loggedIn) {
+            router.push("/").then()
+        }
+        if (Object.keys(router.query).length > 0) {
+            const getData = async () => {
+                const { profAddress, id } = router.query
+
+            }
+            getData().then()
+        }
+    }, [router.query])
 
     return (
         <div className={styles.mainContainer}>
@@ -77,9 +89,9 @@ const Profile = () => {
 
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
                             <div className={styles.links} >
-                                <a className={styles.aDecor} href="#"><AiOutlineGithub /></a>
-                                <a className={styles.aDecor} href="#"><RiPagesLine /></a>
-                                <a className={styles.aDecor} href="#"><TbBrandDiscord /></a>
+                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><AiOutlineGithub /></a>
+                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><RiPagesLine /></a>
+                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><TbBrandDiscord /></a>
                             </div>
 
                         </IconContext.Provider>
