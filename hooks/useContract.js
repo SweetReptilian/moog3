@@ -28,9 +28,16 @@ const useContract = () => {
         const res = await contract.updateUserProfile(id, image, profileUri, name)
     }
 
+    const addProjectProfile = async (project) => {
+        const contract = await getContract()
+        const { name, image, banner, profileUri } = project
+        const res = await contract.createProjectProfile(name, image, banner, profileUri)
+    }
+
     return {
         addUserProfile,
-        updateUserProf
+        updateUserProf,
+        addProjectProfile
     }
 }
 

@@ -49,11 +49,11 @@ export default function WalletConect() {
     return (
         <>
             {
-                <html className={settingStyles.html}>
+                <div className={settingStyles.html}>
                     <div className={settingStyles.backgroundImg}>
                         <App />
                     </div>
-                </html>
+                </div>
             }
         </>
     )

@@ -6,12 +6,10 @@ import styles from "../styles/LoginStyle.module.scss"
 import Navbar from "../components/Navbar"
 import { TailSpin } from "react-loader-spinner"
 import { useRouter } from "next/router"
-import toast, {Toaster} from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 import getProfileData from "../utils/getProfileData"
 import Aos from "aos"
 import "aos/dist/aos.css"
-
-
 
 
 export default function Login() {
@@ -30,9 +28,9 @@ export default function Login() {
                         theme: "indigoDark",
                         includedPaymentProviders: ["moonpay"],
                         defaultFundingCurrency: "matic",
-                        defaultPurchaseAmount: 111,
-                    },
-                },
+                        defaultPurchaseAmount: 111
+                    }
+                }
             })
 
             const ethAuth = new ETHAuth()
@@ -50,21 +48,21 @@ export default function Login() {
                 if (!isValid) throw new Error("sig invalid")
             }
             await redirect((await wallet.getAddress()).toLowerCase())
-        } catch (e){
+        } catch (e) {
             throw new Error("login failed")
         }
     }
 
     const redirect = async (address) => {
         const apiRes = await getProfileData(address)
-        if(apiRes.response === "data not found"){
+        if (apiRes.response === "data not found") {
             await router.push("/registration")
         } else {
             await router.push(`/home/${address}`)
         }
     }
 
-    if(isLoggedIn){
+    if (isLoggedIn) {
         const wallet = sequence.getWallet()
         wallet.getAddress().then(res => {
             redirect(res.toLowerCase()).then()
@@ -72,24 +70,26 @@ export default function Login() {
     }
     useEffect(() => {
         Aos.init({ duration: 2000 })
-    }, []);
+    }, [])
     return (
         <>
             {!isLoggedIn &&
                 <div className={styles.html}>
-                    <div><Toaster/></div>
+                    <div><Toaster /></div>
                     <Navbar />
                     <div className={styles.container}>
                         <div data-aos="fade-up" className={styles.twoColDiv}>
                             <div className={styles.colOne}>
-                                <div className={styles.welcomeTextHeroSection}>Get an idea, <br />make it <span>Real</span></div>
-                                <div className={styles.connText}>To get started, please connect your Sequence Wallet</div>
+                                <div className={styles.welcomeTextHeroSection}>Get an idea, <br />make
+                                    it <span>Real</span></div>
+                                <div className={styles.connText}>To get started, please connect your Sequence Wallet
+                                </div>
                                 <button data-aos="fade-up" className={styles.styleButtonConn}
                                         onClick={async () => {
                                             setIsLoading(true)
                                             try {
                                                 await connect()
-                                            } catch (err){
+                                            } catch (err) {
                                                 toast.error("Login Failed.\nTry logging in again.", {
                                                     duration: 4500
                                                 })
@@ -97,7 +97,7 @@ export default function Login() {
                                             }
 
                                             setIsLoggedIn(getCookie("loggedIn") || false)
-                                        }}}
+                                        }}
                                 >
                                     {isLoading ? <TailSpin
                                         height="15"
@@ -129,8 +129,11 @@ export default function Login() {
                     </div>
                     <div data-aos="fade-right" className={styles.secondContainer}>
                         <div className={styles.welcomeTextHeroSection}> What is Moog3?</div>
-                        <div className={styles.connText2}> The first web3 platform who allows you to [decentralized] connect with anyone you want, to build your perfect Web3 team.
-                            <br />Making <span>easy</span> for you to bring your ideas and knowledge into <span>reallity</span>.</div>
+                        <div className={styles.connText2}> The first web3 platform who allows you to [decentralized]
+                            connect with anyone you want, to build your perfect Web3 team.
+                            <br />Making <span>easy</span> for you to bring your ideas and knowledge
+                            into <span>reallity</span>.
+                        </div>
                     </div>
 
                     <div className={styles.thirdContainer}>
@@ -141,7 +144,8 @@ export default function Login() {
                                 <div className={styles.projectUsersTitle}>Vision</div>
                                 <div className={styles.projectUsersDescription}>Integrate to this platform
                                     all the new web3 improvements to make <span>Moog3</span> more
-                                    useful and interesting for you.</div>
+                                    useful and interesting for you.
+                                </div>
 
                             </div>
                         </div>
@@ -149,8 +153,10 @@ export default function Login() {
 
                             <div className={styles.projectUsersDiv}>
                                 <div className={styles.projectUsersTitle}>Team & community</div>
-                                <div className={styles.projectUsersDescription}>Basically the most important things to make something works.
-                                    The best team to attend to community requests.</div>
+                                <div className={styles.projectUsersDescription}>Basically the most important things to
+                                    make something works.
+                                    The best team to attend to community requests.
+                                </div>
 
                             </div>
                         </div>
@@ -158,17 +164,23 @@ export default function Login() {
 
                             <div className={styles.projectUsersDiv}>
                                 <div className={styles.projectUsersTitle}>Renewals</div>
-                                <div className={styles.projectUsersDescription}>We want to keep Moog3 up to date all the time, so we keep working hard on creating new features.</div>
+                                <div className={styles.projectUsersDescription}>We want to keep Moog3 up to date all the
+                                    time, so we keep working hard on creating new features.
+                                </div>
 
                             </div>
                         </div>
                     </div>
                     <div data-aos="fade-right" className={styles.secondContainer}>
                         <div className={styles.welcomeTextHeroSection}>What this is all about</div>
-                        <div className={styles.connText2}> Is about community and help. We are a team with a lot of <span>connected ideas</span>, and we always talk about how
-                            amazing was crossing paths, since sometimes is not easy find people align to a same goal as you. That's why we decided to create this
-                            platform where <span>makes easy</span> the "looking for" process. All of us are excited about discovering new functionalities
-                            and make unique useful dApps and tools for <span>Web3 evolution</span>.</div>
+                        <div className={styles.connText2}> Is about community and help. We are a team with a lot
+                            of <span>connected ideas</span>, and we always talk about how
+                            amazing was crossing paths, since sometimes is not easy find people align to a same goal as
+                            you. That's why we decided to create this
+                            platform where <span>makes easy</span> the "looking for" process. All of us are excited
+                            about discovering new functionalities
+                            and make unique useful dApps and tools for <span>Web3 evolution</span>.
+                        </div>
                     </div>
                 </div>
 

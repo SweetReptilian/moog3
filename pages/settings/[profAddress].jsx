@@ -35,42 +35,50 @@ export function LogIn() {
                 const profAddress = router.query.profAddress
                 let temp = await getProfileData(profAddress)
                 setData(temp)
+                setUserFormData(temp)
             }
             getData().then()
         }
     }, [router.query])
     const formDone = async () => {
         const obj = {
-            banner: userFormData.banner ? userFormData.banner : data.banner,
-            about: userFormData.about ? userFormData.about : data.about,
+            banner: userFormData.banner,
+            about: userFormData.about,
             skills: (skillSelected.length > 0) ? skillSelected : data.skills,
             interests: (interestsSelected.length > 0) ? interestsSelected : data.interests,
-            discord: userFormData.discord ? userFormData.discord : data.discord,
-            website: userFormData.website ? userFormData.website : data.website,
-            github: userFormData.github ? userFormData.github : data.github,
-            twitter: userFormData.twitter ? userFormData.twitter : data.twitter
+            discord: userFormData.discord ,
+            website: userFormData.website,
+            github: userFormData.github,
+            twitter: userFormData.twitter
         }
-        const apiReq = await fetch("/api/uploadUserProfile", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                data: obj
+        console.log("obj", obj)
+        try {
+            const apiReq = await fetch("/api/uploadUserProfile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: obj
+                })
             })
-        })
-        const apiRes = await apiReq.json()
-        console.log("apiRes", apiRes)
-        const profileCid = apiRes.response
-        console.log("profileCid", profileCid)
-        const updatedProfileObj = {
-            name: userFormData.name ? userFormData.name : data.name,
-            id: data.id,
-            image: userFormData.pfp ? userFormData.pfp : data.imageUri,
-            profileUri: profileCid
+            const apiRes = await apiReq.json()
+            console.log("apiRes", apiRes)
+            const profileCid = apiRes.response
+            console.log("profileCid", profileCid)
+            const updatedProfileObj = {
+                name: userFormData.name ? userFormData.name : data.name,
+                id: data.id,
+                image: userFormData.pfp ? userFormData.pfp : data.imageUri,
+                profileUri: profileCid
+            }
+            console.log("updatedProfileObj",updatedProfileObj)
+            await updateUserProf(updatedProfileObj)
+            toast.success("Successfully updated!")
+        } catch (e){
+            console.error(e)
+            toast.error("Something broke!\nTry Again")
         }
-        await updateUserProf(updatedProfileObj)
-        toast.success("Successfully updated!")
     }
 
     const handleChange = (event) => {
@@ -83,21 +91,24 @@ export function LogIn() {
     const handlePfpChange = async (event) => {
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://ipfs.io/ipfs/" + cid
+        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
         console.log("imageUri", imageURI)
         setUserFormData(prevState => ({
             ...prevState,
             pfp: imageURI
         }))
+        console.log("updated", userFormData)
     }
     const handleBannerChange = async (event) => {
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://ipfs.io/ipfs/" + cid
+        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        console.log("imageUri", imageURI)
         setUserFormData(prevState => ({
             ...prevState,
             banner: imageURI
         }))
+        console.log("updated", userFormData)
     }
     return (
         <div className={formStyles.backgroundImg}>
@@ -116,15 +127,15 @@ export function LogIn() {
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>PFP here</div>
-                    <img className={formStyles.pfp} src={data.imageUri} draggable={false} alt={"pfp"} />
+                    <img className={formStyles.pfp} src={data.imageUri || userFormData.pfp} draggable={false} alt={"pfp"} />
                     <input className={formStyles.uploadFiles} name="pfp" type={"file"} onChange={handlePfpChange} />
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>Banner here</div>
                     <img className={formStyles.banner}
-                         src={data.banner || userFormData.banner || "https://ipfs.io/ipfs/bafkreigxiia7k4ct7tnynfaikgu4ghn2zqzvpak3tdozf2u4deb4ag26si"}
+                         src={data.banner || userFormData.banner}
                          draggable={false} alt={"banner"} />
-                    <input name="banner" type={"file"} onChange={handleBannerChange} />
+                    <input className={formStyles.uploadFiles} name="banner" type={"file"} onChange={handleBannerChange} />
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>Something about you</div>

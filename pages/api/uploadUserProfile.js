@@ -1,20 +1,22 @@
-import { File, NFTStorage } from "nft.storage"
 import fs from "fs"
+import { Web3Storage, getFilesFromPath } from 'web3.storage'
 
 const uploadJson = async (jsonObject) => {
-    const endpoint = "https://api.nft.storage"
-    const token = process.env.NEXT_PUBLIC_NFT_STORAGE_API
+    const apiToken = process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY
+    const storage = new Web3Storage({ token: apiToken })
 
-    const storage = new NFTStorage({ endpoint, token })
     await fs.promises.writeFile("./constants/userProfile.json", jsonObject)
-    let file = await fs.promises.readFile("./constants/userProfile.json", "utf-8")
-    return await storage.storeDirectory([new File([file], "userProfile.json")])
+    let file = "./constants/userProfile.json"
+    const pathFiles = await getFilesFromPath(file)
+    return await storage.put(pathFiles)
 }
+
 
 export default async function handler(req, res) {
     const data = req.body.data
     const jsonCid = await uploadJson(JSON.stringify(data))
-    const response = "https://ipfs.io/ipfs/" + jsonCid + "/userProfile.json"
+    const response = "https://" + jsonCid + ".ipfs.w3s.link/userProfile.json"
+    console.log("response", response)
     res.status(200).send({
         response,
     })

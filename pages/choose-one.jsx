@@ -33,7 +33,7 @@ export default function PickAProj() {
 
                             <IconContext.Provider value={{ size: "50px", color: "white" }}>
                                 <div className={styles.projTitle}>New Project</div>
-                                <a className={styles.moreIcon} href="/CreateProject"><AiOutlinePlusCircle /></a></IconContext.Provider>
+                                <a className={styles.moreIcon} href="/create-project"><AiOutlinePlusCircle /></a></IconContext.Provider>
                         </div>
                     </div>
                 </div>

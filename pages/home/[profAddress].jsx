@@ -295,7 +295,7 @@ export function Home() {
                                 <div className={styles.projSection}>
                                     <IconContext.Provider value={{ size: "50px", color: "white" }}>
                                         <div className={styles.projTitle}>New Project</div>
-                                        <a className={styles.moreIcon} href="/CreateProject">
+                                        <a className={styles.moreIcon} href="/create-project">
                                             <AiOutlinePlusCircle />
                                         </a>
                                     </IconContext.Provider>
