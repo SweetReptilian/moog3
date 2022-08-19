@@ -21,6 +21,7 @@ function SearchBar() {
             <div className={searchStyles.filters}>
                 <div className={searchStyles.check} >Projects</div>
                 <div className={searchStyles.check} >Contributors</div>
+
             </div>
 
 

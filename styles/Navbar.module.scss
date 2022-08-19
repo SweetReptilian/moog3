@@ -1,21 +1,28 @@
 .navbar {
   display: flex;
+  width: -webkit-fill-available;
   padding: 10px 80px;
+  position: fixed;
   align-items: center;
+  z-index: 1;
   scroll-snap-align: start;
   justify-content: space-between;
   font-family: 'Poppins';
   text-transform: uppercase;
   font-weight: 600;
-  background-color: rgb(249, 245, 252);
-  //height: auto;
-  //width: auto;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(11px) saturate(181%);
+  background: white;
+  background: radial-gradient(circle, rgba(238, 174, 202, 0.356) 0%, rgba(148, 188, 233, 0.295) 100%);
+  border-radius: 2px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
   margin: 0;
 
+
   .mooglesM {
-    gap: 1.2rem;
     display: flex;
     align-items: center;
+    color: white;
   }
 
   .imgG {
@@ -41,6 +48,7 @@
   font-weight: 800;
   border-radius: 20px;
 }
+
 .styleButtonConn:hover {
   cursor: pointer;
   background-color: #3c4472;
@@ -48,6 +56,7 @@
   border-color: #f8e1e1;
 
 }
+
 @media only screen and (max-width: 768px) {
   .navbar {
     padding: 4px 20px;

@@ -14,6 +14,7 @@
         "@testing-library/react": "^13.3.0",
         "@testing-library/user-event": "^13.5.0",
         "0xsequence": "^0.40.4",
+        "aos": "^2.3.4",
         "cookies-next": "^2.1.1",
         "framer-motion": "^7.0.0",
         "http": "^0.0.1-security",
@@ -60,13 +61,15 @@
     "devDependencies": {
         "@0xsequence/utils": "^0.40.4",
         "assert": "^2.0.0",
+        "autoprefixer": "^10.4.8",
         "buffer": "^6.0.3",
         "crypto-browserify": "^3.12.0",
         "https-browserify": "^1.0.0",
-        "postcss": "^8.4.14",
+        "postcss": "^8.4.16",
         "process": "^0.11.10",
         "stream-browserify": "^3.0.0",
         "stream-http": "^3.2.0",
+        "tailwindcss": "^3.1.8",
         "url": "^0.11.0"
     },
     "resolve-fallback": {
