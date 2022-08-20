@@ -383,7 +383,6 @@ export function CreateProject() {
                                    className={formStyles.inputName}></input>
                         </IconContext.Provider>
                     </motion.div>
-                    >>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
 
                 </div>
             </div>

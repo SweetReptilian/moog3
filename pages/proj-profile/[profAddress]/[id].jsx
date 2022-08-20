@@ -40,46 +40,7 @@ const Profile = () => {
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
-            <AnimatePresence exitBeforeEnter>
-                {show && (
-                    <motion.div className={modalStyles.backdropProfile}
-                                variants={backdrop}
-                                initial="hidden"
-                                animate="visible"
-                                exit="hidden">
 
-                        <motion.div className={modalStyles.printPostsModal}
-                                    variants={modal}>
-                            <AnimatePresence>
-                                <IconContext.Provider value={{ size: "25px", color: "white" }}>
-                                    <motion.div whileHover={{ scale: 0.99 }}
-                                                whileTap={{ scale: 1 }}
-                                                className={modalStyles.modalCloseIcon}
-                                                onClick={() => setShow(false)}>
-                                        <AiOutlineCloseCircle />
-                                    </motion.div>
-                                </IconContext.Provider>
-                            </AnimatePresence>
-                            <div className={modalStyles.postsModal}>
-                                <div className={modalStyles.postsTitleModal}>Project 1</div>
-                                <div className={modalStyles.postsContentModal}>We implemented a new function</div>
-                                <div className={modalStyles.picturePostModal}> Picture preview</div>
-
-                            </div>
-
-
-                            {/* <p className={modalStyles.modalPProfile}>Want to connect with Userx?</p>
-
-                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">Yes!</a></button>
-
-                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">View Profile</a></button>
-
-                            <button className={modalStyles.modalButtonProfile}><a className={modalStyles.modalAProfile} href="/">Maybe not</a></button> */}
-                        </motion.div>
-
-                    </motion.div>
-                )}
-            </AnimatePresence>
             <div className={styles.bigCard}>
 
                 <div className={styles.presentation}>
@@ -125,8 +86,8 @@ const Profile = () => {
 
                     <AnimatePresence>
                         <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                    whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
+                            whileHover={{ scale: 0.9 }}
+                            whileTap={{ scale: 1 }}>
                             <div>Contribute</div>
                             <IconContext.Provider
                                 value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
@@ -153,14 +114,14 @@ const Profile = () => {
                                 <div className={styles.iconSpace}> Picture preview</div>
 
                                 <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                    whileTap={{ scale: 1 }}>
                                     <IconContext.Provider
                                         value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
                                         <RiSendPlaneLine />
                                     </IconContext.Provider>
                                 </motion.div>
                                 <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                    whileTap={{ scale: 1 }}>
                                     <IconContext.Provider
                                         value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
                                         <AiOutlinePicture />
@@ -173,7 +134,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className={styles.printPosts}>
-                    <div className={styles.posts} onClick={() => setShow(show => !show)}>
+                    <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>
                         <div className={styles.postsContent}>We implemented a new function</div>
                         <div className={styles.picturePost}> Picture preview</div>
