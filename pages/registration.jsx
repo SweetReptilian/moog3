@@ -38,6 +38,7 @@ export function Registration() {
     const [allDone, setAllDone] = useState(false)
     const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -47,6 +48,7 @@ export function Registration() {
         }))
     }
     const handlePfpChange = async (event) => {
+        setLoading(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
@@ -55,8 +57,10 @@ export function Registration() {
             ...prevState,
             pfp: imageURI
         }))
+        setLoading(false)
     }
     const handleBannerChange = async (event) => {
+        setLoading(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
@@ -64,6 +68,7 @@ export function Registration() {
             ...prevState,
             banner: imageURI
         }))
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -73,7 +78,11 @@ export function Registration() {
                     about: formData.about,
                     banner: formData.banner,
                     skills: skillSelected,
-                    interests: interestsSelected
+                    interests: interestsSelected,
+                    discord: formData.discord,
+                    website: formData.website,
+                    twitter: formData.twitter,
+                    github: formData.github
                 }
 
                 const apiReq = await fetch("/api/uploadUserProfile", {
@@ -98,7 +107,7 @@ export function Registration() {
                 await router.push(`/home/${wallet}`)
             }
         }
-        (async () => await upload())()
+        upload().then()
     }, [allDone])
 
     useEffect(() => {
@@ -131,7 +140,7 @@ export function Registration() {
 
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
                             <input onChange={handleChange} name="name" type="text" placeholder="Moogle1"
-                                className={formStyles.inputName} required></input>
+                                   className={formStyles.inputName} required></input>
                         </motion.div>
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -164,9 +173,19 @@ export function Registration() {
                         </motion.div>
 
                         <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit"
-                            variants={item3}>
+                                    variants={item3}>
                             <img className={formStyles.pfp} src={formData.pfp} draggable={false} alt={"user pfp"} />
-                            <input className={formStyles.uploadFiles} name="pfp" type={"file"} onChange={handlePfpChange} />
+                            {loading ? <TailSpin
+                                height="15"
+                                width="15"
+                                color="#4e4646"
+                                ariaLabel="tail-spin-loading"
+                                radius="1"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            /> : <input className={formStyles.uploadFiles} name="pfp" type={"file"}
+                                        onChange={handlePfpChange} />}
                         </motion.div>
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -198,9 +217,19 @@ export function Registration() {
 
 
                         <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit"
-                            variants={item2}>
+                                    variants={item2}>
                             <img className={formStyles.banner} src={formData.banner} draggable={false} alt={"banner"} />
-                            <input name="banner" type={"file"} onChange={handleBannerChange} />
+                            {loading ? <TailSpin
+                                height="15"
+                                width="15"
+                                color="#4e4646"
+                                ariaLabel="tail-spin-loading"
+                                radius="1"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            /> : <input className={formStyles.uploadFiles} name="banner" type={"file"}
+                                        onChange={handleBannerChange} />}
                         </motion.div>
 
                     </div>
@@ -233,7 +262,8 @@ export function Registration() {
 
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
                             <textarea name="about" value={formData.about} onChange={handleChange}
-                                placeholder="I love learning about Web3..." className={formStyles.textArea}></textarea>
+                                      placeholder="I love learning about Web3..."
+                                      className={formStyles.textArea}></textarea>
                         </motion.div>
                         <motion.div initial="hidden" animate="visible" variants={item}>
                             <div className={formStyles.setText}>Let's add some links</div>
@@ -241,31 +271,38 @@ export function Registration() {
                         <div className={formStyles.someFlexCheck}>
 
                             <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
+                                        className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div><AiFillGithub /></div>
-                                    <input onChange={handleChange} name="github" type="text" placeholder="moogUser1" className={formStyles.inputName}></input>
+                                    <input value={formData.github} onChange={handleChange} name="github" type="text"
+                                           placeholder="https://github.com/username"
+                                           className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
                             <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
+                                        className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div><MdComputer /></div>
-                                    <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com" className={formStyles.inputName}></input>
+                                    <input value={formData.website} onChange={handleChange} name="website" type="text"
+                                           placeholder="https://www.moog3.com" className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
                             <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
+                                        className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div><FiTwitter /></div>
-                                    <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog" className={formStyles.inputName}></input>
+                                    <input value={formData.twitter} onChange={handleChange} name="twitter" type="text"
+                                           placeholder="https://twitter.com/username"
+                                           className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
                             <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
+                                        className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div><TbBrandDiscord /></div>
-                                    <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink" className={formStyles.inputName}></input>
+                                    <input value={formData.discord} onChange={handleChange} name="discord" type="text"
+                                           placeholder="https://discord.com/server"
+                                           className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
                         </div>
@@ -309,7 +346,7 @@ export function Registration() {
                                 >
                                     <motion.div variants={checkBox} id="check-1">
                                         <Checkbox name={"Development"} value={"Development"}
-                                            color="primary" defaultSelected={false}>
+                                                  color="primary" defaultSelected={false}>
                                             <div className={formStyles.checkLetters}> Development</div>
                                         </Checkbox>
 
@@ -317,35 +354,35 @@ export function Registration() {
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-2">
                                         <Checkbox name={"Design"} value={"Design"}
-                                            color="secondary" defaultSelected={false}>
+                                                  color="secondary" defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Design</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-3">
                                         <Checkbox name={"Digital Marketing"}
-                                            value={"Digital Marketing"} color="success" defaultSelected={false}>
+                                                  value={"Digital Marketing"} color="success" defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Digital Marketing</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-4">
                                         <Checkbox name={"Project Management"}
-                                            value={"Project Management"} color="warning" defaultSelected={false}>
+                                                  value={"Project Management"} color="warning" defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Project Management</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-5">
                                         <Checkbox name={"Investment"} value={"Investment"}
-                                            color="error" defaultSelected={false}>
+                                                  color="error" defaultSelected={false}>
                                             <div className={formStyles.checkLetters}> Investment</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-5">
                                         <Checkbox name={"Others"} value={"Others"} color="gradient"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Others</div>
                                         </Checkbox>
                                     </motion.div>
@@ -395,7 +432,7 @@ export function Registration() {
                                 >
                                     <motion.div variants={checkBox} id="check-1">
                                         <Checkbox value={"NFTs"} color="primary"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>NFTs</div>
                                         </Checkbox>
 
@@ -403,35 +440,35 @@ export function Registration() {
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-2">
                                         <Checkbox value={"DeFi"} color="secondary"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>DeFi</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-3">
                                         <Checkbox value={"DAOs"} color="success"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>DAOs</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-4">
                                         <Checkbox value={"Crypto"} color="warning"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Crypto</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-5">
                                         <Checkbox value={"DIDs"} color="error"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>DIDs</div>
                                         </Checkbox>
                                     </motion.div>
                                     <Spacer />
                                     <motion.div variants={checkBox} id="check-5">
                                         <Checkbox value={"Others"} color="gradient"
-                                            defaultSelected={false}>
+                                                  defaultSelected={false}>
                                             <div className={formStyles.checkLetters}>Others</div>
                                         </Checkbox>
                                     </motion.div>
@@ -479,16 +516,12 @@ export function Registration() {
                             </div>
                         </motion.div>
                     </div>
-<<<<<<< HEAD
                 </div>
-=======
-                </motion.div>
                 <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                     <div>
-                            <button className={formStyles.styleButton}> Let's go!</button>
+                        <button className={formStyles.styleButton}> Let's go!</button>
                     </div>
                 </motion.div>
->>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
             </div>
         </>
 

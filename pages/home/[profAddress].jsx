@@ -13,11 +13,14 @@ import { backdrop, modal } from "../../animations/modalAnimations"
 import { useRouter } from "next/router"
 import getProfileData from "../../utils/getProfileData"
 import { getCookies } from "cookies-next"
+import getProjectByAddress from "../../utils/getProjectByAddress"
 
 export function Home() {
     const [show, setShow] = useState(false)
     const router = useRouter()
     const [data, setData] = useState({})
+    const [ids, setIds] = useState()
+    const [wallet, setWallet] = useState("")
     useEffect(() => {
         const { loggedIn } = getCookies()
         if (typeof window !== "undefined" && !loggedIn) {
@@ -26,8 +29,10 @@ export function Home() {
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const profAddress = router.query.profAddress
+                setWallet(profAddress)
                 let temp = await getProfileData(profAddress)
                 setData(temp)
+                getProjectByAddress(profAddress).then(res => setIds(res))
             }
             getData().then()
         }
@@ -274,24 +279,15 @@ export function Home() {
                         <div className={styles.projectDiv}>
                             <div className={styles.projHeader}>My projects</div>
                             <div className={styles.alignDiv}>
-                                <div className={styles.projSection}>
-                                    <div className={styles.projTitle}>My project's Name</div>
-                                    <a href="/profile/[profAddress].jsx" className={styles.projSectionA}>
-                                        <img className={styles.pfp} src="../public/M.png" />
-                                    </a>
-                                </div>
-                                <div className={styles.projSection}>
-                                    <div className={styles.projTitle}>My project's Name</div>
-                                    <a className={styles.projSectionA}>
-                                        <img className={styles.pfp} src="../public/M.png" />
-                                    </a>
-                                </div>
-                                <div className={styles.projSection}>
-                                    <div className={styles.projTitle}>My project's Name</div>
-                                    <a className={styles.projSectionA}>
-                                        <img className={styles.pfp} src="../public/M.png" />
-                                    </a>
-                                </div>
+                                {
+                                    ids?.response !== "data not found" &&
+                                    ids?.ids.map(name => <div className={styles.projSection}>
+                                        <div className={styles.projTitle}>{name[1]}</div>
+                                        <a href={`/proj-profile/${wallet}/${name[0]}`} className={styles.projSectionA}>
+                                            <img alt={"project pfp"} className={styles.pfp} src={name[2]} />
+                                        </a>
+                                    </div>)
+                                }
                                 <div className={styles.projSection}>
                                     <IconContext.Provider value={{ size: "50px", color: "white" }}>
                                         <div className={styles.projTitle}>New Project</div>

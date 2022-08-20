@@ -1,26 +1,39 @@
-import formStyles from "../../styles/Forms.module.scss"
+import formStyles from "../../../styles/Forms.module.scss"
 import { Checkbox, Spacer } from "@nextui-org/react"
 import React, { useEffect, useState } from "react"
-import Sidebar from "../../components/Sidebar"
+import Sidebar from "../../../components/Sidebar"
 import { IconContext } from "react-icons/lib"
 import { AiFillGithub } from "react-icons/ai"
 import { MdComputer } from "react-icons/md"
 import { FiTwitter } from "react-icons/fi"
 import { TbBrandDiscord } from "react-icons/tb"
 import { useRouter } from "next/router"
-import getProfileData from "../../utils/getProfileData"
-import useUploadToStorage from "../../hooks/useUploadToStorage"
+import getProfileData from "../../../utils/getProfileData"
+import useUploadToStorage from "../../../hooks/useUploadToStorage"
 import toast, { Toaster } from "react-hot-toast"
-import useContract from "../../hooks/useContract"
+import useContract from "../../../hooks/useContract"
 import { getCookies } from "cookies-next"
+import { TailSpin } from "react-loader-spinner"
 
 export function LogIn() {
     const router = useRouter()
     const { uploadFile } = useUploadToStorage()
     const { updateUserProf } = useContract()
     const [data, setData] = useState({})
+    const [loadingP, setLoadingP] = useState(false)
+    const [loadingB, setLoadingB] = useState(false)
+    const [loadingS, setLoadingS] = useState(false)
     const [userFormData, setUserFormData] = useState({
-        name: data.name, pfp: data.imageUri, banner: data.banner, about: data.about, skills: data.skills, interests: data.interests, discord: data.discord, website: data.website, twitter: data.twitter, github: data.github
+        name: data.name,
+        pfp: data.imageUri,
+        banner: data.banner,
+        about: data.about,
+        skills: data.skills,
+        interests: data.interests,
+        discord: data.discord,
+        website: data.website,
+        twitter: data.twitter,
+        github: data.github
     })
     const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
@@ -41,12 +54,13 @@ export function LogIn() {
         }
     }, [router.query])
     const formDone = async () => {
+        setLoadingS(true)
         const obj = {
             banner: userFormData.banner,
             about: userFormData.about,
             skills: (skillSelected.length > 0) ? skillSelected : data.skills,
             interests: (interestsSelected.length > 0) ? interestsSelected : data.interests,
-            discord: userFormData.discord ,
+            discord: userFormData.discord,
             website: userFormData.website,
             github: userFormData.github,
             twitter: userFormData.twitter
@@ -72,13 +86,14 @@ export function LogIn() {
                 image: userFormData.pfp ? userFormData.pfp : data.imageUri,
                 profileUri: profileCid
             }
-            console.log("updatedProfileObj",updatedProfileObj)
+            console.log("updatedProfileObj", updatedProfileObj)
             await updateUserProf(updatedProfileObj)
             toast.success("Successfully updated!")
-        } catch (e){
+        } catch (e) {
             console.error(e)
             toast.error("Something broke!\nTry Again")
         }
+        setLoadingS(false)
     }
 
     const handleChange = (event) => {
@@ -89,6 +104,7 @@ export function LogIn() {
         }))
     }
     const handlePfpChange = async (event) => {
+        setLoadingP(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
@@ -97,9 +113,10 @@ export function LogIn() {
             ...prevState,
             pfp: imageURI
         }))
-        console.log("updated", userFormData)
+        setLoadingP(false)
     }
     const handleBannerChange = async (event) => {
+        setLoadingB(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
@@ -108,7 +125,7 @@ export function LogIn() {
             ...prevState,
             banner: imageURI
         }))
-        console.log("updated", userFormData)
+        setLoadingB(false)
     }
     return (
         <div className={formStyles.backgroundImg}>
@@ -127,15 +144,36 @@ export function LogIn() {
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>PFP here</div>
-                    <img className={formStyles.pfp} src={data.imageUri || userFormData.pfp} draggable={false} alt={"pfp"} />
-                    <input className={formStyles.uploadFiles} name="pfp" type={"file"} onChange={handlePfpChange} />
+                    <img className={formStyles.pfp} src={userFormData.pfp} draggable={false}
+                         alt={"pfp"} />
+                    {loadingP ? <TailSpin
+                        height="15"
+                        width="15"
+                        color="#4e4646"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    /> : <input className={formStyles.uploadFiles} name="pfp" type={"file"}
+                                onChange={handlePfpChange} />}
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>Banner here</div>
                     <img className={formStyles.banner}
-                         src={data.banner || userFormData.banner}
+                         src={userFormData.banner}
                          draggable={false} alt={"banner"} />
-                    <input className={formStyles.uploadFiles} name="banner" type={"file"} onChange={handleBannerChange} />
+                    {loadingB ? <TailSpin
+                        height="15"
+                        width="15"
+                        color="#4e4646"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    /> : <input className={formStyles.uploadFiles} name="banner" type={"file"}
+                                onChange={handleBannerChange} />}
                 </div>
                 <div className={formStyles.container2}>
                     <div className={formStyles.setText}>Something about you</div>
@@ -279,118 +317,21 @@ export function LogIn() {
                     </IconContext.Provider>
                 </div>
 
-                <button onClick={async () => await formDone()} className={formStyles.styleButton}>Save</button>
+                <button onClick={async () => await formDone()} className={formStyles.styleButton}>{
+                    loadingS ? <TailSpin
+                        height="15"
+                        width="15"
+                        color="#4e4646"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    /> : "Save"
+                }</button>
                 {/* for projects also we can add an edit function in their profiles or in the dashboard, when on right click they can either edit it or eraser */}
             </div>
 
-            {/* settings for projects */}
-            <div className={formStyles.mainContainer}>
-                <div className={formStyles.container2}>
-                    <div className={formStyles.setText}>Project's Name</div>
-                    <input
-                        type="text"
-                        placeholder="Moogle1"
-                        className={formStyles.inputName}
-                    ></input>
-                </div>
-                <div className={formStyles.container2}>
-                    <div className={formStyles.setText}>PFP here</div>
-                    <img className={formStyles.pfp} src="./mooglesnft2.png" draggable={false} />
-                </div>
-                <div className={formStyles.container2}>
-                    <div className={formStyles.setText}>Banner here</div>
-                    <img className={formStyles.banner} src="./logo3.png" draggable={false} />
-                </div>
-                <div className={formStyles.container2}>
-                    <div className={formStyles.setText}>What this is all about?</div>
-                    <textarea
-                        placeholder="This is something different..."
-                        className={formStyles.textArea}
-                    ></textarea>
-                </div>
-
-                <div className={formStyles.containerCheck}>
-                    <div className={formStyles.setText}>Categories</div>
-                    <Spacer />
-                    <Checkbox color="primary" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>NFTs</div>
-                    </Checkbox>
-                    <Spacer />
-                    <Checkbox color="secondary" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>DeFis</div>
-                    </Checkbox>
-                    <Spacer />
-                    <Checkbox color="success" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>DAOs</div>
-                    </Checkbox>
-                    <Spacer />
-                    <Checkbox color="warning" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>Cryptos</div>
-                    </Checkbox>
-                    <Spacer />
-                    <Checkbox color="error" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>DIDs</div>
-                    </Checkbox>
-                    <Spacer />
-                    <Checkbox color="gradient" defaultSelected={false}>
-                        <div className={formStyles.checkLetters}>Others</div>
-                    </Checkbox>
-                    <Spacer />
-                </div>
-                <div>
-                    <div className={formStyles.setText}>Project links</div>
-                </div>
-                <div className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div>
-                            <AiFillGithub />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="moogUser1"
-                            className={formStyles.inputName}
-                        ></input>
-                    </IconContext.Provider>
-                </div>
-                <div className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div>
-                            <MdComputer />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="www.moog3.com"
-                            className={formStyles.inputName}
-                        ></input>
-                    </IconContext.Provider>
-                </div>
-                <div className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div>
-                            <FiTwitter />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="@mymoog"
-                            className={formStyles.inputName}
-                        ></input>
-                    </IconContext.Provider>
-                </div>
-                <div className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div>
-                            <TbBrandDiscord />
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="#serverlink"
-                            className={formStyles.inputName}
-                        ></input>
-                    </IconContext.Provider>
-                </div>
-
-                <button className={formStyles.styleButton}>Save</button>
-            </div>
         </div>
     )
 }

@@ -31,7 +31,9 @@ const Profile = () => {
                 const temp = await getProjectDataById(profAddress, id)
                 setData(temp)
             }
-            getData().then()
+            getData().then(() => {
+                console.log(data)
+            })
         }
     }, [router.query])
 

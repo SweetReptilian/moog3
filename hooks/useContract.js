@@ -19,25 +19,32 @@ const useContract = () => {
     const addUserProfile = async (user) => {
         const contract = await getContract()
         const { name, image, profileUri } = user
-        const res = await contract.createUserProfile(name, image, profileUri)
+        await contract.createUserProfile(name, image, profileUri)
     }
 
     const updateUserProf = async (user) => {
         const contract = await getContract()
         const { name, id, image, profileUri } = user
-        const res = await contract.updateUserProfile(id, image, profileUri, name)
+        await contract.updateUserProfile(id, image, profileUri, name)
     }
 
     const addProjectProfile = async (project) => {
         const contract = await getContract()
         const { name, image, banner, profileUri } = project
-        const res = await contract.createProjectProfile(name, image, banner, profileUri)
+        await contract.createProjectProfile(name, image, banner, profileUri)
+    }
+
+    const updateProjectProf = async (project) => {
+        const contract = await getContract()
+        const {name, id, image, profileUri} = project
+        await contract.updateProjectProfile(id, image, profileUri, name)
     }
 
     return {
         addUserProfile,
         updateUserProf,
-        addProjectProfile
+        addProjectProfile,
+        updateProjectProf
     }
 }
 

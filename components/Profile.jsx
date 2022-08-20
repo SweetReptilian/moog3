@@ -9,9 +9,14 @@ import { useEffect, useState } from "react"
 import { TbPlugConnected, TbPlugConnectedX } from "react-icons/tb"
 import getProfileData from "../utils/getProfileData"
 import { getCookies } from "cookies-next"
+import getWalletAddress from "../utils/getWalletAddress"
 
 const Profile = ({profAddress}) => {
     const [data, setData] = useState({})
+    const [owner, setOwner] = useState(false)
+    getWalletAddress().then(res => {
+        setOwner(res === profAddress)
+    })
     const { loggedIn } = getCookies()
     useEffect(() => {
             const getData = async () => {
@@ -53,7 +58,7 @@ const Profile = ({profAddress}) => {
                         <div className={styles.description}>
                             {data.about}
                         </div>
-                        {typeof window !== "undefined" && loggedIn && <AnimatePresence>
+                        {typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
                                         whileHover={{ scale: 0.9 }}
                                         whileTap={{ scale: 1 }}>

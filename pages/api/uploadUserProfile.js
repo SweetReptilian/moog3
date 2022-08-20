@@ -2,7 +2,7 @@ import fs from "fs"
 import { Web3Storage, getFilesFromPath } from 'web3.storage'
 
 const uploadJson = async (jsonObject) => {
-    const apiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY2NDkyQzIxOEU3YzA0ZkIxYkUwZTBkMjczNjliZjI5NjVkZTJEODciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA5MTMzMjU0NjgsIm5hbWUiOiJNb29nMyJ9.1xflGYW2O5cTRgmA-T251RRKoh1nXJAYgKrz0QFVMHg"
+    const apiToken = process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY
     const storage = new Web3Storage({ token: apiToken })
 
     await fs.promises.writeFile("./constants/userProfile.json", jsonObject)
