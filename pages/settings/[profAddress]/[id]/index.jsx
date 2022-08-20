@@ -14,6 +14,7 @@ import useContract from "../../../../hooks/useContract"
 import { getCookies } from "cookies-next"
 import { TailSpin } from "react-loader-spinner"
 import getProjectDataById from "../../../../utils/getProjectDataById"
+import getWalletAddress from "../../../../utils/getWalletAddress"
 
 export function EditProject() {
     const router = useRouter()
@@ -46,6 +47,12 @@ export function EditProject() {
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const { profAddress, id } = router.query
+                getWalletAddress().then(res => {
+                    if(res !== profAddress){
+                        alert("You can't change the settings of another account!")
+                        router.push("/").then()
+                    }
+                })
                 let temp = await getProjectDataById(profAddress, id)
                 setData(temp)
                 setUserFormData(temp)

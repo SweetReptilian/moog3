@@ -42,13 +42,13 @@ const Profile = ({profAddress}) => {
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
                             <div className={styles.links}>
                                 <a className={styles.aDecor}
-                                   href={`https://github.com/${data.github}`}><AiOutlineGithub /></a>
+                                   href={data.github}><AiOutlineGithub /></a>
                                 <a className={styles.aDecor}
                                    href={data.website}><RiPagesLine /></a>
                                 <a className={styles.aDecor}
-                                   href={`https://discordapp.com/users/${data.discord}`}><TbBrandDiscord /></a>
+                                   href={data.discord}><TbBrandDiscord /></a>
                                 <a className={styles.aDecor}
-                                   href={`https://twitter.com/${data.twitter}`}><AiOutlineTwitter /></a>
+                                   href={data.twitter}><AiOutlineTwitter /></a>
 
                             </div>
 

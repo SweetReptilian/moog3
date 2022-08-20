@@ -14,6 +14,7 @@ import { useRouter } from "next/router"
 import getProfileData from "../../utils/getProfileData"
 import { getCookies } from "cookies-next"
 import getProjectByAddress from "../../utils/getProjectByAddress"
+import getWalletAddress from "../../utils/getWalletAddress"
 
 export function Home() {
     const [show, setShow] = useState(false)
@@ -26,10 +27,17 @@ export function Home() {
         if (typeof window !== "undefined" && !loggedIn) {
             router.push("/").then()
         }
+
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const profAddress = router.query.profAddress
                 setWallet(profAddress)
+                getWalletAddress().then(res => {
+                    if(res !== profAddress){
+                        alert("You can't access the homepage of another account!")
+                        router.push("/").then()
+                    }
+                })
                 let temp = await getProfileData(profAddress)
                 setData(temp)
                 getProjectByAddress(profAddress).then(res => setIds(res))
@@ -281,7 +289,7 @@ export function Home() {
                             <div className={styles.alignDiv}>
                                 {
                                     ids?.response !== "data not found" &&
-                                    ids?.ids.map(name => <div className={styles.projSection}>
+                                    ids?.ids.map(name => <div key={name[0]} className={styles.projSection}>
                                         <div className={styles.projTitle}>{name[1]}</div>
                                         <a href={`/proj-profile/${wallet}/${name[0]}`} className={styles.projSectionA}>
                                             <img alt={"project pfp"} className={styles.pfp} src={name[2]} />

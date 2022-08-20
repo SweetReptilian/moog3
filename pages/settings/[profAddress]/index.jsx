@@ -14,6 +14,7 @@ import toast, { Toaster } from "react-hot-toast"
 import useContract from "../../../hooks/useContract"
 import { getCookies } from "cookies-next"
 import { TailSpin } from "react-loader-spinner"
+import getWalletAddress from "../../../utils/getWalletAddress"
 
 export function LogIn() {
     const router = useRouter()
@@ -46,6 +47,12 @@ export function LogIn() {
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const profAddress = router.query.profAddress
+                getWalletAddress().then(res => {
+                    if(res !== profAddress){
+                        alert("You can't change the settings of another account!")
+                        router.push("/").then()
+                    }
+                })
                 let temp = await getProfileData(profAddress)
                 setData(temp)
                 setUserFormData(temp)
