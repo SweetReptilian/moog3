@@ -9,11 +9,12 @@ import { FiTwitter } from "react-icons/fi"
 import { TbBrandDiscord } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { TbTrashX } from "react-icons/tb"
-import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container } from "../animations/registrationAnimations"
+import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container, trashie, trashieSlow } from "../animations/registrationAnimations"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
 import useUploadToStorage from "../hooks/useUploadToStorage"
 import useContract from "../hooks/useContract"
+
 
 export function CreateProject() {
     const router = useRouter()
@@ -24,7 +25,7 @@ export function CreateProject() {
         name: "moogle1",
         pfp: "https://ipfs.io/ipfs/bafkreic2mr4bcejdcfrpya6aiev37vmhdy3pjtxbni4lh3cdmy7kovrswe",
         banner: "https://ipfs.io/ipfs/bafkreigxiia7k4ct7tnynfaikgu4ghn2zqzvpak3tdozf2u4deb4ag26si",
-        about: "I love learning about Web3...",
+        about: "",
         discord: "moog#2434",
         twitter: "@moog3",
         website: "moog3.com",
@@ -102,7 +103,6 @@ export function CreateProject() {
                     profileUri: profileCid
                 }
                 await addProjectProfile(projectProfileObject)
-                await router.push("/choose-one")
             }
         }
         (async () => await upload())()
@@ -128,18 +128,12 @@ export function CreateProject() {
                     </motion.div>
                     <div className={formStyles.container}>
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.welcomeText}>Great choice! It's time to create something new</div>
+                            <div className={formStyles.welcomeText}>Let's find the perfect contributor</div>
 
-                        </motion.div>
-                        <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>What is the name of the project?</div>
                         </motion.div>
 
 
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <input onChange={handleChange} name="name" type="text" placeholder="Moogle1"
-                                className={formStyles.inputName} required />
-                        </motion.div>
+
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
@@ -167,17 +161,16 @@ export function CreateProject() {
 
                     </motion.div>
                     <div className={formStyles.container}>
-
-                        <motion.div initial="hidden" animate="visible" variants={item2}>
-                            <div className={formStyles.setText}>Set a nice pfp</div>
-
+                        <motion.div initial="hidden" animate="visible" variants={item}>
+                            <div className={formStyles.setText}>Detail a little bit more about this contributor</div>
                         </motion.div>
 
-                        <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit" variants={item3}>
-                            <img className={formStyles.pfp} src={formData.pfp} draggable={false} alt={"project pfp"} />
 
-                            <input className={formStyles.uploadFiles} name="pfp" type={"file"} onChange={handlePfpChange} />
+                        <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
+                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="I need a person who can... btw don't worry about the UI or these redactions. Just add the functions and I'll fix it, tx bro you're great"
+                                className={formStyles.textArea}></textarea>
                         </motion.div>
+
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
@@ -185,9 +178,9 @@ export function CreateProject() {
                         </div>
 
                     </motion.div>
+
                 </div>
             </div>
-
         </>
     const Banner =
         <>
@@ -205,16 +198,27 @@ export function CreateProject() {
                         </div>
 
                     </motion.div>
+
                     <div className={formStyles.container}>
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Now the banner</div>
+                            <div className={formStyles.setText}>Is this a paid contribution?</div>
                         </motion.div>
 
-
-                        <motion.div className={formStyles.someFlex} initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <img className={formStyles.banner} src={formData.banner} draggable={false} alt={"banner"} />
-                            <input name="banner" type={"file"} onChange={handleBannerChange} />
+                        <motion.div initial="hidden" animate="visible" variants={item}>
+                            <div className={formStyles.setText}>If so, specify the amount</div>
                         </motion.div>
+                        <div className={formStyles.someFlexCheck}>
+
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                                className={formStyles.linksBox}>
+                                <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                                    <div></div>
+                                    <input onChange={handleChange} name="amount" type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
+                                </IconContext.Provider>
+                            </motion.div>
+
+                        </div>
+
 
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -244,98 +248,32 @@ export function CreateProject() {
 
                     </motion.div>
                     <div className={formStyles.container}>
+
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Now, this project is all about...</div>
+                            <div className={formStyles.setText}>Is this a paid contribution?</div>
                         </motion.div>
 
-
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="A beginner-friendly app for learning about web3!"
-                                className={formStyles.textArea}></textarea>
-                        </motion.div>
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Let's add some links</div>
+                            <div className={formStyles.setText}>If so, specify the amount</div>
                         </motion.div>
                         <div className={formStyles.someFlexCheck}>
 
                             <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
                                 className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                                    <div><AiFillGithub /></div>
-                                    <input onChange={handleChange} name="github" type="text" placeholder="moogUser1" className={formStyles.inputName}></input>
+                                    <div></div>
+                                    <input onChange={handleChange} name="amount" type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
-                                <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                                    <div><MdComputer /></div>
-                                    <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com" className={formStyles.inputName}></input>
-                                </IconContext.Provider>
-                            </motion.div>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
-                                <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                                    <div><FiTwitter /></div>
-                                    <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog" className={formStyles.inputName}></input>
-                                </IconContext.Provider>
-                            </motion.div>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                                className={formStyles.linksBox}>
-                                <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                                    <div><TbBrandDiscord /></div>
-                                    <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink" className={formStyles.inputName}></input>
-                                </IconContext.Provider>
-                            </motion.div>
+
                         </div>
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                    <textarea name="about" onChange={handleChange}
-                              placeholder="A beginner-friendly app for learning about web3!"
-                              className={formStyles.textArea}></textarea>
-                </motion.div>
-
-                <motion.div initial="hidden" animate="visible" variants={item}>
-                    <div className={formStyles.setText}>Let's add some links</div>
-                </motion.div>
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                            className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div><AiFillGithub /></div>
-                        <input onChange={handleChange} name="github" type="text" placeholder="moogUser1"
-                               className={formStyles.inputName}></input>
-                    </IconContext.Provider>
-                </motion.div>
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                            className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div><MdComputer /></div>
-                        <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com"
-                               className={formStyles.inputName}></input>
-                    </IconContext.Provider>
-                </motion.div>
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                            className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div><FiTwitter /></div>
-                        <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog"
-                               className={formStyles.inputName}></input>
-                    </IconContext.Provider>
-                </motion.div>
-                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
-                            className={formStyles.linksBox}>
-                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
-                        <div><TbBrandDiscord /></div>
-                        <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink"
-                               className={formStyles.inputName}></input>
-                    </IconContext.Provider>
-                </motion.div>
->>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
 
                 </div>
             </div>
@@ -351,78 +289,33 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(3)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(4)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>
                     <div className={formStyles.container}>
 
-                        <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                            <div className={formStyles.setText}>Let's pick a category for {formData.name}</div>
+                        <motion.div initial="hidden" animate="visible" variants={item}>
+                            <div className={formStyles.setText}>Any expected time?</div>
                         </motion.div>
-                        <Spacer />
-                        <Checkbox.Group value={skillSelected} onChange={setSkillSelected}>
-                            <motion.div className="loader">
-                                <motion.div
-                                    variants={container}
+                        <div className={formStyles.someFlexCheck}>
 
-                                    initial="hidden"
-                                    animate="show"
-                                    exit="exit"
-                                    className="loader-inner"
-                                >
-                                    <motion.div variants={checkBox} id="check-1">
-                                        <Checkbox value={"NFTs"} color="primary"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>NFTs</div>
-                                        </Checkbox>
-
-                                    </motion.div>
-                                    <Spacer />
-                                    <motion.div variants={checkBox} id="check-2">
-                                        <Checkbox value={"DeFi"} color="secondary"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>DeFi</div>
-                                        </Checkbox>
-                                    </motion.div>
-                                    <Spacer />
-                                    <motion.div variants={checkBox} id="check-3">
-                                        <Checkbox value={"DAOs"} color="success"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>DAOs</div>
-                                        </Checkbox>
-                                    </motion.div>
-                                    <Spacer />
-                                    <motion.div variants={checkBox} id="check-4">
-                                        <Checkbox value={"Crypto"} color="warning"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>Crypto</div>
-                                        </Checkbox>
-                                    </motion.div>
-                                    <Spacer />
-                                    <motion.div variants={checkBox} id="check-5">
-                                        <Checkbox value={"DIDs"} color="error"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>DIDs</div>
-                                        </Checkbox>
-                                    </motion.div>
-                                    <Spacer />
-                                    <motion.div variants={checkBox} id="check-5">
-                                        <Checkbox value={"Others"} color="gradient"
-                                            defaultSelected={false}>
-                                            <div className={formStyles.checkLetters}>Others</div>
-                                        </Checkbox>
-                                    </motion.div>
-                                    <Spacer />
-                                </motion.div>
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                                className={formStyles.linksBox}>
+                                <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                                    <div></div>
+                                    <input onChange={handleChange} name="amount" type="text" placeholder="20 hours/ one day" className={formStyles.inputName}></input>
+                                </IconContext.Provider>
                             </motion.div>
-                        </Checkbox.Group>
+
+                        </div>
+
 
 
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -441,14 +334,14 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(6)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(5)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>
                     <div className={formStyles.container}>
 
                         <motion.div initial="hidden" animate="visible" variants={checkBox2}>
-                            <div className={formStyles.setText}>If you are looking for contributors, please specify</div>
+                            <div className={formStyles.setText}>Let's put this contributor in a category</div>
                         </motion.div>
                         <Spacer />
                         <Checkbox.Group value={interestsSelected} onChange={setInterestsSelected}>
@@ -511,7 +404,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(8)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -527,7 +420,7 @@ export function CreateProject() {
                     <div className={formStyles.container}>
 
                         <motion.div initial="hidden" animate="visible" variants={item2}>
-                            <div className={formStyles.welcomeText}>{formData.name} Project has been created!</div>
+                            <div className={formStyles.welcomeText}> This is done!</div>
 
                         </motion.div>
 
@@ -535,20 +428,20 @@ export function CreateProject() {
                         </motion.div>
 
                         <motion.div initial="hidden" animate="visible" variants={party}>
-                            <div className={formStyles.checkLetters}><span role="img" aria-label="party">Let's check how it looks</span>
+                            <div className={formStyles.checkLetters}><span role="img" aria-label="party"></span>
                             </div>
                         </motion.div>
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                             <div>
-                                <Link href="/choose-one">
-                                    <button className={formStyles.styleButton}>Take me there!</button>
+                                <Link href="/proj-profile">
+                                    <button className={formStyles.styleButton}>Go back to work</button>
 
                                 </Link>
                             </div>
 
                         </motion.div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </>
 
@@ -556,32 +449,25 @@ export function CreateProject() {
         setName(id === 1)
         setPfp(id === 2)
         setBanner(id === 3)
-        // setGallery(id === 4);
-        setAbout(id === 5)
-        setSkills(id === 6)
-        setInterests(id === 7)
-        setAllDone(id === 8)
+        setAbout(id === 4)
+        setSkills(id === 5)
+        setInterests(id === 6)
+        setAllDone(id === 7)
     }
 
     return (
+        <>
 
-        <div className={formStyles.backgroundImg}>
+            {name && <div>{Name}</div>}
+            {pfp && <div>{Pfp}</div>}
+            {banner && <div>{Banner}</div>}
+            {/* {gallery && <div>{Gallery}</div>} */}
+            {about && <div>{About}</div>}
+            {skills && <div>{Skills}</div>}
+            {interests && <div>{Interests}</div>}
+            {allDone && <div>{AllDone}</div>}
 
-            <div className={formStyles.secondDiv}>
-                <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
-                    <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
-                {name && <div>{Name}</div>}
-                {pfp && <div>{Pfp}</div>}
-                {banner && <div>{Banner}</div>}
-                {/* {gallery && <div>{Gallery}</div>} */}
-                {about && <div>{About}</div>}
-                {skills && <div>{Skills}</div>}
-                {interests && <div>{Interests}</div>}
-                {allDone && <div>{AllDone}</div>}
-            </div>
-
-
-        </div>
+        </>
 
 
     )

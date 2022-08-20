@@ -203,3 +203,56 @@ export const arrow2 = {
     }
 
 }
+
+export const trashie = {
+    hidden: {
+        y: -100,
+        scale: 1,
+        opacity: 0,
+
+    },
+    visible: {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: {
+            ease: "easeIn",
+            duration: 0.5,
+            delay: 1.5
+        }
+    },
+
+    exit: {
+        x: 200,
+        scale: 0,
+        opacity: 0
+    }
+
+}
+
+
+export const trashieSlow = {
+    hidden: {
+        y: -100,
+        scale: 1,
+        opacity: 0,
+
+    },
+    visible: {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: {
+            ease: "easeIn",
+            duration: 0.5,
+            delay: 2.3
+        }
+    },
+
+    exit: {
+        x: 200,
+        scale: 0,
+        opacity: 0
+    }
+
+}
