@@ -26,8 +26,7 @@ $shadow-opacity: 0.30;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background: rgb(85, 47, 128);
-    background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 1) 100%);
+
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
     color: white;
@@ -194,7 +193,7 @@ $shadow-opacity: 0.30;
     }
 
     .setText {
-        padding: 10px;
+        padding: 40px;
     }
 
     .links {
@@ -203,12 +202,14 @@ $shadow-opacity: 0.30;
         padding-right: 120px;
 
     }
+
     .links2 {
         display: flex;
         justify-content: right;
         padding-right: 20px;
 
     }
+
     .arrow {
 
         border: solid rgb(226, 206, 241);
@@ -230,13 +231,38 @@ $shadow-opacity: 0.30;
 
     }
 
+    .backArrow {
+
+        border: solid rgb(226, 206, 241);
+        border-width: 0 6px 6px 0;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(133deg);
+
+    }
+
+    .backArrow:hover {
+
+        cursor: pointer;
+        border: solid rgb(176, 151, 196);
+        border-width: 0 6px 6px 0;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(133deg);
+
+    }
+
     .linksBox {
         display: flex;
         align-content: center;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        padding-bottom: 10px;
+    }
+
+    .trashBtn {
+        display: flex;
+        padding-bottom: 513px;
     }
 
     .textArea {
@@ -247,6 +273,8 @@ $shadow-opacity: 0.30;
         background-color: #f8f8f8;
         font-size: 16px;
         resize: none;
+        font-family: 'Poppins', sans-serif;
+
         overflow: auto;
         outline: none;
         padding: 10px;
@@ -283,6 +311,19 @@ $shadow-opacity: 0.30;
         align-items: center;
         gap: 2rem;
     }
+
+    .someFlexCheck {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+
 
     .connText {
         padding: 10px 0px 30px;

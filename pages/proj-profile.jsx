@@ -102,12 +102,12 @@ const Profile = () => {
 
                 <div className={styles.lookingForSection}>
                     <motion.button className={styles.lookingForOptions}>
-                        {/* <a className={styles.aDecor} href="/apply-form"> */}
-                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.checkedIcon}></div>
-                        </IconContext.Provider>
-                        <div className={styles.lookingForName}>Blockchain Developer</div>
-                        {/* </a> */}
+                        <a className={styles.aDecor} href="/apply-form">
+                            <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                                <div className={styles.checkedIcon}></div>
+                            </IconContext.Provider>
+                            <div className={styles.lookingForName}>Blockchain Developer</div>
+                        </a>
                     </motion.button>
                     <motion.button className={styles.lookingForOptions}>
 

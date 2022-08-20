@@ -85,19 +85,19 @@ export default function Login() {
                                 <div className={styles.connText}>To get started, please connect your Sequence Wallet
                                 </div>
                                 <button data-aos="fade-up" className={styles.styleButtonConn}
-                                        onClick={async () => {
-                                            setIsLoading(true)
-                                            try {
-                                                await connect()
-                                            } catch (err) {
-                                                toast.error("Login Failed.\nTry logging in again.", {
-                                                    duration: 4500
-                                                })
-                                                setIsLoading(false)
-                                            }
+                                    onClick={async () => {
+                                        setIsLoading(true)
+                                        try {
+                                            await connect()
+                                        } catch (err) {
+                                            toast.error("Login Failed.\nTry logging in again.", {
+                                                duration: 4500
+                                            })
+                                            setIsLoading(false)
+                                        }
 
-                                            setIsLoggedIn(getCookie("loggedIn") || false)
-                                        }}
+                                        setIsLoggedIn(getCookie("loggedIn") || false)
+                                    }}
                                 >
                                     {isLoading ? <TailSpin
                                         height="15"
@@ -110,20 +110,13 @@ export default function Login() {
                                         visible={true}
                                     /> : "Connect Wallet"}
                                 </button>
-                                {/* <div className={styles.sponsorSvgsSection}>
-                                    <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="spheron.ico" />
-                                    <img className={styles.sponsorSvgs} alt={"sponsor-logo"}
-                                        src="https://ipfs.io/ipfs/bafkreiewn7tto6i7uesmr7cavijj5ffumr7e2mob4hrztvt7t32rlsuqmi" />
-                                    <img className={styles.sponsorSvgs} alt={"sponsor-logo"} src="ipfs.ico" />
-
-                                </div> */}
                             </div>
 
                             <div data-aos="fade-up" className={styles.colTwo}>
                                 <img className={styles.mainImgHeroSection}
-                                     alt={"logoGIf"}
-                                     src="./Group.png"
-                                     draggable={false} />
+                                    alt={"logoGIf"}
+                                    src="./Group.png"
+                                    draggable={false} />
                             </div>
                         </div>
                     </div>
@@ -142,8 +135,8 @@ export default function Login() {
 
                             <div data-aos="flip-right" className={styles.projectUsersDiv}>
                                 <div className={styles.projectUsersTitle}>Vision</div>
-                                <div className={styles.projectUsersDescription}>Integrate to this platform
-                                    all the new web3 improvements to make <span>Moog3</span> more
+                                <div className={styles.projectUsersDescription}>Integrate all new web3 enhancements to
+                                    this platform to make <span>Moog3</span> more
                                     useful and interesting for you.
                                 </div>
 
@@ -154,8 +147,8 @@ export default function Login() {
                             <div className={styles.projectUsersDiv}>
                                 <div className={styles.projectUsersTitle}>Team & community</div>
                                 <div className={styles.projectUsersDescription}>Basically the most important things to
-                                    make something works.
-                                    The best team to attend to community requests.
+                                    make something work.
+                                    We are the best team to meet the requests of the community.
                                 </div>
 
                             </div>
@@ -165,7 +158,7 @@ export default function Login() {
                             <div className={styles.projectUsersDiv}>
                                 <div className={styles.projectUsersTitle}>Renewals</div>
                                 <div className={styles.projectUsersDescription}>We want to keep Moog3 up to date all the
-                                    time, so we keep working hard on creating new features.
+                                    time, so we keep working hard to create new features.
                                 </div>
 
                             </div>
@@ -173,13 +166,13 @@ export default function Login() {
                     </div>
                     <div data-aos="fade-right" className={styles.secondContainer}>
                         <div className={styles.welcomeTextHeroSection}>What this is all about</div>
-                        <div className={styles.connText2}> Is about community and help. We are a team with a lot
-                            of <span>connected ideas</span>, and we always talk about how
+                        <div className={styles.connText2}> It's about community and improvement. We are a team with many <span>connected ideas</span>,
+                            and we always talk about how
                             amazing was crossing paths, since sometimes is not easy find people align to a same goal as
                             you. That's why we decided to create this
-                            platform where <span>makes easy</span> the "looking for" process. All of us are excited
-                            about discovering new functionalities
-                            and make unique useful dApps and tools for <span>Web3 evolution</span>.
+                            platform where it <span>FACILITATES</span> the "search" process. All of us are excited
+                            about discovering new
+                            features and creating unique and useful dApps and tools for <span>Web3 evolution</span>.
                         </div>
                     </div>
                 </div>
