@@ -194,6 +194,12 @@ $shadow-opacity: 0.30;
 
     .setText {
         padding: 40px;
+        text-align: center;
+    }
+
+    .setTextContr {
+        padding: 20px;
+        text-align: center;
     }
 
     .links {
@@ -262,7 +268,7 @@ $shadow-opacity: 0.30;
 
     .trashBtn {
         display: flex;
-        padding-bottom: 513px;
+        padding-bottom: 450px;
     }
 
     .textArea {
@@ -327,6 +333,13 @@ $shadow-opacity: 0.30;
 
     .connText {
         padding: 10px 0px 30px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .connTextContr {
+        text-decoration: underline;
+        padding-bottom: 10px;
         font-weight: 600;
         text-align: center;
     }

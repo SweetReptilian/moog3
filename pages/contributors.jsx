@@ -123,7 +123,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <div className={formStyles.container}>
@@ -167,7 +167,7 @@ export function CreateProject() {
 
 
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="I need a person who can... btw don't worry about the UI or these redactions. Just add the functions and I'll fix it, tx bro you're great"
+                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="I need a person who can handle a big team and..."
                                 className={formStyles.textArea}></textarea>
                         </motion.div>
 
@@ -205,7 +205,7 @@ export function CreateProject() {
                         </motion.div>
 
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>If so, specify the amount</div>
+                            <div className={formStyles.connTextContr}>If so, specify the amount</div>
                         </motion.div>
                         <div className={formStyles.someFlexCheck}>
 
@@ -250,11 +250,11 @@ export function CreateProject() {
                     <div className={formStyles.container}>
 
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Is this a paid contribution?</div>
+                            <div className={formStyles.setTextContr}>Is this a paid contribution?</div>
                         </motion.div>
 
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>If so, specify the amount</div>
+                            <div className={formStyles.connTextContr}>If so, specify the amount</div>
                         </motion.div>
                         <div className={formStyles.someFlexCheck}>
 
@@ -283,11 +283,11 @@ export function CreateProject() {
             <div className={formStyles.backgroundImg}>
 
                 <div className={formStyles.secondDiv}>
-                    <motion.div initial="hidden" animate="visible" variants={trashieSlow} className={formStyles.trashBtn}>
+                    <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
                             <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
                     </motion.div>
-                    <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
+                    <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
                             <a onClick={() => setContent(4)}><i className={formStyles.backArrow}></i></a>
                         </div>
@@ -296,7 +296,7 @@ export function CreateProject() {
                     <div className={formStyles.container}>
 
                         <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Any expected time?</div>
+                            <div className={formStyles.setTextContr}>Any expected time?</div>
                         </motion.div>
                         <div className={formStyles.someFlexCheck}>
 
@@ -313,7 +313,7 @@ export function CreateProject() {
 
 
                     </div>
-                    <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
+                    <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
                             <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
                         </div>

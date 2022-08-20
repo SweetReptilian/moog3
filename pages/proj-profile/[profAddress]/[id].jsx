@@ -3,7 +3,7 @@ import modalStyles from "../../../styles/Modal.module.scss"
 import Sidebar from "../../../components/Sidebar"
 import { TbHammer, TbHammerOff } from "react-icons/tb"
 import { IconContext } from "react-icons"
-import { AiOutlineGithub, AiOutlinePicture, AiOutlineCloseCircle, AiOutlineTwitter } from "react-icons/ai"
+import { AiOutlineGithub, AiOutlinePicture, AiOutlinePlusCircle, AiOutlineTwitter } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion"
@@ -95,6 +95,13 @@ const Profile = () => {
                                 {connect ? <TbHammerOff /> : <TbHammer />}
                             </IconContext.Provider>
                         </motion.div>
+                        <div className={styles.projSection}>
+
+                            <IconContext.Provider value={{ size: "50px", color: "white" }}>
+                                <div className={styles.projTitle}></div>
+                                <a className={styles.moreIcon}
+                                    href="/contributors"><AiOutlinePlusCircle /></a></IconContext.Provider>
+                        </div>
                     </AnimatePresence>
                 </div>
 

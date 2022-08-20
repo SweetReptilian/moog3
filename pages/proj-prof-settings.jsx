@@ -29,8 +29,11 @@ export default function PickAProj() {
     return (
         <div className={formStyles.backgroundImg}>
             <Sidebar />
+
             <div className={formStyles.secondDivProj}>
                 <div className={styles.container}>
+                    {/* for people who has projects otherwise is only shown the user profile*/}
+                    <div className={styles.alignDivProj}>What are we setting?</div>
                     <div className={styles.alignDivProj}>
                         <div className={styles.projSection}>
                             <div className={styles.projTitle}>{user?.name}</div>

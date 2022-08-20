@@ -32,6 +32,8 @@ export default function PickAProj() {
             <div className={formStyles.secondDivProj}>
 
                 <div className={styles.container}>
+                    <div className={styles.alignDivProj}>Let's go there!</div>
+
                     <div className={styles.alignDivProj}>
                         {
                             ids?.response !== "data not found" &&
@@ -50,7 +52,7 @@ export default function PickAProj() {
                             <IconContext.Provider value={{ size: "50px", color: "white" }}>
                                 <div className={styles.projTitle}>New Project</div>
                                 <a className={styles.moreIcon}
-                                   href="/create-project"><AiOutlinePlusCircle /></a></IconContext.Provider>
+                                    href="/create-project"><AiOutlinePlusCircle /></a></IconContext.Provider>
                         </div>
                     </div>
                 </div>

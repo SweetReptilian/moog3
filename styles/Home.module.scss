@@ -187,7 +187,8 @@ $shadow-opacity: 0.30;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    height: 195px;
+    width: 100%;
+    max-width: 200px;
 }
 
 .alignCollabDiv {
@@ -447,6 +448,30 @@ $shadow-opacity: 0.30;
     padding: 13px;
 
 }
+
+.gridDiv {
+    display: flex;
+    gap: 7rem;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.gridRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gridLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 @media only screen and (max-width: 850px) {
 

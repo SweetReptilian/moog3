@@ -73,13 +73,19 @@ const Sidebar = () => {
                                     <IconContext.Provider
                                         value={{ size: "25px", className: sideStyles.icons }}
                                     >
-                                        <motion.li className={sideStyles.sideLi}>
+                                        {/* <motion.li className={sideStyles.sideLi}>
                                             <a
                                                 className={sideStyles.sideA}
                                                 href={`/home/${wallet}`}
                                             >
                                                 {" "}
                                                 <BiHomeAlt /> Home
+                                            </a>
+                                        </motion.li> */}
+                                        <motion.li className={sideStyles.sideLi}>
+                                            <a className={sideStyles.sideA} href="/network">
+                                                {" "}
+                                                <BiHomeAlt /> Network
                                             </a>
                                         </motion.li>
 
@@ -102,19 +108,14 @@ const Sidebar = () => {
                                             <a className={sideStyles.sideA} href="/projects"> <AiOutlineFundProjectionScreen /> Projects</a>
                                         </motion.li> */}
 
-                                        <motion.li className={sideStyles.sideLi}>
-                                            <a className={sideStyles.sideA} href="/network">
-                                                {" "}
-                                                <BiNetworkChart /> Network
-                                            </a>
-                                        </motion.li>
 
+                                        {/* 
                                         <motion.li className={sideStyles.sideLi}>
                                             <a className={sideStyles.sideA} href="/messages">
                                                 {" "}
                                                 <AiOutlineMessage /> Messages
                                             </a>
-                                        </motion.li>
+                                        </motion.li> */}
 
                                         <motion.li className={sideStyles.sideLi}>
                                             {/* in case that that person doesn't have any projects then redirect to settings

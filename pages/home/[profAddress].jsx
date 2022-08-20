@@ -95,13 +95,116 @@ export function Home() {
                             <div className={styles.name}>{data.name}</div>
                             {/* <div className={styles.activeInactive}>Active Now</div> */}
                         </div>
+                        
                         <div className={styles.notifIcons}></div>
                     </div>
                 </div>
             </div>
 
-            <div className={styles.flexGridThirds}>
-                <div className={styles.column}>
+            <div className={styles.gridDiv}>
+                <div className={styles.secondRow}>
+
+                    <div className={styles.gridRight}>
+                        <div className={styles.contributionSection}>
+                            <div className={styles.projHeader}>My Collabs</div>
+                            <div className={styles.alignCollabDiv}>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in{" "}
+                                        <a className={styles.aClass} href="/projects">
+                                            Projectx
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                                <div className={styles.checkedCollabs}>
+                                    <div className={styles.checkedIcon}>
+                                        <TiInputCheckedOutline />
+                                    </div>
+                                    <div className={styles.collabTitle}>
+                                        Dev in <a>Projectx</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div className={styles.secondRow}>
+
+                    <div className={styles.gridLeft}>
+                        <div className={styles.projectDiv}>
+                            <div className={styles.projHeader}>My projects</div>
+                            <div className={styles.alignDiv}>
+                                {
+                                    ids?.response !== "data not found" &&
+                                    ids?.ids.map(name => <div className={styles.projSection}>
+                                        <div className={styles.projTitle}>{name[1]}</div>
+                                        <a href={`/proj-profile/${wallet}/${name[0]}`} className={styles.projSectionA}>
+                                            <img alt={"project pfp"} className={styles.pfp} src={name[2]} />
+                                        </a>
+                                    </div>)
+                                }
+                                <div className={styles.projSection}>
+                                    <IconContext.Provider value={{ size: "50px", color: "white" }}>
+                                        <div className={styles.projTitle}>New Project</div>
+                                        <a className={styles.moreIcon} href="/create-project">
+                                            <AiOutlinePlusCircle />
+                                        </a>
+                                    </IconContext.Provider>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            {/* <div className={styles.flexGridThirds}>
+                 <div className={styles.column}>
                     <div className={styles.secondRow}>
                         <div className={styles.notifChatSection}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
@@ -153,8 +256,8 @@ export function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.column}>
+                </div> */}
+            {/* <div className={styles.column}>
                     <div className={styles.secondRow}>
                         <div className={styles.contributionSection}>
                             <div className={styles.projHeader}>My Collabs</div>
@@ -221,9 +324,9 @@ export function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
-                <div className={styles.column}>
+            {/* <div className={styles.column}>
                     <div className={styles.secondRow}>
                         <div className={styles.notifChatSection}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
@@ -270,12 +373,16 @@ export function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div>*/}
 
-            <div className={styles.flexGridSecond}>
+            {/*  <div className={styles.flexGridSecond}>
                 <div className={styles.column}>
-                    <div className={styles.thirdRow}>
+
+                </div>
+                <div className={styles.blank} />
+                <div className={styles.column}>
+                     <div className={styles.thirdRow}>
                         <div className={styles.projectDiv}>
                             <div className={styles.projHeader}>My projects</div>
                             <div className={styles.alignDiv}>
@@ -298,10 +405,7 @@ export function Home() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className={styles.blank} />
-                <div className={styles.column}>
+                    </div> 
                     <div className={styles.thirdRow}>
                         <div className={styles.projectDiv}>
                             <div className={styles.projHeader}>Posts</div>
@@ -371,9 +475,9 @@ export function Home() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
-            </div>
+            </div>*/}
         </div>
     )
 }
