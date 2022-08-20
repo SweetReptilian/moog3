@@ -1,6 +1,6 @@
-const getProfileData = async (profAddress, id) => {
+const getProjectDataById = async (profAddress, id) => {
 
-    const apiReq = await fetch("/api/fetchProjectProfile", {
+    const apiReq = await fetch("/api/fetchProjectProfileById", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -12,4 +12,4 @@ const getProfileData = async (profAddress, id) => {
     return await apiReq.json()
 }
 
-export default getProfileData
+export default getProjectDataById

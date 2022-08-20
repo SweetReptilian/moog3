@@ -1,23 +1,24 @@
-import styles from "../../../styles/Profile.module.scss";
+import styles from "../../../styles/Profile.module.scss"
 import modalStyles from "../../../styles/Modal.module.scss"
-import Sidebar from "../../../components/Sidebar";
+import Sidebar from "../../../components/Sidebar"
 import { TbHammer, TbHammerOff } from "react-icons/tb"
-import { IconContext } from "react-icons";
-import { AiOutlineGithub, AiOutlinePicture, AiOutlineCloseCircle } from "react-icons/ai"
+import { IconContext } from "react-icons"
+import { AiOutlineGithub, AiOutlinePicture, AiOutlineCloseCircle, AiOutlineTwitter } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
 import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 import { RiSendPlaneLine } from "react-icons/ri"
 import { backdrop, modal } from "../../../animations/modalAnimations"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
+import getProjectDataById from "../../../utils/getProjectDataById"
 
 
 const Profile = () => {
-
-    const [connect, setConnect] = useState(false);
-    const [show, setShow] = useState(false);
+    const [connect, setConnect] = useState(false)
+    const [show, setShow] = useState(false)
+    const [data, setData] = useState({})
     const router = useRouter()
     useEffect(() => {
         const { loggedIn } = getCookies()
@@ -27,7 +28,8 @@ const Profile = () => {
         if (Object.keys(router.query).length > 0) {
             const getData = async () => {
                 const { profAddress, id } = router.query
-
+                const temp = await getProjectDataById(profAddress, id)
+                setData(temp)
             }
             getData().then()
         }
@@ -39,19 +41,19 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {show && (
                     <motion.div className={modalStyles.backdropProfile}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
 
                         <motion.div className={modalStyles.printPostsModal}
-                            variants={modal}>
+                                    variants={modal}>
                             <AnimatePresence>
                                 <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                     <motion.div whileHover={{ scale: 0.99 }}
-                                        whileTap={{ scale: 1 }}
-                                        className={modalStyles.modalCloseIcon}
-                                        onClick={() => setShow(false)}>
+                                                whileTap={{ scale: 1 }}
+                                                className={modalStyles.modalCloseIcon}
+                                                onClick={() => setShow(false)}>
                                         <AiOutlineCloseCircle />
                                     </motion.div>
                                 </IconContext.Provider>
@@ -62,7 +64,6 @@ const Profile = () => {
                                 <div className={modalStyles.picturePostModal}> Picture preview</div>
 
                             </div>
-
 
 
                             {/* <p className={modalStyles.modalPProfile}>Want to connect with Userx?</p>
@@ -80,30 +81,25 @@ const Profile = () => {
             <div className={styles.bigCard}>
 
                 <div className={styles.presentation}>
-                    <img src="./log.png" alt="" className={styles.banner} />
+                    <img src={data.bannerUri} alt="banner" className={styles.banner} />
 
                     <div className={styles.sides}>
-                        <img src="./mooglesnft2.png" alt="pfp" className={styles.pfp} />
+                        <img src={data.imageUri} alt="pfp" className={styles.pfp} />
                         <div className={styles.name}>NFT Motion</div>
                         <label className={styles.projectTags}>#NFT #Desing #Defi</label>
 
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.links} >
-                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><AiOutlineGithub /></a>
-                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><RiPagesLine /></a>
-                                <a className={styles.aDecor} href="pages/proj-profile/[profAddress]/proj-profile#[id].jsx"><TbBrandDiscord /></a>
+                            <div className={styles.links}>
+                                <a className={styles.aDecor} href={data.github}><AiOutlineGithub /></a>
+                                <a className={styles.aDecor} href={data.website}><RiPagesLine /></a>
+                                <a className={styles.aDecor} href={data.discord}><TbBrandDiscord /></a>
+                                <a className={styles.aDecor} href={data.twitter}><AiOutlineTwitter /></a>
                             </div>
 
                         </IconContext.Provider>
-
-
-                        <div className={styles.description}>This is a project which goal is sakjkfasdjlkasfdjk dfanfjkzasd fdjafjsThis is a project which goal is sa
-                            kjkfasdjlkasfdjk dfanfjkzasd fdjafjs This is a
-                            project which goal is sakjkfasdjlkasfdjk dfanfjk
-                            zasd fdjafjs This is a project which goal is sakjkfasd
-                            jlkasfdjk dfanfjkzasd fdjafjs</div>
-
-
+                        <div className={styles.description}>
+                            {data.about}
+                        </div>
                     </div>
 
                 </div>
@@ -113,29 +109,25 @@ const Profile = () => {
                 <div className={styles.lookingForTitle}>We are looking for...</div>
 
                 <div className={styles.lookingForSection}>
-                    <motion.button className={styles.lookingForOptions}>
-                        {/* <a className={styles.aDecor} href="/apply-form"> */}
-                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.checkedIcon}></div>
-                        </IconContext.Provider>
-                        <div className={styles.lookingForName}>Blockchain Developer</div>
-                        {/* </a> */}
-                    </motion.button>
-                    <motion.button className={styles.lookingForOptions}>
+                    {
+                        data.interests?.map((item, i) => <motion.button className={styles.lookingForOptions}>
+                            {/* <a className={styles.aDecor} href="/apply-form"> */}
+                            <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                                <div className={styles.checkedIcon}></div>
+                            </IconContext.Provider>
+                            <div className={styles.lookingForName}>{item}</div>
+                            {/* </a> */}
+                        </motion.button>)
+                    }
 
-                        {/* <a className={styles.aDecor} href="/apply-form"> */}
-                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.checkedIcon}></div>
-                        </IconContext.Provider>
-                        <div className={styles.lookingForName}>Marketing Digital</div>
-                        {/* </a> */}
-                    </motion.button>
 
                     <AnimatePresence>
-                        <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                            whileTap={{ scale: 1 }}>
+                        <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
+                                    whileHover={{ scale: 0.9 }}
+                                    whileTap={{ scale: 1 }}>
                             <div>Contribute</div>
-                            <IconContext.Provider value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+                            <IconContext.Provider
+                                value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
 
                                 {connect ? <TbHammerOff /> : <TbHammer />}
                             </IconContext.Provider>
@@ -159,14 +151,16 @@ const Profile = () => {
                                 <div className={styles.iconSpace}> Picture preview</div>
 
                                 <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
-                                    <IconContext.Provider value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
+                                            whileTap={{ scale: 1 }}>
+                                    <IconContext.Provider
+                                        value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
                                         <RiSendPlaneLine />
                                     </IconContext.Provider>
                                 </motion.div>
                                 <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
-                                    <IconContext.Provider value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
+                                            whileTap={{ scale: 1 }}>
+                                    <IconContext.Provider
+                                        value={{ size: "33px", color: "white", className: styles.checkedIcon2 }}>
                                         <AiOutlinePicture />
                                     </IconContext.Provider>
                                 </motion.div>
@@ -215,25 +209,17 @@ const Profile = () => {
 
 
             <div className={styles.lookingForTitle}>Contributors</div>
-            <div className={styles.contributorsSection} >
-                <img src="./mooglesnft.png" alt="contributor" className={styles.contributorsPic} />
-                <img src="./mooglesnft3.png" alt="contributor" className={styles.contributorsPic} />
-                <img src="./mooglesnft4.png" alt="contributor" className={styles.contributorsPic} />
-                <img src="./mooglesnft2.png" alt="contributor" className={styles.contributorsPic} />
+            <div className={styles.contributorsSection}>
+                <img src="mooglesnft.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="mooglesnft3.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="mooglesnft4.png" alt="contributor" className={styles.contributorsPic} />
+                <img src="mooglesnft2.png" alt="contributor" className={styles.contributorsPic} />
             </div>
             <div></div>
 
 
+        </div>
 
-
-
-
-
-
-
-
-        </div >
-
-    );
-};
-export default Profile;
+    )
+}
+export default Profile

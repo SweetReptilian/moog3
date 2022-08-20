@@ -13,10 +13,10 @@ export default async function handler(req, res) {
     const response = await request.json()
     const row = response.rows[0]
     const wallet = row[0]
-    const id = row[1]
     const name = row[2]
     const imageUri = row[3]
-    const profileUri = row[4]
+    const bannerUri = row[4]
+    const profileUri = row[5]
 
     const profReq = await fetch(profileUri)
     if (profReq.status.toString() === "404") {
@@ -25,13 +25,13 @@ export default async function handler(req, res) {
             id: id,
             name: name,
             imageUri: imageUri,
+            bannerUri: bannerUri,
             profileUri: "not found",
         })
         return
     }
     const profRes = await profReq.json()
     const about = profRes.about
-    const banner = profRes.banner
     const skills = profRes.skills
     const interests = profRes.interests
     const website = profRes.website
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
         name,
         imageUri,
         about,
-        banner,
+        bannerUri,
         skills,
         interests,
         twitter,

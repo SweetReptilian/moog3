@@ -111,7 +111,7 @@ export function CreateProject() {
                     profileUri: profileCid
                 }
                 await addProjectProfile(projectProfileObject)
-                await router.push("/proj-profile")
+                await router.push("/choose-one")
             }
         }
         (async () => await upload())()
