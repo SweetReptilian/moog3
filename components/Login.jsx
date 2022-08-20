@@ -65,7 +65,6 @@ export default function Login() {
     }, [])
     return (
         <>
-            {!isLoggedIn &&
                 <div className={styles.html}>
                     <div><Toaster /></div>
                     <Navbar />
@@ -169,7 +168,6 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-            }
         </>
     )
 }

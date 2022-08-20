@@ -1,1 +1,24 @@
-{"about":"","skills":[],"interests":[],"website":"moog3.com","discord":"moog#2434","github":"Moog3","twitter":"@moog3"}
+<<<<<<< HEAD
+{
+    "about": "",
+    "skills": [],
+    "interests": [],
+    "website": "moog3.com",
+    "discord": "moog#2434",
+    "github": "Moog3",
+    "twitter": "@moog3"
+}
+=======
+{
+    "about": "adsfasdf sdfasd ",
+    "skills": [],
+    "interests": [
+        "Development",
+        "Design"
+    ],
+    "website": "moog3.com",
+    "discord": "moog#2434",
+    "github": "Moog3",
+    "twitter": "@moog3"
+}
+>>>>>>> 0a9e3e9edb79a11efb690d60480e56282f77c754
