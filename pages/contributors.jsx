@@ -137,7 +137,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(2)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -156,7 +156,7 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(3)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(1)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -174,7 +174,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(3)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -248,15 +248,7 @@ export function CreateProject() {
 
                     </motion.div>
                     <div className={formStyles.container}>
-                        <motion.div initial="hidden" animate="visible" variants={item}>
-                            <div className={formStyles.setText}>Detail a little bit more about this contributor</div>
-                        </motion.div>
 
-
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="A beginner-friendly app for learning about web3!"
-                                className={formStyles.textArea}></textarea>
-                        </motion.div>
                         <motion.div initial="hidden" animate="visible" variants={item}>
                             <div className={formStyles.setText}>Is this a paid contribution?</div>
                         </motion.div>
@@ -278,7 +270,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -297,7 +289,7 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(3)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(4)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -323,7 +315,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(6)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -342,7 +334,7 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(6)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(5)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -412,7 +404,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(8)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(7)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -457,11 +449,10 @@ export function CreateProject() {
         setName(id === 1)
         setPfp(id === 2)
         setBanner(id === 3)
-        // setGallery(id === 4);
-        setAbout(id === 5)
-        setSkills(id === 6)
-        setInterests(id === 7)
-        setAllDone(id === 8)
+        setAbout(id === 4)
+        setSkills(id === 5)
+        setInterests(id === 6)
+        setAllDone(id === 7)
     }
 
     return (
