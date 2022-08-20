@@ -9,7 +9,22 @@ import { FiTwitter } from "react-icons/fi"
 import { TbBrandDiscord } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { TbTrashX } from "react-icons/tb"
+<<<<<<< HEAD
 import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container, trashie, trashieSlow } from "../animations/registrationAnimations"
+=======
+import {
+    checkBox,
+    item,
+    item2,
+    arrow,
+    checkBox2,
+    button,
+    item3,
+    arrow2,
+    party,
+    container
+} from "../animations/registrationAnimations"
+>>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
 import useUploadToStorage from "../hooks/useUploadToStorage"
@@ -103,6 +118,7 @@ export function CreateProject() {
                     profileUri: profileCid
                 }
                 await addProjectProfile(projectProfileObject)
+                await router.push("/proj-profile")
             }
         }
         (async () => await upload())()
@@ -249,6 +265,7 @@ export function CreateProject() {
                         </motion.div>
 
 
+<<<<<<< HEAD
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
                             <textarea name="about" value={formData.about} onChange={handleChange} placeholder="A beginner-friendly app for learning about web3!"
                                 className={formStyles.textArea}></textarea>
@@ -294,6 +311,49 @@ export function CreateProject() {
                         </div>
 
                     </motion.div>
+=======
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
+                    <textarea name="about" onChange={handleChange}
+                              placeholder="A beginner-friendly app for learning about web3!"
+                              className={formStyles.textArea}></textarea>
+                </motion.div>
+
+                <motion.div initial="hidden" animate="visible" variants={item}>
+                    <div className={formStyles.setText}>Let's add some links</div>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                            className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div><AiFillGithub /></div>
+                        <input onChange={handleChange} name="github" type="text" placeholder="moogUser1"
+                               className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                            className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div><MdComputer /></div>
+                        <input onChange={handleChange} name="website" type="text" placeholder="www.moog3.com"
+                               className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                            className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div><FiTwitter /></div>
+                        <input onChange={handleChange} name="twitter" type="text" placeholder="@mymoog"
+                               className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={item3}
+                            className={formStyles.linksBox}>
+                    <IconContext.Provider value={{ size: "35px", color: "white" }}>
+                        <div><TbBrandDiscord /></div>
+                        <input onChange={handleChange} name="twitter" type="text" placeholder="#serverlink"
+                               className={formStyles.inputName}></input>
+                    </IconContext.Provider>
+                </motion.div>
+>>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
 
                 </div>
             </div>
@@ -506,7 +566,17 @@ export function CreateProject() {
 
                         </motion.div>
                     </div>
+<<<<<<< HEAD
                 </div>
+=======
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
+                    <div>
+                        <button className={formStyles.styleButton}>Take me there!</button>
+                    </div>
+
+                </motion.div>
+>>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
             </div>
         </>
 
@@ -522,6 +592,7 @@ export function CreateProject() {
     }
 
     return (
+<<<<<<< HEAD
         <>
 
             {name && <div>{Name}</div>}
@@ -536,8 +607,23 @@ export function CreateProject() {
         </>
 
 
+=======
+        <div className={formStyles.backgroundImg}>
+            <div className={formStyles.secondDiv}>
+                <IconContext.Provider value={{ size: "29px", color: "white", style: formStyles.trashBtn }}>
+                    <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                {name && <div>{Name}</div>}
+                {pfp && <div>{Pfp}</div>}
+                {banner && <div>{Banner}</div>}
+                {/* {gallery && <div>{Gallery}</div>} */}
+                {about && <div>{About}</div>}
+                {skills && <div>{Skills}</div>}
+                {interests && <div>{Interests}</div>}
+                {allDone && <div>{AllDone}</div>}
+            </div>
+        </div>
+>>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
     )
-
 }
 
 export default CreateProject

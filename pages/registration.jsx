@@ -95,6 +95,7 @@ export function Registration() {
                     profileUri: profileCid
                 }
                 await addUserProfile(userProfileObject)
+                await router.push(`/home/${wallet}`)
             }
         }
         (async () => await upload())()
@@ -478,7 +479,16 @@ export function Registration() {
                             </div>
                         </motion.div>
                     </div>
+<<<<<<< HEAD
                 </div>
+=======
+                </motion.div>
+                <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
+                    <div>
+                            <button className={formStyles.styleButton}> Let's go!</button>
+                    </div>
+                </motion.div>
+>>>>>>> d2fd21a307eb4c153975530b92ebcbdb95458425
             </div>
         </>
 
