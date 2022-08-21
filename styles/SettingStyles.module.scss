@@ -24,6 +24,21 @@ $shadow-opacity: 0.30;
 
     }
 
+    .containerPop {
+        // width: auto;
+        //height: auto;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+        overflow-x: hidden;
+
+
+    }
+
     .filters {
         display: flex;
         justify-content: space-around;

@@ -2,14 +2,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
+  width: -webkit-fill-available;
   height: 100%;
   background: rgba(0, 0, 0, 0.342);
   z-index: 1;
 }
 
 .modal {
-  max-width: 341px;
+  position: relative;
+  bottom: 15%;
+  max-width: 500px;
   margin: 0 auto;
   padding: 34px 20px;
   background: radial-gradient(circle, rgba(157, 89, 209, 0.671) 7%, rgba(63, 67, 122, 0.534) 92%);
@@ -20,6 +24,19 @@
   gap: 1rem;
 }
 
+.containerPop {
+  // width: auto;
+  //height: auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 .modalButton {
   font-family: 'Poppins', sans-serif;
   background: rgba(230, 170, 232, 0.3);
@@ -27,12 +44,13 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.548);
   border-radius: 10px;
-  border: none;
   padding: 10px;
   margin: 10px;
   text-align: center;
+  color: white;
+  font-weight: 600;
 
 }
 
@@ -118,6 +136,15 @@
   display: none;
 }
 
+.inputPop {
+  border-radius: 10px;
+  border: none;
+  height: 39px;
+  background-color: #f8e1e150;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 1rem;
+}
 
 .postsModal {
   background-color: rgba(221, 131, 131, 0.144);
@@ -133,6 +160,52 @@
   align-items: center;
 }
 
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 7px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+.titlesSection {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  padding-top: 10px
+}
+
+.titlePop {
+  font-size: 16px;
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 7px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+.galleryFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 10px;
+}
+
+.nftShowed {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.459);
+}
 
 .postsTitleModal {
   font-size: 16px;
@@ -209,4 +282,13 @@
   justify-content: flex-end;
   padding-right: 10px;
   padding-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    bottom: 40%;
+    max-width: 200px;
+  }
+
+
 }
