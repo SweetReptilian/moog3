@@ -57,12 +57,12 @@ const Profile = () => {
         imageUri: ""
     })
     const handleModalNFT = () => {
-        setShowNFTDiv(true);
-        setShowDaiDiv(false);
+        setShowNFTDiv(true)
+        setShowDaiDiv(false)
     }
     const handleModalDai = () => {
-        setShowNFTDiv(false);
-        setShowDaiDiv(true);
+        setShowNFTDiv(false)
+        setShowDaiDiv(true)
     }
 
     const handleImageChange = async (event) => {
@@ -143,7 +143,7 @@ const Profile = () => {
         }
     }, [router.query])
     const handleContributionChange = (event) => {
-        const {name, value} = event.target
+        const { name, value } = event.target
         setContributionForm(prevState => ({
             ...prevState,
             [name]: value
@@ -167,7 +167,7 @@ const Profile = () => {
             const apiRes = await apiReq.json()
             const contributionCid = apiRes.response
             const updatedPostObj = {
-                title:contributionForm.title,
+                title: contributionForm.title,
                 projectId: data.id,
                 contributionUri: contributionCid
             }
@@ -205,56 +205,33 @@ const Profile = () => {
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
-            <div><Toaster position="top-right" reverseOrder={false} /></div>
-            <div className={styles.bigCard}>
-
-                <div className={styles.presentation}>
-                    <img src={data.bannerUri} alt="banner" className={styles.banner} />
-
-                    <div className={styles.sides}>
-                        <img src={data.imageUri} alt="pfp" className={styles.pfp} />
-                        <div className={styles.name}>{data.name}</div>
-                        <label className={styles.projectTags}>{data?.skills?.map(item => <span>#{item} </span>)}</label>
-
-                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <div className={styles.links}>
-                                <a className={styles.aDecor} href={data.github}><AiOutlineGithub /></a>
-                                <a className={styles.aDecor} href={data.website}><RiPagesLine /></a>
-                                <a className={styles.aDecor} href={data.discord}><TbBrandDiscord /></a>
-                                <a className={styles.aDecor} href={data.twitter}><AiOutlineTwitter /></a>
-                            </div>
-
-                        </IconContext.Provider>
-                        <div className={styles.description}>
-                            {data.about}
-                        </div>
-                        <AnimatePresence exitBeforeEnter>
-                            {showModal && (
-                                <motion.div className={modalStyles.backdrop}
-                                            variants={backdrop}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="hidden">
-                                    <motion.div className={modalStyles.modal}
-                                                variants={modal}>
-                                        <IconContext.Provider value={{ size: "25px", color: "white" }}>
-                                            <motion.div whileHover={{ scale: 0.99 }}
-                                                        whileTap={{ scale: 1 }}
-                                                        className={modalStyles.modalCloseIcon}
-                                                        onClick={() => setShowModal(false)}>
-                                                <AiOutlineCloseCircle />
-                                            </motion.div>
-                                        </IconContext.Provider>
-                                        <p className={modalStyles.modalP}>These people like you!</p>
-                                        <ul className={modalStyles.modalContainer}>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number One
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </motion.div>
+            <AnimatePresence exitBeforeEnter>
+                {showModal && (
+                    <motion.div className={modalStyles.backdrop}
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
+                        <motion.div className={modalStyles.modal}
+                                    variants={modal}>
+                            <IconContext.Provider value={{ size: "25px", color: "white" }}>
+                                <motion.div whileHover={{ scale: 0.99 }}
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowModal(false)}>
+                                    <AiOutlineCloseCircle />
+                                </motion.div>
+                            </IconContext.Provider>
+                            <p className={modalStyles.modalP}>These people like you!</p>
+                            <ul className={modalStyles.modalContainer}>
+                                <li className={modalStyles.someFlex}>
+                                    <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                    <a className={modalStyles.postsContentModal}>
+                                        Person Number One
+                                    </a>
+                                </li>
+                            </ul>
+                        </motion.div>
 
                     </motion.div>
                 )}
@@ -262,17 +239,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showDonate && (
                     <motion.div className={modalStyles.backdrop}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
                         <motion.div className={modalStyles.modal}
-                            variants={modal}>
+                                    variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                    whileTap={{ scale: 1 }}
-                                    className={modalStyles.modalCloseIcon}
-                                    onClick={() => setShowDonate(false)}>
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowDonate(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -302,12 +279,24 @@ const Profile = () => {
                                         </div>
                                         <div>
                                             <div className={modalStyles.galleryFlex}>
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
-                                                <img className={modalStyles.nftShowed} src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png" alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
+                                                <img className={modalStyles.nftShowed}
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                             </div>
                                         </div>
                                         {/* here the address to send will be shown */}
@@ -381,17 +370,14 @@ const Profile = () => {
                             <AnimatePresence>
                                 <IconContext.Provider value={{ size: "29px", color: "white" }}>
                                     <motion.div
-                                        onClick={() => {
-                                            setShowModal(showModal => !showModal)
-                                        }}
+                                        onClick={() => setShowModal(showModal => !showModal)}
                                         whileTap={{ rotate: 360, scale: 1.3 }}
                                     >
                                         <FcLikePlaceholder />
                                     </motion.div>
                                 </IconContext.Provider>
                             </AnimatePresence>
-                            <button id={"follow"} name={"follow-btn"} onClick={handleLike}>Like this project</button>
-                             {/*<motion.div className={styles.likesCounter}>Like</motion.div>*/}
+                            {/* <motion.div className={styles.likesCounter}>Like</motion.div> */}
                         </div>
 
 
@@ -405,11 +391,11 @@ const Profile = () => {
                                         <FaHands />
                                     </motion.div>
                                 </IconContext.Provider>
+                                <button id={"follow"} name={"follow-btn"} onClick={handleLike}>Like this
+                                    project
+                                </button>
                             </AnimatePresence>
                         </div>
-
-
-
                     </div>
 
                 </div>
@@ -431,12 +417,14 @@ const Profile = () => {
                     }
 
 
-                    {/*{!owner &&*/}
-                    <div>
+                    {!owner && <div>
                         <form>
-                            <input name={"title"} onChange={handleContributionChange} placeholder={"Title"} type={"text"} />
-                            <textarea name={"description"} onChange={handleContributionChange} placeholder={"Why I am the best for the job..."} />
-                            <input name={"github"} onChange={handleContributionChange} placeholder={"github pull request url"} />
+                            <input name={"title"} onChange={handleContributionChange} placeholder={"Title"}
+                                   type={"text"} />
+                            <textarea name={"description"} onChange={handleContributionChange}
+                                      placeholder={"Why I am the best for the job..."} />
+                            <input name={"github"} onChange={handleContributionChange}
+                                   placeholder={"github pull request url"} />
                             <AnimatePresence>
                                 <motion.div className={styles.iconSpace} onClick={() => {
                                     submitContributionForm().then()
@@ -446,15 +434,18 @@ const Profile = () => {
                                             whileTap={{ scale: 1 }}>
                                     <div>Contribute</div>
                                     <IconContext.Provider
-                                        value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+                                        value={{
+                                            size: "29px",
+                                            color: "white",
+                                            className: styles.checkedIcon2
+                                        }}>
 
                                         {connect ? <TbHammerOff /> : <TbHammer />}
                                     </IconContext.Provider>
                                 </motion.div>
                             </AnimatePresence>
                         </form>
-                    </div>
-                    {/*}*/}
+                    </div>}
                     {owner &&
                         <AnimatePresence>
                             <div className={styles.projSection}>
@@ -483,30 +474,30 @@ const Profile = () => {
 
                         <div className={styles.postsBox}>
                             <input name={"title"} value={post.title} onChange={handleChange}
-                                className={styles.inputText} placeholder="An attractive title" type="text" />
+                                   className={styles.inputText} placeholder="An attractive title" type="text" />
 
                             <AnimatePresence>
                                 <div className={styles.iconSpaceWrite}>
                                     <textarea onChange={handleChange} name={"body"} value={post.body}
-                                        className={styles.textArea} placeholder="Any updates?" />
+                                              className={styles.textArea} placeholder="Any updates?" />
                                     <div className={styles.iconSpace}> Picture preview</div>
 
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => {
                                             setConnect(connect => !connect)
                                             uploadPost().then()
                                         }}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -517,18 +508,18 @@ const Profile = () => {
                                             </IconContext.Provider>
                                         </motion.div>}
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => setConnect(connect => !connect)}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -538,10 +529,10 @@ const Profile = () => {
                                                 <label>
                                                     <AiOutlinePicture />
                                                     <input className={formStyles.uploadFiles}
-                                                        style={{ display: "none" }}
-                                                        name="image" type={"file"}
-                                                        accept="image/gif,image/jpeg,image/jpg,image/png"
-                                                        onChange={handleImageChange} />
+                                                           style={{ display: "none" }}
+                                                           name="image" type={"file"}
+                                                           accept="image/gif,image/jpeg,image/jpg,image/png"
+                                                           onChange={handleImageChange} />
                                                 </label>
                                             </IconContext.Provider>
                                         </motion.div>
@@ -562,14 +553,6 @@ const Profile = () => {
 
             </div>
 
-
-            {/* <div className={styles.bigCard}>
-                <div className={styles.lookingForTitle}>Gallery</div>
-
-
-            </div> */}
-
-
             {showContri &&
                 <>
                     <div className={styles.lookingForTitle}>Contributors</div>
@@ -582,7 +565,8 @@ const Profile = () => {
                                 <div className={styles.cardTitle}>User's name</div>
                                 <div className={styles.cardSubtitle}>Contribution details (show here these
                                     details that somebody specify when
-                                    fill the contr form) </div>
+                                    fill the contr form)
+                                </div>
                             </div>
 
                         </div>
@@ -594,7 +578,8 @@ const Profile = () => {
                                 <div className={styles.cardTitle}>User's name</div>
                                 <div className={styles.cardSubtitle}>Contribution details (show here these
                                     details that somebody specify when
-                                    fill the contr form) </div>
+                                    fill the contr form)
+                                </div>
                             </div>
 
                         </div>
@@ -606,7 +591,8 @@ const Profile = () => {
                                 <div className={styles.cardTitle}>User's name</div>
                                 <div className={styles.cardSubtitle}>Contribution details (show here these
                                     details that somebody specify when
-                                    fill the contr form) </div>
+                                    fill the contr form)
+                                </div>
                             </div>
 
                         </div>
@@ -618,7 +604,8 @@ const Profile = () => {
                                 <div className={styles.cardTitle}>User's name</div>
                                 <div className={styles.cardSubtitle}>Contribution details (show here these
                                     details that somebody specify when
-                                    fill the contr form) </div>
+                                    fill the contr form)
+                                </div>
                             </div>
 
                         </div>
@@ -627,7 +614,6 @@ const Profile = () => {
             }
             <div>
             </div>
-
 
         </div>
 
