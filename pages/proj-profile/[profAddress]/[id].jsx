@@ -516,11 +516,55 @@ const Profile = () => {
             {showContri &&
                 <>
                     <div className={styles.lookingForTitle}>Contributors</div>
-                    <div className={styles.contributorsSection}>
-                        <img src="mooglesnft.png" alt="contributor" className={styles.contributorsPic} />
-                        <img src="mooglesnft3.png" alt="contributor" className={styles.contributorsPic} />
-                        <img src="mooglesnft4.png" alt="contributor" className={styles.contributorsPic} />
-                        <img src="mooglesnft2.png" alt="contributor" className={styles.contributorsPic} />
+                    <div className={styles.thisFlex}>
+                        <div className={styles.smallCard}>
+                            <div className={styles.contributorsImg}>
+                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
+                            </div>
+                            <div className={styles.nameAndCont}>
+                                <div className={styles.cardTitle}>User's name</div>
+                                <div className={styles.cardSubtitle}>Contribution details (show here these
+                                    details that somebody specify when
+                                    fill the contr form) </div>
+                            </div>
+
+                        </div>
+                        <div className={styles.smallCard}>
+                            <div className={styles.contributorsImg}>
+                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
+                            </div>
+                            <div className={styles.nameAndCont}>
+                                <div className={styles.cardTitle}>User's name</div>
+                                <div className={styles.cardSubtitle}>Contribution details (show here these
+                                    details that somebody specify when
+                                    fill the contr form) </div>
+                            </div>
+
+                        </div>
+                        <div className={styles.smallCard}>
+                            <div className={styles.contributorsImg}>
+                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
+                            </div>
+                            <div className={styles.nameAndCont}>
+                                <div className={styles.cardTitle}>User's name</div>
+                                <div className={styles.cardSubtitle}>Contribution details (show here these
+                                    details that somebody specify when
+                                    fill the contr form) </div>
+                            </div>
+
+                        </div>
+                        <div className={styles.smallCard}>
+                            <div className={styles.contributorsImg}>
+                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
+                            </div>
+                            <div className={styles.nameAndCont}>
+                                <div className={styles.cardTitle}>User's name</div>
+                                <div className={styles.cardSubtitle}>Contribution details (show here these
+                                    details that somebody specify when
+                                    fill the contr form) </div>
+                            </div>
+
+                        </div>
                     </div>
                 </>
             }

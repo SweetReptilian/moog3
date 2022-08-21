@@ -17,6 +17,29 @@ $shadow-opacity: 0.30;
         margin: 40px;
     }
 
+    .smallCard {
+        backdrop-filter: blur(20px) saturate(181%);
+        display: flex;
+        -webkit-backdrop-filter: blur(11px) saturate(181%);
+        background-color: rgba(255, 255, 255, 0.39);
+        border-radius: 10px;
+        padding: 23px;
+        border: 1px solid rgba(209, 213, 219, 0.13);
+        filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+        margin: 40px;
+        flex-direction: row;
+        align-content: center;
+        max-width: 355px;
+    }
+
+    .contributorsPicPic {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+
     .bigCardLikes {
         backdrop-filter: blur(20px) saturate(181%);
         -webkit-backdrop-filter: blur(11px) saturate(181%);
@@ -317,6 +340,21 @@ $shadow-opacity: 0.30;
         text-transform: uppercase;
     }
 
+    .cardTitle {
+        display: flex;
+        font-size: 17px;
+        font-weight: 600;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .cardSubtitle {
+        display: flex;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffffe6;
+    }
+
 
     .lookingForSection {
         display: flex;
@@ -382,6 +420,25 @@ $shadow-opacity: 0.30;
         padding-bottom: 50px;
         justify-content: center;
         gap: 3rem;
+        background-color: white;
+
+    }
+
+    .nameAndCont {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 15px;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .thisFlex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
     }
 
     .contributorsPic {
