@@ -107,7 +107,7 @@ export function Network() {
                     <div className={styles.projUsersMaincontainer}>
                         {/* for projects and contributors, maybe changing the view as either proj or user 
                         this can also change thus the name and icon (projects to contributors and ) on the sidebar and vice versa*/}
-                        <div className={styles.title}>Go ahead and find the perfect project for you!</div>
+                        <div className={styles.title}>Go ahead and find who you need!</div>
                         <SearchBar handleProjectClick={toggleProject} handleProfileClick={toggleProfile} />
                     </div>
                     <div className={styles.projectUsersContainer}>

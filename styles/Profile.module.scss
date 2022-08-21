@@ -116,6 +116,7 @@ $shadow-opacity: 0.30;
         border-radius: 50%;
         position: relative;
         top: -50px;
+        border: 2px solid rgba(255, 255, 255, 0.521);
     }
 
     .name {
@@ -199,8 +200,17 @@ $shadow-opacity: 0.30;
 
     }
 
+    .iconSpace a {
+        text-decoration: none;
+        color: white;
+    }
+
     .iconSpace:hover {
         cursor: pointer;
+    }
+
+    .likesSection {
+        padding: 20px;
     }
 
     .picturePost {

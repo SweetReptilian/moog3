@@ -5,7 +5,9 @@ import { TbHammer, TbHammerOff } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { AiOutlineGithub, AiOutlinePicture, AiOutlinePlusCircle, AiOutlineTwitter } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
-import { TbBrandDiscord, TbPencilOff } from "react-icons/tb"
+import { FcLikePlaceholder } from "react-icons/fc"
+import { TbBrandDiscord } from "react-icons/tb"
+import { AiOutlineCloseCircle } from "react-icons/ai"
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 import { RiSendPlaneLine } from "react-icons/ri"
@@ -20,6 +22,7 @@ const Profile = () => {
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
     const router = useRouter()
+    const [showModal, setShowModal] = useState(false)
     useEffect(() => {
         const { loggedIn } = getCookies()
         if (typeof window !== "undefined" && !loggedIn) {
@@ -62,6 +65,80 @@ const Profile = () => {
                         </IconContext.Provider>
                         <div className={styles.description}>
                             {data.about}
+                        </div>
+                        <AnimatePresence exitBeforeEnter>
+                            {showModal && (
+                                <motion.div className={modalStyles.backdrop}
+                                    variants={backdrop}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden">
+                                    <motion.div className={modalStyles.modal}
+                                        variants={modal}>
+                                        <IconContext.Provider value={{ size: "25px", color: "white" }}>
+                                            <motion.div whileHover={{ scale: 0.99 }}
+                                                whileTap={{ scale: 1 }}
+                                                className={modalStyles.modalCloseIcon}
+                                                onClick={() => setShowModal(false)}>
+                                                <AiOutlineCloseCircle />
+                                            </motion.div>
+                                        </IconContext.Provider>
+                                        <p className={modalStyles.modalP}>These people like you!</p>
+                                        <ul className={modalStyles.modalContainer}>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number One
+                                                </a>
+                                            </li>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number Two
+                                                </a>
+                                            </li>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number Three
+                                                </a>
+                                            </li>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number Three
+                                                </a>
+                                            </li>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number Three
+                                                </a>
+                                            </li>
+                                            <li className={modalStyles.someFlex}>
+                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
+                                                <a className={modalStyles.postsContentModal}>
+                                                    Person Number Three
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </motion.div>
+
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        <div className={styles.likesSection}>
+                            <AnimatePresence>
+                                <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                                    <motion.div
+                                        onClick={() => setShowModal(showModal => !showModal)}
+                                        whileTap={{ rotate: 360, scale: 1.3 }}
+                                    >
+                                        <FcLikePlaceholder />
+                                    </motion.div>
+                                </IconContext.Provider>
+                            </AnimatePresence>
+                            {/* <motion.div className={styles.likesCounter}>Like</motion.div> */}
                         </div>
                     </div>
 

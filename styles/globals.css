@@ -6,8 +6,8 @@ html {
     box-sizing: border-box;
     overflow-x: hidden;
     width: 100%;
-    background: rgb(85, 47, 128);
-    background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 1) 100%);
+    background: radial-gradient(circle, rgba(157, 89, 209, 0.911) 7%, rgba(63, 67, 122, 0.74) 92%);
+    backdrop-filter: blur(30px) saturate(181%);
 
 }
 

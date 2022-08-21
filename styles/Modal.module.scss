@@ -12,9 +12,10 @@
   max-width: 341px;
   margin: 0 auto;
   padding: 34px 20px;
-  background: rgba(96, 68, 128, 0.521);
-  background: radial-gradient(circle, rgba(85, 47, 128, 1) 0%, rgba(23, 38, 56, 0.842) 100%);
+  background: radial-gradient(circle, rgba(157, 89, 209, 0.671) 7%, rgba(63, 67, 122, 0.534) 92%);
+  backdrop-filter: blur(30px) saturate(181%);
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.226);
   text-align: center;
   gap: 1rem;
 }
@@ -141,16 +142,52 @@
   text-transform: uppercase;
 }
 
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  gap: 1rem;
+  padding: 20px;
+  border-radius: 10px;
+  height: 100px;
+  overflow: auto;
+}
+
+.modalContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .postsContentModal {
-  font-size: 14px;
+  font-size: 15px;
   padding: 10px;
   color: white;
 }
 
+.someFlex:hover {
+  transition: 0.1s;
+  background-color: rgba(255, 255, 255, 0.295);
+  border-radius: 10px;
+
+}
+
+.someFlex {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+
+}
+
+.picModal {
+  width: 10%;
+  height: auto;
+  border-radius: 50%;
+}
+
 .picturePostModal {
   display: flex;
-  align-items: center;
-  width: 30%;
+  width: 10%;
   height: auto;
   justify-content: center;
   align-content: center;
