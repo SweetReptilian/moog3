@@ -16,7 +16,6 @@ export default async function handler(req, res) {
     const data = req.body.data
     const jsonCid = await uploadJson(JSON.stringify(data))
     const response = "https://" + jsonCid + ".ipfs.w3s.link/userProfile.json"
-    console.log("response", response)
     res.status(200).send({
         response,
     })

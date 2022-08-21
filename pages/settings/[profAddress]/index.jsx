@@ -27,7 +27,7 @@ export function LogIn() {
     const [loadingS, setLoadingS] = useState(false)
     const [userFormData, setUserFormData] = useState({
         name: data.name,
-        pfp: data.imageUri,
+        imageUri: data.imageUri,
         banner: data.banner,
         about: data.about,
         skills: data.skills,
@@ -73,7 +73,6 @@ export function LogIn() {
             github: userFormData.github,
             twitter: userFormData.twitter
         }
-        console.log("obj", obj)
         try {
             const apiReq = await fetch("/api/uploadUserProfile", {
                 method: "POST",
@@ -85,16 +84,14 @@ export function LogIn() {
                 })
             })
             const apiRes = await apiReq.json()
-            console.log("apiRes", apiRes)
             const profileCid = apiRes.response
-            console.log("profileCid", profileCid)
             const updatedProfileObj = {
-                name: userFormData.name ? userFormData.name : data.name,
+                name: userFormData.name,
                 id: data.id,
-                image: userFormData.pfp ? userFormData.pfp : data.imageUri,
+                image: userFormData.imageUri,
                 profileUri: profileCid
             }
-            console.log("updatedProfileObj", updatedProfileObj)
+            console.log(updatedProfileObj)
             await updateUserProf(updatedProfileObj)
             toast.success("Successfully updated!")
         } catch (e) {
@@ -116,10 +113,9 @@ export function LogIn() {
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
-        console.log("imageUri", imageURI)
         setUserFormData(prevState => ({
             ...prevState,
-            pfp: imageURI
+            imageUri: imageURI
         }))
         setLoadingP(false)
     }
@@ -128,7 +124,6 @@ export function LogIn() {
         const file = event.target.files[0]
         const cid = await uploadFile(file)
         const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
-        console.log("imageUri", imageURI)
         setUserFormData(prevState => ({
             ...prevState,
             banner: imageURI
@@ -157,7 +152,7 @@ export function LogIn() {
                         visible={true}
                     /> : <input className={formStyles.uploadFiles} name="banner" type={"file"}
                         onChange={handleBannerChange} />}
-                    <img className={formStyles.pfp} src={userFormData.pfp} draggable={false}
+                    <img className={formStyles.pfp} src={userFormData.imageUri} draggable={false}
                         alt={"pfp"} />
                     {loadingP ? <TailSpin
                         height="15"

@@ -39,6 +39,7 @@ export function Registration() {
     const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
     const [loading, setLoading] = useState(false)
+    const [disabled, setDisabled] = useState(false)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -73,6 +74,7 @@ export function Registration() {
 
     useEffect(() => {
         const upload = async () => {
+            setDisabled(true)
             if (allDone) {
                 const obj = {
                     about: formData.about,
@@ -106,6 +108,7 @@ export function Registration() {
                 await addUserProfile(userProfileObject)
                 await router.push(`/network`)
             }
+            setDisabled(false)
         }
         upload().then()
     }, [allDone])
@@ -511,7 +514,7 @@ export function Registration() {
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                             <div>
                                 <Link href={`/network`}>
-                                    <button className={formStyles.styleButton}> Let's go!</button>
+                                    <button disabled={disabled} className={formStyles.styleButton}> Let's go!</button>
                                 </Link>
                             </div>
                         </motion.div>

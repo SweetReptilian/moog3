@@ -8,7 +8,6 @@ import { TbBrandDiscord } from "react-icons/tb"
 import { useEffect, useState } from "react"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
-import Link from "next/link"
 import getAllData from "../utils/getAllData"
 import getDataFromUri from "../utils/getDataFromUri"
 import { RiPagesLine } from "react-icons/ri"
@@ -27,13 +26,13 @@ export function Network() {
         const getData = async () => {
             const { profileData, projectData } = await getAllData()
             const tempProject = [], tempProfile = []
-            for (let i = 1; i < projectData.length; i++) {
+            for (let i = 0; i < projectData.length; i++) {
                 const obj = projectData[i]
                 const metadata = await getDataFromUri(obj[5])
                 const final = [obj[0], obj[1], obj[2], obj[3], metadata.about, metadata.discord, metadata.website, metadata.twitter, metadata.github]
                 tempProject.push(final)
             }
-            for (let i = 1; i < profileData.length; i++) {
+            for (let i = 0; i < profileData.length; i++) {
                 const obj = profileData[i]
                 const metadata = await getDataFromUri(obj[4])
                 const final = [obj[0], obj[1], obj[2], obj[3], metadata.about, metadata.discord, metadata.website, metadata.twitter, metadata.github]
@@ -69,7 +68,7 @@ export function Network() {
         </div>
     )
     const profileCards = profileData?.map(profile =>
-        <div onClick={() => router.push(`/proj-profile/${profile[0]}/${profile[1]}`).then()} key={profile[1]}
+        <div onClick={() => router.push(`/profile/${profile[0]}`).then()} key={profile[1]}
             className={styles.projectUsersDiv}>
             <img className={styles.projectUsersPic} src={profile[3]} draggable={false} />
             <div className={styles.projectUsersTitle}>{profile[2]}</div>

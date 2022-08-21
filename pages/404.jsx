@@ -1,4 +1,5 @@
 import styles from "../styles/SettingStyles.module.scss"
+import Image from "next/image"
 
 
 export default function NotFoundError() {
@@ -8,9 +9,11 @@ export default function NotFoundError() {
                 <div className={styles.errorCard}>
                     <div className={styles.errorDiv}>
                         <div className={styles.errorRight}>
-                            <img className={styles.errorImg}
+                            <Image className={styles.errorImg}
                                 alt={"404"}
-                                src="./404.png"
+                                src={"/404.png"}
+                                   width={350}
+                                   height={400}
                                 draggable={false} />
                         </div>
                         <div className={styles.errorLeft}>

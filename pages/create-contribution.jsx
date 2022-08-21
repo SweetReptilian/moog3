@@ -1,12 +1,8 @@
 import formStyles from "../styles/Forms.module.scss"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { Checkbox, Spacer } from "@nextui-org/react"
 import React, { useEffect, useState } from "react"
-import { AiFillGithub } from "react-icons/ai"
-import { MdComputer } from "react-icons/md"
-import { FiTwitter } from "react-icons/fi"
-import { TbBrandDiscord } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { TbTrashX } from "react-icons/tb"
 import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container, trashie, trashieSlow } from "../animations/registrationAnimations"
@@ -19,17 +15,13 @@ import useContract from "../hooks/useContract"
 export function CreateProject() {
     const router = useRouter()
     const { uploadFile } = useUploadToStorage()
-    const { addProjectProfile } = useContract()
+    const { createContribution } = useContract()
     const [wallet, setWallet] = useState("")
     const [formData, setFormData] = useState({
-        name: "moogle1",
-        pfp: "https://ipfs.io/ipfs/bafkreic2mr4bcejdcfrpya6aiev37vmhdy3pjtxbni4lh3cdmy7kovrswe",
-        banner: "https://ipfs.io/ipfs/bafkreigxiia7k4ct7tnynfaikgu4ghn2zqzvpak3tdozf2u4deb4ag26si",
-        about: "",
-        discord: "moog#2434",
-        twitter: "@moog3",
-        website: "moog3.com",
-        github: "Moog3"
+        title: "",
+        time: "",
+        amount: "",
+        id: ""
     })
     const [name, setName] = useState(true)
     const [pfp, setPfp] = useState(false)
@@ -38,10 +30,8 @@ export function CreateProject() {
     const [skills, setSkills] = useState(false)
     const [interests, setInterests] = useState(false)
     const [allDone, setAllDone] = useState(false)
-    const [skillSelected, setSkillSelected] = useState([])
     const [interestsSelected, setInterestsSelected] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-
+    const [disabled, setDisabled] = useState(false)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -50,39 +40,24 @@ export function CreateProject() {
             [name]: value
         }))
     }
-    const handlePfpChange = async (event) => {
-        const file = event.target.files[0]
-        const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
-        console.log("imageUri", imageURI)
+
+    useEffect(() => {
+        const {projectId} = router.query
         setFormData(prevState => ({
             ...prevState,
-            pfp: imageURI
+            id: projectId
         }))
-    }
-    const handleBannerChange = async (event) => {
-        const file = event.target.files[0]
-        const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
-        setFormData(prevState => ({
-            ...prevState,
-            banner: imageURI
-        }))
-    }
+    }, [router.query])
 
     useEffect(() => {
         const upload = async () => {
+            setDisabled(true)
             if (allDone) {
                 const obj = {
-                    about: formData.about,
-                    skills: skillSelected,
-                    interests: interestsSelected,
-                    website: formData.website,
-                    discord: formData.discord,
-                    github: formData.github,
-                    twitter: formData.twitter
+                    time: formData.time,
+                    amount: formData.amount,
+                    interests: interestsSelected
                 }
-
                 const apiReq = await fetch("/api/uploadUserProfile", {
                     method: "POST",
                     headers: {
@@ -94,16 +69,17 @@ export function CreateProject() {
                 })
 
                 const apiRes = await apiReq.json()
-                const profileCid = apiRes.response
+                const contributionCid = apiRes.response
 
-                const projectProfileObject = {
-                    name: formData.name,
-                    image: formData.pfp,
-                    banner: formData.banner,
-                    profileUri: profileCid
+                const contributionObj = {
+                    title: formData.title,
+                    projectId: formData.id,
+                    contributionUri: contributionCid
                 }
-                await addProjectProfile(projectProfileObject)
+                console.log(contributionObj)
+                await createContribution(contributionObj)
             }
+            setDisabled(false)
         }
         (async () => await upload())()
     }, [allDone])
@@ -151,7 +127,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -167,7 +143,7 @@ export function CreateProject() {
 
 
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={item2}>
-                            <textarea name="about" value={formData.about} onChange={handleChange} placeholder="I need a person who can handle a big team and..."
+                            <textarea name="title" value={formData.title} onChange={handleChange} placeholder="I need a person who can handle a big team and..."
                                 className={formStyles.textArea}></textarea>
                         </motion.div>
 
@@ -189,7 +165,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -213,7 +189,7 @@ export function CreateProject() {
                                 className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div></div>
-                                    <input onChange={handleChange} name="amount" type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
+                                    <input onChange={handleChange} value={formData.amount} name="amount" type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
 
@@ -238,7 +214,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -262,7 +238,7 @@ export function CreateProject() {
                                 className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div></div>
-                                    <input onChange={handleChange} name="amount" type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
+                                    <input onChange={handleChange} name="amount" value={formData.amount} type="text" placeholder="500 Matic" className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
 
@@ -285,7 +261,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
@@ -304,7 +280,7 @@ export function CreateProject() {
                                 className={formStyles.linksBox}>
                                 <IconContext.Provider value={{ size: "35px", color: "white" }}>
                                     <div></div>
-                                    <input onChange={handleChange} name="amount" type="text" placeholder="20 hours/ one day" className={formStyles.inputName}></input>
+                                    <input onChange={handleChange} name="time" value={formData.time} type="text" placeholder="20 hours/day" className={formStyles.inputName}></input>
                                 </IconContext.Provider>
                             </motion.div>
 
@@ -329,7 +305,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashieSlow} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/choose-one`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>
@@ -433,9 +409,8 @@ export function CreateProject() {
                         </motion.div>
                         <motion.div initial="hidden" animate="visible" exit="exit" variants={button}>
                             <div>
-                                <Link href="/proj-profile">
-                                    <button className={formStyles.styleButton}>Go back to work</button>
-
+                                <Link href={`/choose-one`}>
+                                    <button disabled={disabled} className={formStyles.styleButton}>Go back to work</button>
                                 </Link>
                             </div>
 

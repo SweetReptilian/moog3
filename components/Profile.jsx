@@ -14,8 +14,6 @@ import { getCookies } from "cookies-next"
 import getWalletAddress from "../utils/getWalletAddress"
 import { backdrop, modal } from "../animations/modalAnimations"
 
-
-
 const Profile = ({ profAddress }) => {
     const [data, setData] = useState({})
     const [owner, setOwner] = useState(false)

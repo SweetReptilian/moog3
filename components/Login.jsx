@@ -63,6 +63,12 @@ export default function Login() {
     useEffect(() => {
         Aos.init({ duration: 2000 })
     }, [])
+    if(isLoggedIn){
+        const wallet = sequence.getWallet()
+        wallet.getAddress().then(res => {
+            redirect(res.toLowerCase()).then()
+        })
+    }
     return (
         <>
             <div className={styles.html}>

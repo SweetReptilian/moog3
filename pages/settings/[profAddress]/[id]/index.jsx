@@ -26,8 +26,8 @@ export function EditProject() {
     const [loadingS, setLoadingS] = useState(false)
     const [userFormData, setUserFormData] = useState({
         name: data.name,
-        pfp: data.imageUri,
-        banner: data.banner,
+        imageUri: data.imageUri,
+        bannerUri: data.bannerUri,
         about: data.about,
         skills: data.skills,
         interests: data.interests,
@@ -72,7 +72,6 @@ export function EditProject() {
             github: userFormData.github,
             twitter: userFormData.twitter
         }
-        console.log("obj", obj)
         try {
             const apiReq = await fetch("/api/uploadUserProfile", {
                 method: "POST",
@@ -89,9 +88,9 @@ export function EditProject() {
                 name: userFormData.name,
                 id: data.id,
                 image: userFormData.imageUri ? userFormData.imageUri : data.imageUri,
+                banner: userFormData.bannerUri,
                 profileUri: profileCid
             }
-            console.log("updatedProfileObj", updatedProfileObj)
             await updateProjectProf(updatedProfileObj)
             toast.success("Successfully updated!")
         } catch (e) {

@@ -1,5 +1,5 @@
 import styles from "../styles/Posts.module.scss"
-import Sidebar from "../components/Sidebar"
+import Sidebar from "./Sidebar"
 import { IconContext } from "react-icons"
 import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
 import { BsThreeDots } from "react-icons/bs"
@@ -8,7 +8,7 @@ import { TbBrandDiscord } from "react-icons/tb"
 import { TbTrashX } from "react-icons/tb"
 import { FaShareSquare } from "react-icons/fa"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const showAnimation = {
@@ -27,9 +27,18 @@ const showAnimation = {
 }
 
 
-const Posts = () => {
+const Posts = ({profileUri}) => {
 
     const [show, setShow] = useState(false)
+    const [data, setData] = useState()
+    useEffect(() => {
+        const getData = async () => {
+            const data = await fetch(profileUri)
+            const response = await data.json()
+            setData(response)
+        }
+        getData().then()
+    }, [])
 
     return (
         <div className={styles.mainContainer} >
@@ -87,14 +96,14 @@ const Posts = () => {
                                                     <div className={styles.littleMenu}>
                                                         <IconContext.Provider value={{ size: "15px" }}>
 
-                                                            <a className={styles.littleMenuLi} href="">
+                                                            <a className={styles.littleMenuLi} href="components/Post.jsx">
                                                                 <div><FaShareSquare /></div>
                                                                 <div>Share</div>
                                                             </a>
                                                         </IconContext.Provider>
                                                         <IconContext.Provider value={{ size: "18px" }}>
 
-                                                            <a className={styles.littleMenuLi} href="">
+                                                            <a className={styles.littleMenuLi} href="components/Post.jsx">
                                                                 <div><TbTrashX /></div>
                                                                 <div>Delete</div>
                                                             </a>
