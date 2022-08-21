@@ -13,7 +13,7 @@ import getAllData from "../utils/getAllData"
 import getDataFromUri from "../utils/getDataFromUri"
 import { RiPagesLine } from "react-icons/ri"
 
-export function Projects() {
+export function Network() {
     const router = useRouter()
     const [profileData, setProfileData] = useState([])
     const [projectData, setProjectData] = useState([])
@@ -48,7 +48,7 @@ export function Projects() {
     }, [])
     const projectCards = projectData?.map(project =>
         <div onClick={() => router.push(`/proj-profile/${project[0]}/${project[1]}`).then()} key={project[1]}
-             className={styles.projectUsersDiv}>
+            className={styles.projectUsersDiv}>
             <img className={styles.projectUsersPic} src={project[3]} draggable={false} />
             <div className={styles.projectUsersTitle}>{project[2]}</div>
             <div className={styles.projectUsersDescription}>{project[4].slice(0, 20)}...</div>
@@ -70,7 +70,7 @@ export function Projects() {
     )
     const profileCards = profileData?.map(profile =>
         <div onClick={() => router.push(`/proj-profile/${profile[0]}/${profile[1]}`).then()} key={profile[1]}
-             className={styles.projectUsersDiv}>
+            className={styles.projectUsersDiv}>
             <img className={styles.projectUsersPic} src={profile[3]} draggable={false} />
             <div className={styles.projectUsersTitle}>{profile[2]}</div>
             <div className={styles.projectUsersDescription}>{profile[4].slice(0, 20)}...</div>
@@ -90,11 +90,11 @@ export function Projects() {
             </IconContext.Provider>
         </div>
     )
-    function toggleProfile(){
+    function toggleProfile() {
         console.log("I was clicked")
         setShowProfile(prevState => !prevState)
     }
-    function toggleProject(){
+    function toggleProject() {
         console.log("I was clicked too")
         setShowProject(prevState => !prevState)
     }
@@ -120,4 +120,4 @@ export function Projects() {
     )
 }
 
-export default Projects
+export default Network

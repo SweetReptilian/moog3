@@ -170,7 +170,11 @@ $shadow-opacity: 0.30;
     }
 
     .projectUsersContainer .projectUsersDiv .projectUsersPic {
-        width: 40%;
+        width: 100px;
+        max-width: 130px;
+        max-height: 130px;
+        object-fit: cover;
+        height: 100px;
         border-radius: 50%;
         border: 2px solid rgba(255, 255, 255, 0.712);
 

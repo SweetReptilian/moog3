@@ -1,4 +1,5 @@
 import styles from "../styles/Profile.module.scss"
+import otherStyles from "../styles/LoginStyle.module.scss"
 import Sidebar from "../components/Sidebar"
 import { IconContext } from "react-icons"
 import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
@@ -11,7 +12,7 @@ import getProfileData from "../utils/getProfileData"
 import { getCookies } from "cookies-next"
 import getWalletAddress from "../utils/getWalletAddress"
 
-const Profile = ({profAddress}) => {
+const Profile = ({ profAddress }) => {
     const [data, setData] = useState({})
     const [owner, setOwner] = useState(false)
     getWalletAddress().then(res => {
@@ -19,11 +20,11 @@ const Profile = ({profAddress}) => {
     })
     const { loggedIn } = getCookies()
     useEffect(() => {
-            const getData = async () => {
-                let temp = await getProfileData(profAddress)
-                setData(temp)
-            }
-            getData().then()
+        const getData = async () => {
+            let temp = await getProfileData(profAddress)
+            setData(temp)
+        }
+        getData().then()
     }, [])
     const [connect, setConnect] = useState(false)
     return (
@@ -42,13 +43,13 @@ const Profile = ({profAddress}) => {
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
                             <div className={styles.links}>
                                 <a className={styles.aDecor}
-                                   href={data.github}><AiOutlineGithub /></a>
+                                    href={data.github}><AiOutlineGithub /></a>
                                 <a className={styles.aDecor}
-                                   href={data.website}><RiPagesLine /></a>
+                                    href={data.website}><RiPagesLine /></a>
                                 <a className={styles.aDecor}
-                                   href={data.discord}><TbBrandDiscord /></a>
+                                    href={data.discord}><TbBrandDiscord /></a>
                                 <a className={styles.aDecor}
-                                   href={data.twitter}><AiOutlineTwitter /></a>
+                                    href={data.twitter}><AiOutlineTwitter /></a>
 
                             </div>
 
@@ -60,8 +61,8 @@ const Profile = ({profAddress}) => {
                         </div>
                         {typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                        whileHover={{ scale: 0.9 }}
-                                        whileTap={{ scale: 1 }}>
+                                whileHover={{ scale: 0.9 }}
+                                whileTap={{ scale: 1 }}>
                                 <div>Connect</div>
                                 <IconContext.Provider
                                     value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
@@ -72,10 +73,10 @@ const Profile = ({profAddress}) => {
                         </AnimatePresence>}
                         {!loggedIn && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                        whileHover={{ scale: 0.9 }}
-                                        whileTap={{ scale: 1 }}>
+                                whileHover={{ scale: 0.9 }}
+                                whileTap={{ scale: 1 }}>
                                 <div>
-                                    <a href={"/"}>Login To Explore More</a>
+                                    <a className={otherStyles.styleButtonConn} href={"/"}>Login To Explore More</a>
                                 </div>
                             </motion.div>
                         </AnimatePresence>}
@@ -83,49 +84,6 @@ const Profile = ({profAddress}) => {
 
                 </div>
             </div>
-            {/* <div className={styles.bigCard}>
-
-                <div className={styles.lookingForTitle}>Posts</div>
-                <AnimatePresence>
-                    <div className={styles.iconSpaceWrite}>
-                        <textarea className={styles.textArea} placeholder="Any updates?" />
-
-                        <motion.div onClick={() => setConnect(connect => !connect)} whileHover={{ scale: 0.9 }}
-                            whileTap={{ scale: 1 }}>
-                            <IconContext.Provider value={{ size: "39px", color: "white", className: styles.checkedIcon2 }}>
-                                <RiSendPlaneLine />
-                            </IconContext.Provider>
-                        </motion.div>
-                    </div>
-                </AnimatePresence>
-
-                <div className={styles.printPosts}>
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-
-                    </div>
-                </div>
-
-            </div> */}
 
         </div>
 

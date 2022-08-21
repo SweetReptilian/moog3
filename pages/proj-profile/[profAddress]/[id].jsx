@@ -144,28 +144,10 @@ const Profile = () => {
                     <div className={styles.posts}>
                         <div className={styles.postsTitle}>Project 1</div>
                         <div className={styles.postsContent}>We implemented a new function</div>
-                        <div className={styles.picturePost}> Picture preview</div>
+                        <div className={styles.picturePost}> <img src="./mooglesnft4.png" alt="" /></div>
 
                     </div>
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
 
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-                    </div>
-
-                    <div className={styles.posts}>
-                        <div className={styles.postsTitle}>Project 1</div>
-                        <div className={styles.postsContent}>We implemented a new function</div>
-
-                    </div>
                 </div>
 
             </div>

@@ -1,15 +1,8 @@
 .html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    // background-color: rgb(231, 215, 247);
-    overflow: hidden;
-
     font-family: "Poppins", sans-serif;
 
     .container {
-        //  background-image: url("../public/log.png");
-        // width: auto;
+        width: auto;
         //height: auto;
         display: flex;
         flex-flow: column wrap;
@@ -85,8 +78,8 @@
     }
 
     .twoColDiv {
-        padding: 40px;
-        padding-top: 110px;
+        padding-bottom: 208px;
+        padding-top: 175px;
         display: flex;
         gap: 7rem;
         align-items: center;

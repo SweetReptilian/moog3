@@ -151,7 +151,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -189,7 +189,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -238,7 +238,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
@@ -285,7 +285,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashie} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
@@ -329,7 +329,7 @@ export function CreateProject() {
                 <div className={formStyles.secondDiv}>
                     <motion.div initial="hidden" animate="visible" variants={trashieSlow} className={formStyles.trashBtn}>
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <a className={formStyles.trashA} href={`/home/${wallet}`}><TbTrashX /></a></IconContext.Provider>
+                            <a className={formStyles.trashA} href={`/proj-profile/${wallet}`}><TbTrashX /></a></IconContext.Provider>
 
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow2}>

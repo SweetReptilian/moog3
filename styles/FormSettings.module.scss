@@ -20,6 +20,17 @@ $shadow-opacity: 0.30;
 
 }
 
+.settingsTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+}
 
 .backgroundImg {
     height: 100%;
@@ -59,6 +70,30 @@ $shadow-opacity: 0.30;
         justify-content: center;
         padding: 25px;
         margin: 50px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+    }
+
+    .skillsAndInterests {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .bannerPfpNameAboutSection {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin: 50px;
         box-sizing: border-box;
         overflow: hidden;
         background: rgba(255, 255, 255, 0);
@@ -68,6 +103,24 @@ $shadow-opacity: 0.30;
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.18);
 
+    }
+
+    .containerBigCheck {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        margin: 50px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     .container2 {
@@ -121,7 +174,7 @@ $shadow-opacity: 0.30;
     .mainContainer {
         display: flex;
         justify-content: space-around;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         padding: 25px;
@@ -160,6 +213,10 @@ $shadow-opacity: 0.30;
         align-content: center;
     }
 
+    .saveBtnSection {
+        display: flex;
+
+    }
 
     .bigProjCard {
         border-radius: 10px;
@@ -193,7 +250,14 @@ $shadow-opacity: 0.30;
     }
 
     .setText {
-        padding: 40px;
+        padding-top: 90px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .setTextAbout {
+        padding-top: 20px;
+        padding-bottom: 10px;
         text-align: center;
     }
 
@@ -260,6 +324,8 @@ $shadow-opacity: 0.30;
 
     .linksBox {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-content: center;
         align-items: center;
         justify-content: center;
@@ -347,7 +413,7 @@ $shadow-opacity: 0.30;
 
     input[type=file]::-webkit-file-upload-button {
         background: rgba(255, 255, 255, 0.233);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: 10px;
@@ -365,16 +431,30 @@ $shadow-opacity: 0.30;
         cursor: pointer;
     }
 
+    .uploadFiles {
+        position: absolute;
+        top: 30px;
+        left: 50px;
+    }
+
+    .uploadFilesPfp {
+        position: absolute;
+        top: 208px;
+        left: 50px;
+    }
+
     .banner {
         width: auto;
-        height: 200px;
+        height: 121px;
         border-radius: 10px;
         border: 5px solid rgb(234, 223, 243);
     }
 
     .pfp {
-        width: 150px;
-        height: 150px;
+        position: absolute;
+        top: 108px;
+        width: 85px;
+        height: 85px;
         border-radius: 50%;
         border: 5px solid rgb(234, 223, 243);
     }
@@ -399,6 +479,12 @@ $shadow-opacity: 0.30;
         cursor: pointer;
     }
 
+    .linksHere {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -406,4 +492,5 @@ $shadow-opacity: 0.30;
     .projectUsersContainer {
         flex-direction: column;
     }
+
 }

@@ -108,13 +108,14 @@ $shadow-opacity: 0.30;
     }
 
     .pfp {
-        width: 100%;
+        width: 100px;
         max-width: 130px;
-        height: auto;
+        max-height: 130px;
+        object-fit: cover;
+        height: 100px;
         border-radius: 50%;
         position: relative;
         top: -50px;
-        box-shadow: #313131;
     }
 
     .name {
@@ -422,16 +423,18 @@ $shadow-opacity: 0.30;
     }
 
     .postsTitle {
-        font-size: 16px;
+        font-size: 18px;
+        text-transform: uppercase;
         font-weight: 600;
-        padding-bottom: 7px;
-        color: rgb(29, 28, 28);
+        padding-bottom: 9px;
+        color: rgb(72 65 111);
         text-transform: uppercase;
     }
 
     .postsContent {
         font-size: 14px;
-        padding: 10px;
+        padding-bottom: 10px;
+        color: white;
     }
 
 

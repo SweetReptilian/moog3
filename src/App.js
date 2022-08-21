@@ -6,7 +6,8 @@ import { configureLogger } from "@0xsequence/utils"
 import { log, warn } from "console-browserify"
 import { useCookies } from "react-cookie"
 import Sidebar from "../components/Sidebar.js"
-import Home from "../pages/home/[profAddress]"
+import Network from "../pages/network"
+// import Home from "../pages/home/[profAddress]"
 
 configureLogger({ logLevel: "DEBUG" })
 
@@ -59,7 +60,7 @@ function App() {
                 <div className="page">
                     <div className="bottomBar">
                         <Sidebar />
-                        <Home />
+                        <Network />
 
                         {/* <button
                             className="logout"
