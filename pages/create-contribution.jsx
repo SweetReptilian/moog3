@@ -8,13 +8,11 @@ import { TbTrashX } from "react-icons/tb"
 import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, container, trashie, trashieSlow } from "../animations/registrationAnimations"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
-import useUploadToStorage from "../hooks/useUploadToStorage"
 import useContract from "../hooks/useContract"
 
 
 export function CreateProject() {
     const router = useRouter()
-    const { uploadFile } = useUploadToStorage()
     const { createContribution } = useContract()
     const [wallet, setWallet] = useState("")
     const [formData, setFormData] = useState({

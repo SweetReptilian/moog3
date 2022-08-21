@@ -1,1 +1,1 @@
-export const MoogDaoContractAddress = "0x8D4D8a94F64b6ae50DB3e493C45f472ff318efA5"
+export const MoogDaoContractAddress = "0xC0d2B3c345BB2AC585b6bac20C9249A7d430D2dF"

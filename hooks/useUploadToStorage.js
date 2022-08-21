@@ -1,16 +1,18 @@
-import { Web3Storage } from 'web3.storage'
-// import {Blob} from 'node:buffer';
+import {Blob, NFTStorage} from "nft.storage"
 
 const useUploadToStorage = () => {
-    const apiToken = process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY
-    const storage = new Web3Storage({ token: apiToken })
+    const endpoint = "https://api.nft.storage"
+    const token = process.env.NEXT_PUBLIC_NFT_STORAGE_API
+
+    const storage = new NFTStorage({endpoint, token})
 
     const uploadFile = async (file) => {
-        const blob = new Blob([file], { type: "image" })
-        return await storage.put([new File([blob], "image.png")])
+        const blob = new Blob([file], {type: "image/png"})
+        return await storage.storeBlob(blob)
     }
 
-    return { uploadFile }
+
+    return {uploadFile}
 }
 
 export default useUploadToStorage

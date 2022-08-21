@@ -112,7 +112,7 @@ export function LogIn() {
         setLoadingP(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        const imageURI = "https://nftstorage.link/ipfs/" + cid
         setUserFormData(prevState => ({
             ...prevState,
             imageUri: imageURI
@@ -123,7 +123,7 @@ export function LogIn() {
         setLoadingB(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        const imageURI = "https://nftstorage.link/ipfs/" + cid
         setUserFormData(prevState => ({
             ...prevState,
             banner: imageURI

@@ -37,9 +37,16 @@ const Profile = () => {
     const [loading, setLoading] = useState(false)
     const [id, setId] = useState()
     const [showPost, setShowPost] = useState(true)
+    const [projectCreator, setProjectCreator] = useState()
+    const [followers, setFollowers] = useState([])
     const [showContri, setShowContri] = useState(true)
+    const [contributionForm, setContributionForm] = useState({
+        title: "",
+        description: "",
+        github: ""
+    })
     const { uploadFile } = useUploadToStorage()
-    const { addPost } = useContract()
+    const { addPost, createContribution, likeProject, getFollower } = useContract()
     const [post, setPost] = useState({
         title: "",
         body: "",
@@ -49,7 +56,7 @@ const Profile = () => {
         setLoading(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        const imageURI = "https://nftstorage.link/ipfs/" + cid
         setPost(prevState => ({
             ...prevState,
             imageUri: imageURI
@@ -104,12 +111,15 @@ const Profile = () => {
             const getData = async () => {
                 const { profAddress, id } = router.query
                 setId(id)
+                setProjectCreator(profAddress)
                 getWalletAddress().then(res => {
                     setOwner(res === profAddress)
                 })
                 const temp = await getProjectDataById(profAddress, id)
                 const contriTemp = await getContributionDataByProjectId(id)
                 const postTemp = await getPostDataById(id)
+                const followers = await getFollower(profAddress)
+                setFollowers(followers)
                 setContribuitionData(contriTemp)
                 setData(temp)
                 setPostData(postTemp)
@@ -119,8 +129,47 @@ const Profile = () => {
             getData().then()
         }
     }, [router.query])
+    const handleContributionChange = (event) => {
+        const {name, value} = event.target
+        setContributionForm(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
+    const submitContributionForm = async () => {
+        const obj = {
+            description: contributionForm.description,
+            github: contributionForm.github
+        }
+        try {
+            const apiReq = await fetch("/api/uploadUserProfile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: obj
+                })
+            })
+            const apiRes = await apiReq.json()
+            const contributionCid = apiRes.response
+            const updatedPostObj = {
+                title:contributionForm.title,
+                projectId: data.id,
+                contributionUri: contributionCid
+            }
+            await createContribution(updatedPostObj)
+            toast.success("Contribution added successfully!")
+        } catch (e) {
+            toast.error("Error uploading post\nTry again")
+            console.error(e)
+        }
+    }
+    const handleLike = async () => {
+        await likeProject(projectCreator)
+    }
     let postCards
-    if(showPost) {
+    if (showPost) {
         postCards = postData?.response.map((post) =>
             <div className={styles.posts}>
                 <Link href={{
@@ -132,7 +181,7 @@ const Profile = () => {
                         image: post.imageUri,
                         body: post.body
                     }
-                }}  >
+                }}>
                     <a>
                         <div className={styles.postsTitle}>{post.title}</div>
                         <div className={styles.postsContent}>{post.body.slice(0, 20)}...</div>
@@ -191,36 +240,6 @@ const Profile = () => {
                                                     Person Number One
                                                 </a>
                                             </li>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number Two
-                                                </a>
-                                            </li>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number Three
-                                                </a>
-                                            </li>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number Three
-                                                </a>
-                                            </li>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number Three
-                                                </a>
-                                            </li>
-                                            <li className={modalStyles.someFlex}>
-                                                <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                                <a className={modalStyles.postsContentModal}>
-                                                    Person Number Three
-                                                </a>
-                                            </li>
                                         </ul>
                                     </motion.div>
 
@@ -231,14 +250,17 @@ const Profile = () => {
                             <AnimatePresence>
                                 <IconContext.Provider value={{ size: "29px", color: "white" }}>
                                     <motion.div
-                                        onClick={() => setShowModal(showModal => !showModal)}
+                                        onClick={() => {
+                                            setShowModal(showModal => !showModal)
+                                        }}
                                         whileTap={{ rotate: 360, scale: 1.3 }}
                                     >
                                         <FcLikePlaceholder />
                                     </motion.div>
                                 </IconContext.Provider>
                             </AnimatePresence>
-                            {/* <motion.div className={styles.likesCounter}>Like</motion.div> */}
+                            <button id={"follow"} name={"follow-btn"} onClick={handleLike}>Like this project</button>
+                             {/*<motion.div className={styles.likesCounter}>Like</motion.div>*/}
                         </div>
                     </div>
 
@@ -261,18 +283,30 @@ const Profile = () => {
                     }
 
 
-                    {!owner && <AnimatePresence>
-                        <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                    whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
-                            <div>Contribute</div>
-                            <IconContext.Provider
-                                value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
+                    {/*{!owner &&*/}
+                    <div>
+                        <form>
+                            <input name={"title"} onChange={handleContributionChange} placeholder={"Title"} type={"text"} />
+                            <textarea name={"description"} onChange={handleContributionChange} placeholder={"Why I am the best for the job..."} />
+                            <input name={"github"} onChange={handleContributionChange} placeholder={"github pull request url"} />
+                            <AnimatePresence>
+                                <motion.div className={styles.iconSpace} onClick={() => {
+                                    submitContributionForm().then()
+                                    setConnect(connect => !connect)
+                                }}
+                                            whileHover={{ scale: 0.9 }}
+                                            whileTap={{ scale: 1 }}>
+                                    <div>Contribute</div>
+                                    <IconContext.Provider
+                                        value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
 
-                                {connect ? <TbHammerOff /> : <TbHammer />}
-                            </IconContext.Provider>
-                        </motion.div>
-                    </AnimatePresence>}
+                                        {connect ? <TbHammerOff /> : <TbHammer />}
+                                    </IconContext.Provider>
+                                </motion.div>
+                            </AnimatePresence>
+                        </form>
+                    </div>
+                    {/*}*/}
                     {owner &&
                         <AnimatePresence>
                             <div className={styles.projSection}>

@@ -54,7 +54,7 @@ export function CreateProject() {
         setLoading(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        const imageURI = "https://nftstorage.link/ipfs/" + cid
         console.log("imageUri", imageURI)
         setFormData(prevState => ({
             ...prevState,
@@ -66,7 +66,7 @@ export function CreateProject() {
         setLoading(true)
         const file = event.target.files[0]
         const cid = await uploadFile(file)
-        const imageURI = "https://" + cid + ".ipfs.w3s.link/image.png"
+        const imageURI = "https://nftstorage.link/ipfs/" + cid
         setFormData(prevState => ({
             ...prevState,
             banner: imageURI

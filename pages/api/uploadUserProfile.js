@@ -1,21 +1,20 @@
-import fs from "fs"
-import { Web3Storage, getFilesFromPath } from 'web3.storage'
+import {NFTStorage, File} from "nft.storage"
 
 const uploadJson = async (jsonObject) => {
-    const apiToken = process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY
-    const storage = new Web3Storage({ token: apiToken })
+    const endpoint = "https://api.nft.storage"
+    const token = process.env.NEXT_PUBLIC_NFT_STORAGE_API
+    const storage = new NFTStorage({ token })
+    const jsonFile = new File(jsonObject, "moogData.json", {type: "application/json"})
 
-    await fs.promises.writeFile("./constants/userProfile.json", jsonObject)
-    let file = "./constants/userProfile.json"
-    const pathFiles = await getFilesFromPath(file)
-    return await storage.put(pathFiles)
+    return await storage.storeDirectory([jsonFile])
 }
 
 
 export default async function handler(req, res) {
     const data = req.body.data
+    console.log("data", data)
     const jsonCid = await uploadJson(JSON.stringify(data))
-    const response = "https://" + jsonCid + ".ipfs.w3s.link/userProfile.json"
+    const response = "https://nftstorage.link/ipfs/" + jsonCid + "/moogData.json"
     res.status(200).send({
         response,
     })

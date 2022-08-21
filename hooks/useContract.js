@@ -52,13 +52,25 @@ const useContract = () => {
         await contract.addContribution(title, "", contributionUri, projectId)
     }
 
+    const likeProject = async (projectCreator) => {
+        const contract = await getContract()
+        await contract.Follow(projectCreator, false, true)
+    }
+
+    const getFollower = async (projectCreator) => {
+        const contract = await getContract()
+        await contract.getFollowers(projectCreator)
+    }
+
     return {
         addUserProfile,
         updateUserProf,
         addProjectProfile,
         updateProjectProf,
         addPost: createPost,
-        createContribution
+        createContribution,
+        likeProject,
+        getFollower
     }
 }
 

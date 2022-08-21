@@ -1,8 +1,8 @@
 export const contributionTableUri =
-    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogCon_80001_974"
+    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogCon_80001_1087"
 export const postTableUri =
-    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogPostTable_80001_975"
+    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogPostTable_80001_1088"
 export const profileTableUri =
-    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogUsers_80001_977"
+    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogUsers_80001_1090"
 export const projectTableUri =
-    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogProjects_80001_976"
+    "https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20MoogProjects_80001_1089"
