@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         const tempPost = result[i]
         const tempReq = await fetch(tempPost[3])
         const temp = await tempReq.json()
-        const tempRes = {postId: tempPost[2], ...temp}
+        const tempRes = {postId: tempPost[2], author: tempPost[0], ...temp}
         finResponse.push(tempRes)
     }
     res.status(200).send({

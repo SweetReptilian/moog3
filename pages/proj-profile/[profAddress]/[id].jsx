@@ -119,14 +119,27 @@ const Profile = () => {
             getData().then()
         }
     }, [router.query])
-    const postCards = postData?.response.map((post) =>
-        <div className={styles.posts}>
-            <div onClick={() => router.push(`/choose-one/${post.postId}`).then()}>
-                <div className={styles.postsTitle}>{post.title}</div>
-                <div className={styles.postsContent}>{post.body.slice(0, 20)}...</div>
-            </div>
-            {/*<div className={styles.picturePost}><img src={post.imageUri} alt="post" /></div>*/}
-        </div>)
+    let postCards
+    if(showPost) {
+        postCards = postData?.response.map((post) =>
+            <div className={styles.posts}>
+                <Link href={{
+                    pathname: "/post",
+                    query: {
+                        id: post.postId,
+                        title: post.title,
+                        author: post.author,
+                        image: post.imageUri,
+                        body: post.body
+                    }
+                }}  >
+                    <a>
+                        <div className={styles.postsTitle}>{post.title}</div>
+                        <div className={styles.postsContent}>{post.body.slice(0, 20)}...</div>
+                    </a>
+                </Link>
+            </div>)
+    }
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
