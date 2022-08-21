@@ -9,4 +9,6 @@ interface IPost  {
     function metadataURI() external view returns (string memory);
     
     function postURI(uint256 projId)  external view returns (string memory);
+
+    function updatePost(uint256 tokenId, address posterAddress, string memory _postUri) external;
 }

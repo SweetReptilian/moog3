@@ -10,11 +10,11 @@ import "@tableland/evm/contracts/utils/TablelandDeployments.sol";
 import "@openzeppelin/contracts-upgradeable/utils/structs/EnumerableSetUpgradeable.sol";
 import "./IMoogDao.sol";
 import "./IQuery.sol";
-// connections initalizes updates adds into profile table
+// connections initalizer updates adds into profile table
 import "./Iconnections.sol";
-// Post initalizes updates adds into post table
+// Post initalizer updates adds into post table
 import "./IPost.sol";
-// Contributor initalizes updates adds into Contribution table
+// Contributor initalizer updates adds into Contribution table
 import "./IContributor.sol";
 
 
@@ -97,7 +97,7 @@ contract MoogDao is
     }
 
     //  Update a project info only by project owner
-    function updateProjectProfile(uint256 projId,string memory _imageUri,string memory _profileUri, string memory _name) external
+    function updateProjectProfile(uint256 projId,string memory _imageUri, string memory _bannerUri, string memory _profileUri, string memory _name) external
     {
         require(
             _projectSet[msg.sender].contains(projId),
@@ -106,7 +106,7 @@ contract MoogDao is
         _tableland.runSQL(
             address(this),
             _metadataTableId,
-            queryContract.getUpdateProjectStatement(_metadataTable,projId,_imageUri,_profileUri,_name)
+            queryContract.getUpdateProjectStatement(_metadataTable,projId,_imageUri,_bannerUri,_profileUri,_name)
         );
     }
 
@@ -152,6 +152,10 @@ contract MoogDao is
         postContract.addPost(_postUri, msg.sender ,projId);
     }
 
+    function updatePost(uint256 postId,  string memory _postUri) external {
+        postContract.updatePost(postId, msg.sender, _postUri);
+    }
+
     function projectURI(uint256 projectId) public view returns (string memory) {
         require(_projectIdExistance[projectId], "nonexistent project");
         return  queryContract.getProjectURI(projectId,_metadataTable,_baseURI());
@@ -193,9 +197,10 @@ contract MoogDao is
 
   // Follow a profile or a Project target from the msg.sender profile or Project
     function Follow(address target,bool fromWhat,bool toWhat) external {
+        address sender = msg.sender;
         bool  what;
-        selfFollow(msg.sender, target);
-        uint256 from = getUserId(msg.sender,fromWhat);
+        selfFollow(sender, target);
+        uint256 from = getUserId(sender,fromWhat);
         uint256 to = getUserId(target,toWhat);
         if (_folowSet[to].contains(from)) {
             what = false;
@@ -205,18 +210,36 @@ contract MoogDao is
         }
         if (what) {
             connectionContract.follow(
-                msg.sender,
+                sender,
                 from,
                 target,
                 to
             );
+            emit NewFollow(sender,from,target,to);
         }
+    }
+
+    function likeContribution(uint256 contributionID , bool fromWhat) external {
+        require(connectionContract.getProfID(msg.sender) > 0);
+        uint256 from = getUserId(msg.sender,fromWhat);
+        contributorContract.likeContribution(contributionID, from);
+        emit newContributionLike(msg.sender,from,contributionID);
+    }
+
+    function getContributionLikes(uint256 contributionID)  external view returns (uint32[] memory matchedIds)
+    {
+        return contributorContract.getContributionLikes(contributionID);
+    }
+
+     function getContributionsByAddress(address contributor)  external view returns (uint32[] memory contributionsIds)
+     {
+            return contributorContract.getContributionsByAddress(contributor);
     }
 
     /**
      * @dev if A profile||project and B profile||project are matched
      */
-    function isMatched(address userA,bool fromWhat, address userB,bool toWhat)
+    function isConnectedWith(address userA,bool fromWhat, address userB,bool toWhat)
     public view returns (bool)
     {
         return connectionContract.balanceOf(userA, getUserId(userB,toWhat)) > 0 &&
@@ -227,7 +250,7 @@ contract MoogDao is
      * @dev Get all matches given user Returns all project Ids that follow that user and
       also all (profileIds > 1000001) by default to distinguish profiles from projects that follow that user
      */
-    function getMatches(address user) public view returns (uint32[] memory) {
+    function getFollowers(address user) public view returns (uint32[] memory) {
         return connectionContract.getMatches(user);
     }
 

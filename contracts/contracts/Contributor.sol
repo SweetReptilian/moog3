@@ -29,6 +29,8 @@ contract Contributor is
     string private _chainID;
     mapping(address => EnumerableSetUpgradeable.UintSet) private _contributionSet;
     mapping(address => uint256) private _ProfSet;
+    mapping(uint256 => uint256) private _ContributionLikes;
+    mapping(uint256 => EnumerableSetUpgradeable.UintSet) private _ContributionLikedBy;
 
 
      /**
@@ -79,6 +81,38 @@ contract Contributor is
         );
 
     }
+
+    function likeContribution(uint256 contributionID , uint256 userID) public {
+        uint256 current = _ContributionLikes[contributionID];
+        current++;
+        _ContributionLikes[contributionID] = current;
+        _ContributionLikedBy[contributionID].add(userID);
+    }
+
+    function getContributionLikes(uint256 contributionID)  public
+        view
+        returns (uint32[] memory matchedIds)
+    {
+        uint256 size = _ContributionLikedBy[contributionID].length();
+        matchedIds = new uint32[](size);
+        for (uint256 i = 0; i < size; ++i) {
+            matchedIds[i] = uint32(_ContributionLikedBy[contributionID].at(i));
+        }
+    }
+
+    function getContributionsByAddress(address contributor)  public
+        view
+        returns (uint32[] memory contributionsIds)
+    {
+        uint256 size = _contributionSet[contributor].length();
+        contributionsIds = new uint32[](size);
+        for (uint256 i = 0; i < size; ++i) {
+            contributionsIds[i] = uint32(_contributionSet[contributor].at(i));
+        }
+    }
+
+    
+
 
     function _baseURI() internal view returns (string memory) {
         return _baseURIString;
