@@ -64,7 +64,7 @@ const Profile = ({ profAddress }) => {
                         <div className={styles.description}>
                             {data.about}
                         </div>
-                        <AnimatePresence exitBeforeEnter>
+                        {/* <AnimatePresence exitBeforeEnter>
                             {showModal && (
                                 <motion.div className={modalStyles.backdrop}
                                     variants={backdrop}
@@ -99,7 +99,7 @@ const Profile = ({ profAddress }) => {
                                     </motion.div>
                                 </IconContext.Provider>
                             </AnimatePresence>
-                        </div>
+                        </div> */}
 
                         {typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
