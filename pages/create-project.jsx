@@ -85,7 +85,8 @@ export function CreateProject() {
                     website: formData.website,
                     discord: formData.discord,
                     github: formData.github,
-                    twitter: formData.twitter
+                    twitter: formData.twitter,
+                    requirements: []
                 }
 
                 const apiReq = await fetch("/api/uploadUserProfile", {
@@ -108,7 +109,6 @@ export function CreateProject() {
                     profileUri: profileCid
                 }
                 await addProjectProfile(projectProfileObject)
-                await router.push("/choose-one")
             }
             setDisabled(false)
         }
@@ -545,7 +545,6 @@ export function CreateProject() {
                             <div>
                                 <Link href="/choose-one">
                                     <button disabled={disabled} className={formStyles.styleButton}>Take me there!</button>
-
                                 </Link>
                             </div>
 

@@ -9,11 +9,13 @@ import { checkBox, item, item2, arrow, checkBox2, button, item3, arrow2, party, 
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
 import useContract from "../hooks/useContract"
+import getWalletAddress from "../utils/getWalletAddress"
+import getProjectDataById from "../utils/getProjectDataById"
 
 
 export function CreateProject() {
     const router = useRouter()
-    const { createContribution } = useContract()
+    const { updateProjectProf } = useContract()
     const [wallet, setWallet] = useState("")
     const [formData, setFormData] = useState({
         title: "",
@@ -30,6 +32,7 @@ export function CreateProject() {
     const [allDone, setAllDone] = useState(false)
     const [interestsSelected, setInterestsSelected] = useState([])
     const [disabled, setDisabled] = useState(false)
+    const [projectData, setProjectData] = useState()
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -40,11 +43,18 @@ export function CreateProject() {
     }
 
     useEffect(() => {
-        const { projectId } = router.query
-        setFormData(prevState => ({
-            ...prevState,
-            id: projectId
-        }))
+        const setUpData = async () => {
+            const { projectId } = router.query
+            const profAddress = await getWalletAddress()
+            const projectData = await getProjectDataById(profAddress, projectId)
+            setProjectData(projectData)
+
+            setFormData(prevState => ({
+                ...prevState,
+                id: projectId
+            }))
+        }
+        setUpData().then()
     }, [router.query])
 
     useEffect(() => {
@@ -52,9 +62,20 @@ export function CreateProject() {
             setDisabled(true)
             if (allDone) {
                 const obj = {
+                    title: formData.title,
                     time: formData.time,
                     amount: formData.amount,
                     interests: interestsSelected
+                }
+                const toUpload = {
+                    about: projectData?.about,
+                    discord: projectData?.discord,
+                    twitter: projectData?.twitter,
+                    github: projectData?.github,
+                    website: projectData?.website,
+                    interests: projectData?.interests,
+                    skills: projectData?.skills,
+                    requirements: [...projectData?.requirements, obj]
                 }
                 const apiReq = await fetch("/api/uploadUserProfile", {
                     method: "POST",
@@ -62,26 +83,26 @@ export function CreateProject() {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        data: obj
+                        data: toUpload
                     })
                 })
 
                 const apiRes = await apiReq.json()
-                const contributionCid = apiRes.response
-
-                const contributionObj = {
-                    title: formData.title,
-                    projectId: formData.id,
-                    contributionUri: contributionCid
+                const profileCid = apiRes.response
+                const updatedObj = {
+                    name: projectData?.name,
+                    id: router.query.projectId,
+                    image: projectData?.imageUri,
+                    banner: projectData?.bannerUri,
+                    profileUri: profileCid
                 }
-                console.log(contributionObj)
-                await createContribution(contributionObj)
+                console.log("updatedObj", updatedObj)
+                await updateProjectProf(updatedObj)
             }
             setDisabled(false)
         }
         (async () => await upload())()
     }, [allDone])
-
     useEffect(() => {
         const { wallet, loggedIn } = getCookies()
         setWallet(wallet)

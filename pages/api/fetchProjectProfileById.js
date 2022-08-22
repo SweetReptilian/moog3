@@ -2,7 +2,7 @@ import { projectTableUri } from "../../constants"
 
 export default async function handler(req, res) {
     const {profAddress, id} = req.body.data
-    const query = projectTableUri + `%20WHERE%20profAddress="${profAddress}"%20AND%20id=${id}`
+    const query = projectTableUri + `%20WHERE%20id=${id}`
     const request = await fetch(query)
     if (request.status.toString() === "404") {
         res.status(404).send({
@@ -38,19 +38,7 @@ export default async function handler(req, res) {
     const discord = profRes.discord
     const twitter = profRes.twitter
     const github = profRes.github
+    const requirements = profRes.requirements
 
-    res.status(200).send({
-        wallet,
-        id,
-        name,
-        imageUri,
-        about,
-        bannerUri,
-        skills,
-        interests,
-        twitter,
-        website,
-        github,
-        discord
-    })
+    res.status(200).send({ wallet, id, name, imageUri, about, bannerUri, skills, interests, twitter, website, github, discord, requirements })
 }

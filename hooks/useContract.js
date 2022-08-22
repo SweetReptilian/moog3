@@ -16,6 +16,16 @@ const useContract = () => {
         return moogContract.connect(signer)
     }
 
+    const getReadContract = async () => {
+        const network = "mumbai"
+        await sequence.initWallet(network, {
+            networkRpcUrl: "https://matic-mumbai.chainstacklabs.com",
+        })
+        const wallet = sequence.getWallet()
+        const signer = wallet.getSigner()
+        return new ethers.Contract(MoogDaoContractAddress, MoogDaoAbi, signer)
+    }
+
     const addUserProfile = async (user) => {
         const contract = await getContract()
         const { name, image, profileUri } = user
@@ -56,10 +66,19 @@ const useContract = () => {
         const contract = await getContract()
         await contract.Follow(projectCreator, false, true)
     }
+    const likeContribution = async (id) => {
+        const contract = await getContract()
+        await contract.likeContribution(id, false)
+    }
 
     const getFollower = async (projectCreator) => {
-        const contract = await getContract()
-        await contract.getFollowers(projectCreator)
+        const contract = await getReadContract()
+        return contract.getFollowers(projectCreator)
+    }
+
+    const getContributionLikes = async (id) => {
+        const contract = await getReadContract()
+        return contract.getContributionLikes(id)
     }
 
     return {
@@ -70,7 +89,9 @@ const useContract = () => {
         addPost: createPost,
         createContribution,
         likeProject,
-        getFollower
+        likeContribution,
+        getFollower,
+        getContributionLikes
     }
 }
 

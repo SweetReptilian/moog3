@@ -1,7 +1,7 @@
 import styles from "../../../styles/Profile.module.scss"
 import modalStyles from "../../../styles/Modal.module.scss"
 import Sidebar from "../../../components/Sidebar"
-import { TbHammer, TbHammerOff } from "react-icons/tb"
+import { TbHammer } from "react-icons/tb"
 import { IconContext } from "react-icons"
 import { AiOutlineGithub, AiOutlinePicture, AiOutlinePlusCircle, AiOutlineTwitter } from "react-icons/ai"
 import { RiPagesLine } from "react-icons/ri"
@@ -26,6 +26,8 @@ import useContract from "../../../hooks/useContract"
 import Link from "next/link"
 import getContributionDataByProjectId from "../../../utils/getContributionDataByProjectId"
 import getPostDataById from "../../../utils/getPostDataById"
+import getProfileDataById from "../../../utils/getProfileDataById"
+import getContributionCardData from "../../../utils/getContributionCardData"
 
 const Profile = () => {
     const [connect, setConnect] = useState(false)
@@ -50,8 +52,9 @@ const Profile = () => {
         description: "",
         github: ""
     })
+    const [contributionCardData, setContributionCardData] = useState()
     const { uploadFile } = useUploadToStorage()
-    const { addPost, createContribution, likeProject, getFollower } = useContract()
+    const { addPost, createContribution, likeProject, getFollower, likeContribution } = useContract()
     const [post, setPost] = useState({
         title: "",
         body: "",
@@ -65,7 +68,6 @@ const Profile = () => {
         setShowNFTDiv(false)
         setShowDaiDiv(true)
     }
-
     const handleImageChange = async (event) => {
         setLoading(true)
         const file = event.target.files[0]
@@ -132,13 +134,24 @@ const Profile = () => {
                 const temp = await getProjectDataById(profAddress, id)
                 const contriTemp = await getContributionDataByProjectId(id)
                 const postTemp = await getPostDataById(id)
-                const followers = await getFollower(profAddress)
-                setFollowers(followers)
-                setContribuitionData(contriTemp)
+                let followers = await getFollower(profAddress)
+                let tempFollowers
+                if (followers.length !== 0) {
+                    tempFollowers = followers.map(i => i - 1000000)
+                    for (let i = 0; i < tempFollowers.length; i++) {
+                        tempFollowers[i] = await getProfileDataById(tempFollowers[i])
+                    }
+                }
+                setFollowers(tempFollowers)
+                setContribuitionData(contriTemp.response)
                 setData(temp)
                 setPostData(postTemp)
                 if (postTemp.response === "data not found") setShowPost(false)
                 if (contriTemp.response === "data not found") setShowContri(false)
+                if (showContri) {
+                    const res = await getContributionCardData(contriTemp.response)
+                    setContributionCardData(res)
+                }
             }
             getData().then()
         }
@@ -151,6 +164,10 @@ const Profile = () => {
         }))
     }
     const submitContributionForm = async () => {
+        if (contributionForm.title.length === 0 || contributionForm.description.length === 0) {
+            toast.error("Contribution request form can't be empty!")
+            return
+        }
         const obj = {
             description: contributionForm.description,
             github: contributionForm.github
@@ -180,9 +197,66 @@ const Profile = () => {
         }
     }
     const handleLike = async () => {
-        await likeProject(projectCreator)
+        try {
+            await likeProject(projectCreator)
+        } catch (e) {
+            toast.error("Couldn't like\nTry again")
+            console.error(e)
+        }
     }
-    let postCards
+    const handleContributionLike = async (id) => {
+        try {
+            await likeContribution(id)
+        } catch (e) {
+            toast.error("Couldn't like\nTry again")
+            console.error(e)
+        }
+    }
+
+    let postCards, contributionCard
+    if (showContri) {
+        contributionCard = contributionCardData?.map(item =>
+            <div className={styles.smallCard}>
+                <div className={styles.contributorsImg}>
+                    <a href={`/profile/${item?.authorWallet}`}>
+                        <img src={item?.authorPfp} alt="contributor" className={styles.contributorsPicPic} />
+                    </a>
+                </div>
+                <div className={styles.nameAndCont}>
+                    <div className={styles.cardTitle}>{item?.author}</div>
+                    <div className={styles.cardSubtitle}>
+                        {item?.title}
+                        <br />
+                        {item?.description}
+                        <br />
+                        <br />
+                        {item?.github}
+                    </div>
+                    <div className={styles.likesSection}>
+                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                            <span>{item?.likes}</span>
+                            <FcLikePlaceholder />
+                        </IconContext.Provider>
+                        {/* <motion.div className={styles.likesCounter}>Like</motion.div> */}
+                    </div>
+                    <div className={styles.likesSection}>
+                        <AnimatePresence>
+                            <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                                <motion.div
+                                    whileTap={{ scale: 1.3 }}
+                                    id={"follow"}
+                                    name={"follow-btn"}
+                                    onClick={async () => await handleContributionLike(item?.contributionId)}>
+                                    <BiLike />
+                                </motion.div>
+                            </IconContext.Provider>
+
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     if (showPost) {
         postCards = postData?.response.map((post) =>
             <div className={styles.posts}>
@@ -209,28 +283,32 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showModal && (
                     <motion.div className={modalStyles.backdrop}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
                         <motion.div className={modalStyles.modal}
-                            variants={modal}>
+                                    variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                    whileTap={{ scale: 1 }}
-                                    className={modalStyles.modalCloseIcon}
-                                    onClick={() => setShowModal(false)}>
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowModal(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
-                            <p className={modalStyles.modalP}>These people like you!</p>
+                            <p className={modalStyles.modalP}>These people like {data.name}!</p>
                             <ul className={modalStyles.modalContainer}>
-                                <li className={modalStyles.someFlex}>
-                                    <img className={modalStyles.picModal} src="/M.png" alt="" />
-                                    <a className={modalStyles.postsContentModal}>
-                                        Person Number One
-                                    </a>
-                                </li>
+                                {
+                                    followers.map(follower =>
+                                        <li className={modalStyles.someFlex}>
+                                            <img className={modalStyles.picModal} src={follower.imageUri} alt="" />
+                                            <a href={`/profile/${follower.wallet}`}
+                                               className={modalStyles.postsContentModal}>
+                                                {follower.name}
+                                            </a>
+                                        </li>)
+                                }
                             </ul>
                         </motion.div>
 
@@ -240,17 +318,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showDonate && (
                     <motion.div className={modalStyles.backdrop}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
                         <motion.div className={modalStyles.modal}
-                            variants={modal}>
+                                    variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                    whileTap={{ scale: 1 }}
-                                    className={modalStyles.modalCloseIcon}
-                                    onClick={() => setShowDonate(false)}>
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowDonate(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -281,23 +359,23 @@ const Profile = () => {
                                         <div>
                                             <div className={modalStyles.galleryFlex}>
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                    alt="" />
+                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                     alt="" />
                                             </div>
                                         </div>
                                         {/* here the address to send will be shown */}
@@ -345,7 +423,6 @@ const Profile = () => {
             </AnimatePresence>
             <div><Toaster position="top-right" reverseOrder={false} /></div>
             <div className={styles.bigCard}>
-
                 <div className={styles.presentation}>
                     <img src={data.bannerUri} alt="banner" className={styles.banner} />
 
@@ -405,7 +482,7 @@ const Profile = () => {
                                             whileTap={{ scale: 1.3 }}
                                             id={"follow"}
                                             name={"follow-btn"}
-                                            onClick={handleLike}>
+                                            onClick={async () => await handleLike()}>
                                             <BiLike />
                                         </motion.div>
                                     </IconContext.Provider>
@@ -424,12 +501,18 @@ const Profile = () => {
 
                 <div className={styles.lookingForSection}>
                     {
-                        data.interests?.map((item, i) => <motion.button className={styles.lookingForOptions}>
+                        data.requirements?.map((item, i) => <motion.button className={styles.lookingForOptions}>
                             {/* <a className={styles.aDecor} href="/apply-form"> */}
                             <IconContext.Provider value={{ size: "29px", color: "white" }}>
                                 <div className={styles.checkedIcon}></div>
                             </IconContext.Provider>
-                            <div className={styles.lookingForName}>{item}</div>
+                            <div className={styles.lookingForName}>{item.title}</div>
+                            <br />
+                            <p>Time: {item.time}</p>
+                            <br />
+                            <p>Amount: {item.amount}</p>
+                            <br />
+                            <p>Interests: {item.interests.map(int => <span>{int}</span>)}</p>
                             {/* </a> */}
                         </motion.button>)
                     }
@@ -437,19 +520,21 @@ const Profile = () => {
 
                     {!owner && <div>
                         <form className={styles.contrForm}>
-                            <input className={styles.formInputNoMargin} name={"title"} onChange={handleContributionChange} placeholder={"Title"}
-                                type={"text"} />
-                            <textarea className={styles.formTextArea} name={"description"} onChange={handleContributionChange}
-                                placeholder={"Why I am the best for the job..."} />
+                            <input className={styles.formInputNoMargin} name={"title"}
+                                   onChange={handleContributionChange} placeholder={"Title"}
+                                   type={"text"} required />
+                            <textarea className={styles.formTextArea} name={"description"}
+                                      onChange={handleContributionChange}
+                                      placeholder={"Why I am the best for the job..."} required />
                             <input className={styles.formInput} name={"github"} onChange={handleContributionChange}
-                                placeholder={"github pull request url"} />
+                                   placeholder={"github pull request url"} />
                             <AnimatePresence>
                                 <motion.div className={styles.iconSpace} onClick={() => {
                                     submitContributionForm().then()
                                     setConnect(connect => !connect)
                                 }}
-                                    whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
+                                            whileHover={{ scale: 0.9 }}
+                                            whileTap={{ scale: 1 }}>
                                     <div>Contribute</div>
                                     <IconContext.Provider
                                         value={{
@@ -457,8 +542,7 @@ const Profile = () => {
                                             color: "white",
                                             className: styles.checkedIcon2
                                         }}>
-
-                                        {connect ? <TbHammerOff /> : <TbHammer />}
+                                        <TbHammer />
                                     </IconContext.Provider>
                                 </motion.div>
                             </AnimatePresence>
@@ -492,30 +576,30 @@ const Profile = () => {
 
                         <div className={styles.postsBox}>
                             <input name={"title"} value={post.title} onChange={handleChange}
-                                className={styles.inputText} placeholder="An attractive title" type="text" />
+                                   className={styles.inputText} placeholder="An attractive title" type="text" />
 
                             <AnimatePresence>
                                 <div className={styles.iconSpaceWrite}>
                                     <textarea onChange={handleChange} name={"body"} value={post.body}
-                                        className={styles.textArea} placeholder="Any updates?" />
+                                              className={styles.textArea} placeholder="Any updates?" />
                                     <div className={styles.iconSpace}> Picture preview</div>
 
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => {
                                             setConnect(connect => !connect)
                                             uploadPost().then()
                                         }}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -526,18 +610,18 @@ const Profile = () => {
                                             </IconContext.Provider>
                                         </motion.div>}
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => setConnect(connect => !connect)}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -547,10 +631,10 @@ const Profile = () => {
                                                 <label>
                                                     <AiOutlinePicture />
                                                     <input className={formStyles.uploadFiles}
-                                                        style={{ display: "none" }}
-                                                        name="image" type={"file"}
-                                                        accept="image/gif,image/jpeg,image/jpg,image/png"
-                                                        onChange={handleImageChange} />
+                                                           style={{ display: "none" }}
+                                                           name="image" type={"file"}
+                                                           accept="image/gif,image/jpeg,image/jpg,image/png"
+                                                           onChange={handleImageChange} />
                                                 </label>
                                             </IconContext.Provider>
                                         </motion.div>
@@ -575,58 +659,7 @@ const Profile = () => {
                 <>
                     <div className={styles.lookingForTitle}>Contributors</div>
                     <div className={styles.thisFlex}>
-                        <div className={styles.smallCard}>
-                            <div className={styles.contributorsImg}>
-                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
-                            </div>
-                            <div className={styles.nameAndCont}>
-                                <div className={styles.cardTitle}>User's name</div>
-                                <div className={styles.cardSubtitle}>Contribution details (show here these
-                                    details that somebody specify when
-                                    fill the contr form)
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className={styles.smallCard}>
-                            <div className={styles.contributorsImg}>
-                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
-                            </div>
-                            <div className={styles.nameAndCont}>
-                                <div className={styles.cardTitle}>User's name</div>
-                                <div className={styles.cardSubtitle}>Contribution details (show here these
-                                    details that somebody specify when
-                                    fill the contr form)
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className={styles.smallCard}>
-                            <div className={styles.contributorsImg}>
-                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
-                            </div>
-                            <div className={styles.nameAndCont}>
-                                <div className={styles.cardTitle}>User's name</div>
-                                <div className={styles.cardSubtitle}>Contribution details (show here these
-                                    details that somebody specify when
-                                    fill the contr form)
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className={styles.smallCard}>
-                            <div className={styles.contributorsImg}>
-                                <img src="/mooglesnft2.png" alt="contributor" className={styles.contributorsPicPic} />
-                            </div>
-                            <div className={styles.nameAndCont}>
-                                <div className={styles.cardTitle}>User's name</div>
-                                <div className={styles.cardSubtitle}>Contribution details (show here these
-                                    details that somebody specify when
-                                    fill the contr form)
-                                </div>
-                            </div>
-
-                        </div>
+                        {contributionCard}
                     </div>
                 </>
             }

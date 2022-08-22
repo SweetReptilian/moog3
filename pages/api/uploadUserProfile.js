@@ -11,7 +11,6 @@ const uploadJson = async (jsonObject) => {
 
 export default async function handler(req, res) {
     const data = req.body.data
-    console.log("data", data)
     const jsonCid = await uploadJson(JSON.stringify(data))
     const response = "https://nftstorage.link/ipfs/" + jsonCid + "/moogData.json"
     res.status(200).send({

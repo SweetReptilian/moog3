@@ -167,7 +167,7 @@ export default function Login() {
                     </div>
                 </div>
                 <div data-aos="zoom-in" className={styles.sponsorsHere}>
-                    <div className={styles.welcomeTextHeroSection}>Our sponsors</div>
+                    <div className={styles.welcomeTextHeroSection}>Sponsors We've Integrated in Moog3</div>
 
                     <div className={styles.sponsorContainer}>
                         <motion.a whileHover={{ scale: 0.99 }}
@@ -209,21 +209,23 @@ export default function Login() {
                         <div className={styles.teamKit}>
                             <img className={styles.teamPic} src="./Nick.png" />
                             <div className={styles.connText3}><span>Nick </span><br />
-                                <span>-</span> Smart Contract engineer.
+                                <span>-</span> Smart Contract engineer
 
                             </div>
                         </div>
                         <div className={styles.teamKit}>
+                            <a href={"https://www.suhelkapadia.engineer/"} target={"_blank"}>
                             <img className={styles.teamPic} src="./Suhel.png" />
+                            </a>
                             <div className={styles.connText3}><span>Suhel </span><br />
-                                <span>-</span> Fulstack Developer and Database Designer.
+                                <span>-</span> Fullstack Developer and Database Designer
 
                             </div>
                         </div>
                         <div className={styles.teamKit}>
                             <img className={styles.teamPic} src="./Horus.png" />
                             <div className={styles.connText3}><span>Horus </span><br />
-                                <span>-</span> Frontend Developer and Artist.
+                                <span>-</span> Frontend Developer and Artist
 
                             </div>
                         </div>
