@@ -1,4 +1,5 @@
 import styles from "../styles/SettingStyles.module.scss"
+import someStyles from "../styles/AnotherStyles.module.scss"
 import Sidebar from "../components/Sidebar"
 import { AiFillGithub, AiOutlinePlusCircle } from "react-icons/ai"
 import SearchBar from "../components/SearchBar"
@@ -100,6 +101,7 @@ export function Network() {
     return (
         <>
             <Sidebar />
+            <div className={someStyles.settingsTitle}>Network</div>
 
             <div className={styles.backgroundImg}>
                 <div className={styles.bigProjCard}>

@@ -1,4 +1,5 @@
 import formStyles from "../../../../styles/FormSettings.module.scss"
+import someStyles from "../../../styles/AnotherStyles.module.scss"
 import { Checkbox, Spacer } from "@nextui-org/react"
 import React, { useEffect, useState } from "react"
 import Sidebar from "../../../../components/Sidebar"
@@ -133,6 +134,8 @@ export function EditProject() {
         <div className={formStyles.backgroundImg}>
             <div><Toaster position="top-right" reverseOrder={false} /></div>
             <Sidebar />
+            <div className={someStyles.settingsTitle}>Settings</div>
+
             {/* settings for projects */}
             <div className={formStyles.mainContainer}>
 
