@@ -232,16 +232,15 @@ const Profile = () => {
                         <br />
                         {item?.github}
                     </div>
-                    <div className={styles.likesSection}>
-                        <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                            <span>{item?.likes}</span>
-                            <FcLikePlaceholder />
-                        </IconContext.Provider>
-                        {/* <motion.div className={styles.likesCounter}>Like</motion.div> */}
-                    </div>
-                    <div className={styles.likesSection}>
-                        <AnimatePresence>
+                    <div className={styles.likesSection2}>
+                        <div className={styles.someSpace}>
                             <IconContext.Provider value={{ size: "29px", color: "white" }}>
+                                <span >{item?.likes}</span>
+                                <FcLikePlaceholder />
+                            </IconContext.Provider>
+                        </div>
+                        <AnimatePresence>
+                            <IconContext.Provider value={{ size: "30px", color: "white" }}>
                                 <motion.div
                                     whileTap={{ scale: 1.3 }}
                                     id={"follow"}
@@ -283,17 +282,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showModal && (
                     <motion.div className={modalStyles.backdrop}
-                                variants={backdrop}
-                                initial="hidden"
-                                animate="visible"
-                                exit="hidden">
+                        variants={backdrop}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden">
                         <motion.div className={modalStyles.modal}
-                                    variants={modal}>
+                            variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                            whileTap={{ scale: 1 }}
-                                            className={modalStyles.modalCloseIcon}
-                                            onClick={() => setShowModal(false)}>
+                                    whileTap={{ scale: 1 }}
+                                    className={modalStyles.modalCloseIcon}
+                                    onClick={() => setShowModal(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -304,7 +303,7 @@ const Profile = () => {
                                         <li className={modalStyles.someFlex}>
                                             <img className={modalStyles.picModal} src={follower.imageUri} alt="" />
                                             <a href={`/profile/${follower.wallet}`}
-                                               className={modalStyles.postsContentModal}>
+                                                className={modalStyles.postsContentModal}>
                                                 {follower.name}
                                             </a>
                                         </li>)
@@ -318,17 +317,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showDonate && (
                     <motion.div className={modalStyles.backdrop}
-                                variants={backdrop}
-                                initial="hidden"
-                                animate="visible"
-                                exit="hidden">
+                        variants={backdrop}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden">
                         <motion.div className={modalStyles.modal}
-                                    variants={modal}>
+                            variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                            whileTap={{ scale: 1 }}
-                                            className={modalStyles.modalCloseIcon}
-                                            onClick={() => setShowDonate(false)}>
+                                    whileTap={{ scale: 1 }}
+                                    className={modalStyles.modalCloseIcon}
+                                    onClick={() => setShowDonate(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -359,23 +358,23 @@ const Profile = () => {
                                         <div>
                                             <div className={modalStyles.galleryFlex}>
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                                 <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
+                                                    src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
+                                                    alt="" />
                                             </div>
                                         </div>
                                         {/* here the address to send will be shown */}
@@ -499,42 +498,45 @@ const Profile = () => {
 
                 <div className={styles.lookingForTitle}>We are looking for...</div>
 
-                <div className={styles.lookingForSection}>
+                <div className={styles.lookingForSectionFirst}>
                     {
-                        data.requirements?.map((item, i) => <motion.button className={styles.lookingForOptions}>
-                            {/* <a className={styles.aDecor} href="/apply-form"> */}
-                            <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                                <div className={styles.checkedIcon}></div>
-                            </IconContext.Provider>
-                            <div className={styles.lookingForName}>{item.title}</div>
-                            <br />
-                            <p>Time: {item.time}</p>
-                            <br />
-                            <p>Amount: {item.amount}</p>
-                            <br />
-                            <p>Interests: {item.interests.map(int => <span>{int}</span>)}</p>
-                            {/* </a> */}
-                        </motion.button>)
-                    }
 
+                        data.requirements?.map((item, i) =>
+                            <div className={styles.lookingForOptions}>
+                                <div className={styles.lookingForSubSection}>
+                                    <div className={styles.pLookingForName}>{item.title}</div>
+                                    <br />
+                                    <p className={styles.pLookingForTime}>{item.time}</p>
+                                    <br />
+                                    <p className={styles.pLookingForMoney}>We offer: {item.amount}</p>
+                                    <br />
+                                    <p className={styles.pLookingForTitle}>{item.interests.map(int => <span>{int}</span>)}</p>
+                                    {/* </a> */}
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+                <div className={styles.lookingForTitle}>Apply form</div>
+                <div className={styles.lookingForSection}>
 
                     {!owner && <div>
                         <form className={styles.contrForm}>
                             <input className={styles.formInputNoMargin} name={"title"}
-                                   onChange={handleContributionChange} placeholder={"Title"}
-                                   type={"text"} required />
+                                onChange={handleContributionChange} placeholder={"Title"}
+                                type={"text"} required />
                             <textarea className={styles.formTextArea} name={"description"}
-                                      onChange={handleContributionChange}
-                                      placeholder={"Why I am the best for the job..."} required />
+                                onChange={handleContributionChange}
+                                placeholder={"Why I am the best for the job..."} required />
                             <input className={styles.formInput} name={"github"} onChange={handleContributionChange}
-                                   placeholder={"github pull request url"} />
+                                placeholder={"github pull request url"} />
                             <AnimatePresence>
                                 <motion.div className={styles.iconSpace} onClick={() => {
                                     submitContributionForm().then()
                                     setConnect(connect => !connect)
                                 }}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                    whileHover={{ scale: 0.9 }}
+                                    whileTap={{ scale: 1 }}>
                                     <div>Contribute</div>
                                     <IconContext.Provider
                                         value={{
@@ -570,36 +572,36 @@ const Profile = () => {
 
             <div className={styles.bigCard}>
 
-                <div className={styles.lookingForTitle}>Posts</div>
+                <div className={styles.lookingForPost}>Posts</div>
                 {owner &&
                     <div className={styles.container}>
 
                         <div className={styles.postsBox}>
                             <input name={"title"} value={post.title} onChange={handleChange}
-                                   className={styles.inputText} placeholder="An attractive title" type="text" />
+                                className={styles.inputText} placeholder="An attractive title" type="text" />
 
                             <AnimatePresence>
                                 <div className={styles.iconSpaceWrite}>
                                     <textarea onChange={handleChange} name={"body"} value={post.body}
-                                              className={styles.textArea} placeholder="Any updates?" />
+                                        className={styles.textArea} placeholder="Any updates?" />
                                     <div className={styles.iconSpace}> Picture preview</div>
 
                                     {loading ? <TailSpin
-                                            height="15"
-                                            width="15"
-                                            color="#4e4646"
-                                            ariaLabel="tail-spin-loading"
-                                            radius="1"
-                                            wrapperStyle={{}}
-                                            wrapperClass=""
-                                            visible={true}
-                                        /> :
+                                        height="15"
+                                        width="15"
+                                        color="#4e4646"
+                                        ariaLabel="tail-spin-loading"
+                                        radius="1"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
+                                    /> :
                                         <motion.div onClick={() => {
                                             setConnect(connect => !connect)
                                             uploadPost().then()
                                         }}
-                                                    whileHover={{ scale: 0.9 }}
-                                                    whileTap={{ scale: 1 }}>
+                                            whileHover={{ scale: 0.9 }}
+                                            whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -610,18 +612,18 @@ const Profile = () => {
                                             </IconContext.Provider>
                                         </motion.div>}
                                     {loading ? <TailSpin
-                                            height="15"
-                                            width="15"
-                                            color="#4e4646"
-                                            ariaLabel="tail-spin-loading"
-                                            radius="1"
-                                            wrapperStyle={{}}
-                                            wrapperClass=""
-                                            visible={true}
-                                        /> :
+                                        height="15"
+                                        width="15"
+                                        color="#4e4646"
+                                        ariaLabel="tail-spin-loading"
+                                        radius="1"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
+                                    /> :
                                         <motion.div onClick={() => setConnect(connect => !connect)}
-                                                    whileHover={{ scale: 0.9 }}
-                                                    whileTap={{ scale: 1 }}>
+                                            whileHover={{ scale: 0.9 }}
+                                            whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -631,10 +633,10 @@ const Profile = () => {
                                                 <label>
                                                     <AiOutlinePicture />
                                                     <input className={formStyles.uploadFiles}
-                                                           style={{ display: "none" }}
-                                                           name="image" type={"file"}
-                                                           accept="image/gif,image/jpeg,image/jpg,image/png"
-                                                           onChange={handleImageChange} />
+                                                        style={{ display: "none" }}
+                                                        name="image" type={"file"}
+                                                        accept="image/gif,image/jpeg,image/jpg,image/png"
+                                                        onChange={handleImageChange} />
                                                 </label>
                                             </IconContext.Provider>
                                         </motion.div>
