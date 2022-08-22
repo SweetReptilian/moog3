@@ -1,18 +1,21 @@
 import styles from "../../../styles/Profile.module.scss"
 import modalStyles from "../../../styles/Modal.module.scss"
 import Sidebar from "../../../components/Sidebar"
-import { TbHammer } from "react-icons/tb"
+import { TbBrandDiscord, TbHammer } from "react-icons/tb"
 import { IconContext } from "react-icons"
-import { AiOutlineGithub, AiOutlinePicture, AiOutlinePlusCircle, AiOutlineTwitter } from "react-icons/ai"
-import { RiPagesLine } from "react-icons/ri"
+import {
+    AiOutlineCloseCircle,
+    AiOutlineGithub,
+    AiOutlinePicture,
+    AiOutlinePlusCircle,
+    AiOutlineTwitter
+} from "react-icons/ai"
+import { RiPagesLine, RiSendPlaneLine } from "react-icons/ri"
 import { FcLikePlaceholder } from "react-icons/fc"
-import { TbBrandDiscord } from "react-icons/tb"
-import { AiOutlineCloseCircle } from "react-icons/ai"
 import { FaHands } from "react-icons/fa"
 import { BiLike } from "react-icons/bi"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import React, { useEffect, useState } from "react"
-import { RiSendPlaneLine } from "react-icons/ri"
 import { backdrop, modal } from "../../../animations/modalAnimations"
 import { getCookies } from "cookies-next"
 import { useRouter } from "next/router"
@@ -28,6 +31,7 @@ import getContributionDataByProjectId from "../../../utils/getContributionDataBy
 import getPostDataById from "../../../utils/getPostDataById"
 import getProfileDataById from "../../../utils/getProfileDataById"
 import getContributionCardData from "../../../utils/getContributionCardData"
+import { sendMatic } from "../../../utils/sendMatic"
 
 const Profile = () => {
     const [connect, setConnect] = useState(false)
@@ -47,6 +51,13 @@ const Profile = () => {
     const [projectCreator, setProjectCreator] = useState()
     const [followers, setFollowers] = useState([])
     const [showContri, setShowContri] = useState(true)
+    const [userNfts, setUserNfts] = useState([])
+    const [nftToSend, setNftToSend] = useState({
+        recipientAddress: projectCreator,
+        tokenId: 0,
+        erc721TokenAddress: ""
+    })
+    const [maticDonation, setMaticDonation] = useState({ amount: 0 })
     const [contributionForm, setContributionForm] = useState({
         title: "",
         description: "",
@@ -54,7 +65,7 @@ const Profile = () => {
     })
     const [contributionCardData, setContributionCardData] = useState()
     const { uploadFile } = useUploadToStorage()
-    const { addPost, createContribution, likeProject, getFollower, likeContribution } = useContract()
+    const { addPost, createContribution, likeProject, getFollower, likeContribution, getTokens, sendNFT } = useContract()
     const [post, setPost] = useState({
         title: "",
         body: "",
@@ -212,6 +223,13 @@ const Profile = () => {
             console.error(e)
         }
     }
+    const handleMaticChange = (event) => {
+        const {name,value} = event.target
+        setMaticDonation(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
 
     let postCards, contributionCard
     if (showContri) {
@@ -337,13 +355,17 @@ const Profile = () => {
                             </p>
                             <button
                                 className={modalStyles.modalButton}
-                                onClick={handleModalNFT}
+                                onClick={async () => {
+                                    handleModalNFT()
+                                    const nfts = await getTokens()
+                                    setUserNfts(nfts)
+                                }}
                             >NFT
                             </button>
                             <button
                                 className={modalStyles.modalButton}
                                 onClick={handleModalDai}>
-                                Dai
+                                Matic
                             </button>
                             {showNFTDiv && (
                                 <div className={modalStyles.containerPop}>
@@ -351,46 +373,40 @@ const Profile = () => {
                                         <img src="" alt="" />
                                     </div>
                                     <div>
-                                        {/* I think this is the nft's name */}
-                                        <div className={modalStyles.titlesSection}>
-                                            <div className={modalStyles.titlePop}>title</div>
-                                            <input className={modalStyles.inputPop} type="text" />
-                                        </div>
-                                        <div>
-                                            <div className={modalStyles.galleryFlex}>
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                                <img className={modalStyles.nftShowed}
-                                                     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat-768x384.png"
-                                                     alt="" />
-                                            </div>
-                                        </div>
+                                        {
+                                            userNfts.map(item =>
+                                                <div onClick={() => {
+                                                    setNftToSend({
+                                                        recipientAddress: projectCreator,
+                                                        tokenId: item?.tokenId,
+                                                        erc721TokenAddress: "0x90B08E04F319a5468E054C14CbB270DF6CD912cb"
+                                                    })
+                                                }}>
+                                                    <div className={modalStyles.galleryFlex}>
+                                                        <img className={modalStyles.nftShowed}
+                                                             src={item?.img}
+                                                             alt="" />
+                                                        <p>{item?.title}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                         {/* here the address to send will be shown */}
                                         <div className={modalStyles.titlesSection}>
                                             <div className={modalStyles.titlePop}>Send to</div>
-                                            <input className={modalStyles.inputPop} type="text" />
+                                            <input defaultValue={projectCreator} className={modalStyles.inputPop} type="text" />
                                         </div>
-
                                     </div>
-                                    <button
-                                        className={modalStyles.modalButton}
-                                    >
-                                        Send!
-                                    </button>
+                                    <button onClick={async () => {
+                                        try {
+                                            await sendNFT(nftToSend.recipientAddress, nftToSend.tokenId, nftToSend.erc721TokenAddress)
+                                            toast.success(`Successfully transfered NFT to ${projectCreator}`)
+                                        } catch (e){
+                                            console.error(e)
+                                            toast.error("Hmm something didn't work\nTry again")
+                                        }
 
+                                    }} className={modalStyles.modalButton}>Send!</button>
                                 </div>
                             )}
                             {showDaiDiv && (
@@ -401,14 +417,24 @@ const Profile = () => {
                                     <div>
                                         <div className={modalStyles.titlesSection}>
                                             <div className={modalStyles.titlePop}>Please, specify the amount</div>
-                                            <input className={modalStyles.inputPop} type="text" />
+                                            <input onChange={handleMaticChange} name={"amount"} className={modalStyles.inputPop} type="text" />
 
                                             <div className={modalStyles.titlePop}>Send to</div>
-                                            <input className={modalStyles.inputPop} type="text" />
+                                            <input defaultValue={projectCreator} className={modalStyles.inputPop} type="text" />
                                         </div>
 
                                     </div>
                                     <button
+                                        onClick={async () => {
+                                            const {amount} = maticDonation
+                                            if(amount == 0) {
+                                                toast.error("Don't be that cheap now!")
+                                                return
+                                            }
+                                            console.log(amount, projectCreator)
+                                            const res = await sendMatic(amount, projectCreator)
+                                            res ? toast.success("Matic sent successfully!") : toast.error("Transaction failed!\nTry again")
+                                        }}
                                         className={modalStyles.modalButton}
                                     >
                                         Send!

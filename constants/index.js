@@ -1,4 +1,4 @@
-import { MoogDaoContractAddress } from "./contractAddress"
+import { MoogDaoContractAddress, MooglesNFTContractAddress } from "./contractAddress"
 import {
     postTableUri,
     contributionTableUri,
@@ -8,10 +8,13 @@ import {
 import { defaultImgs } from "./defaultImgs"
 
 const MoogDaoAbi = require("./moogDaoAbi.json")
+const MoogleNFTAbi = require("./moogleNFTAbi.json")
 
 module.exports = {
     MoogDaoContractAddress,
+    MooglesNFTContractAddress,
     MoogDaoAbi,
+    MoogleNFTAbi,
     defaultImgs,
     projectTableUri,
     postTableUri,
