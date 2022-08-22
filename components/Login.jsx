@@ -5,11 +5,16 @@ import React, { useEffect, useState } from "react"
 import styles from "../styles/LoginStyle.module.scss"
 import Navbar from "../components/Navbar"
 import { TailSpin } from "react-loader-spinner"
+import { AiFillGithub } from "react-icons/ai";
+import { FiTwitter } from "react-icons/fi";
+import { TbBrandDiscord } from "react-icons/tb";
 import { useRouter } from "next/router"
 import toast, { Toaster } from "react-hot-toast"
+import { motion } from "framer-motion"
 import getProfileData from "../utils/getProfileData"
 import Aos from "aos"
 import "aos/dist/aos.css"
+import { IconContext } from "react-icons"
 
 
 export default function Login() {
@@ -63,7 +68,7 @@ export default function Login() {
     useEffect(() => {
         Aos.init({ duration: 2000 })
     }, [])
-    if(isLoggedIn){
+    if (isLoggedIn) {
         const wallet = sequence.getWallet()
         wallet.getAddress().then(res => {
             redirect(res.toLowerCase()).then()
@@ -161,6 +166,30 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
+                <div data-aos="zoom-in" className={styles.sponsorsHere}>
+                    <div className={styles.welcomeTextHeroSection}>Our sponsors</div>
+
+                    <div className={styles.sponsorContainer}>
+                        <motion.a whileHover={{ scale: 0.99 }}
+                            whileTap={{ scale: 1.1 }}
+                            href="https://spheron.network/?utm_source=Devpost&utm_medium=PolygonSponsor&utm_campaign=Sponsorship" target="_blank">
+                            <img className={styles.sponsorPic} src="./sph.png" alt="spheron" />
+                        </motion.a>
+                        <motion.a whileHover={{ scale: 0.99 }}
+                            whileTap={{ scale: 1.1 }}
+                            href="https://sequence.xyz/?utm_source=Devpost&utm_medium=PolygonSponsor&utm_campaign=Sponsorship" target="_blank">
+                            <img className={styles.sponsorPic} src="./seq.png" alt="sequence" />
+                        </motion.a>
+                        <motion.a whileHover={{ scale: 0.99 }}
+                            whileTap={{ scale: 1.1 }}
+                            href="https://ipfs.io/?utm_source=Devpost&utm_medium=PolygonSponsor&utm_campaign=Sponsorship" target="_blank">
+                            <img className={styles.sponsorPic} src="./ipf.png" alt="ipfs" />
+                        </motion.a>
+
+
+                    </div>
+                </div>
+
                 <div data-aos="fade-right" className={styles.secondContainer}>
                     <div className={styles.welcomeTextHeroSection}>What this is all about</div>
                     <div className={styles.connText2}> It's about community and improvement. We are a team with
@@ -172,6 +201,51 @@ export default function Login() {
                         about discovering new
                         features and creating unique and useful dApps and tools for <span>Web3 evolution</span>.
                     </div>
+                </div>
+
+                <div data-aos="fade-down-right" className={styles.secondContainer}>
+                    <div className={styles.welcomeTextHeroSection2}>The team</div>
+                    <div className={styles.teamSection}>
+                        <div className={styles.teamKit}>
+                            <img className={styles.teamPic} src="./Nick.png" />
+                            <div className={styles.connText3}><span>Nick </span><br />
+                                <span>-</span> Smart Contract engineer.
+
+                            </div>
+                        </div>
+                        <div className={styles.teamKit}>
+                            <img className={styles.teamPic} src="./Suhel.png" />
+                            <div className={styles.connText3}><span>Suhel </span><br />
+                                <span>-</span> Fulstack Developer and Database Designer.
+
+                            </div>
+                        </div>
+                        <div className={styles.teamKit}>
+                            <img className={styles.teamPic} src="./Horus.png" />
+                            <div className={styles.connText3}><span>Horus </span><br />
+                                <span>-</span> Frontend Developer and Artist.
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div data-aos="fade-right" className={styles.secondContainer}>
+                    <div className={styles.welcomeTextHeroSection}>Roadmap</div>
+                    <div className={styles.connText4}> <span>Coming soon...</span><br />
+                        But you can join our discord in the meantime to keep up to date!
+
+                        <motion.div
+                            whileHover={{ scale: 0.99 }}
+                            whileTap={{ scale: 1.1 }}
+                            className={styles.discordBtn}>
+                            <IconContext.Provider value={{ size: "40px", color: "white" }}>
+                                <TbBrandDiscord />
+                            </IconContext.Provider>
+                        </motion.div></div>
+
                 </div>
             </div>
         </>
