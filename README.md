@@ -41,6 +41,7 @@ Moog3 consist of a Social Good DAO Dapp where anyone can create their Profiles a
 Our Contracts are deployed on Mumbai Testnet
 
 The  MoogDao Proxy         => https://mumbai.polygonscan.com/address/0x86f4768d9fe6B4785A51d8c884683813023B1308#code
+
 The Contract MoogDao       => https://mumbai.polygonscan.com/address/0x5188179b7d995f9efd7d6aaac10900aab9953a85#code
 
 The MooglesNFTs Collection => https://mumbai.polygonscan.com/address/0xCc563FE30d26517684af0fBF0e051d4BD5D2352F#code
