@@ -48,6 +48,19 @@
         text-transform: uppercase;
     }
 
+    .welcomeTextHeroSection2 {
+        font-size: 50px;
+        font-weight: 600;
+        padding-bottom: 50px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .welcomeTextHeroSection2 span {
+        color: rgb(106, 56, 172);
+        text-transform: uppercase;
+    }
+
     .connText span {
         color: rgb(106, 56, 172);
         text-transform: uppercase;
@@ -77,6 +90,66 @@
         line-height: 30px;
     }
 
+    .teamSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+
+    .teamKit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .teamPic {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid white;
+    }
+
+    .connText3 span {
+        color: rgb(106, 56, 172);
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .connText3 {
+        padding: 30px;
+        padding-bottom: 10px;
+        font-weight: 600;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        width: 250px;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .connText4 span {
+        color: rgb(106, 56, 172);
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .connText4 {
+        padding: 30px;
+        padding-bottom: 10px;
+        font-weight: 600;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        line-height: 30px;
+    }
+
     .twoColDiv {
         padding-bottom: 208px;
         padding-top: 175px;
@@ -94,6 +167,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .discordBtn {
+        padding: 30px;
+        padding-bottom: 100px;
     }
 
     .styleButtonConn {
@@ -143,6 +221,35 @@
         flex-wrap: wrap;
         padding: 10px;
         text-align: center;
+    }
+
+    .sponsorContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4rem;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        padding-top: 40px;
+        padding-bottom: 100px;
+    }
+
+    .sponsorsHere {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .sponsorPic {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+
+    .sponsorPic:hover {
+        cursor: pointer;
     }
 
     .projectUsersDiv {

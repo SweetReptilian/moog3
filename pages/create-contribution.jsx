@@ -40,7 +40,7 @@ export function CreateProject() {
     }
 
     useEffect(() => {
-        const {projectId} = router.query
+        const { projectId } = router.query
         setFormData(prevState => ({
             ...prevState,
             id: projectId
@@ -148,7 +148,7 @@ export function CreateProject() {
                     </div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(3)}><i className={formStyles.arrow}></i></a>
+                            <a onClick={() => setContent(4)}><i className={formStyles.arrow}></i></a>
                         </div>
 
                     </motion.div>
@@ -173,7 +173,7 @@ export function CreateProject() {
 
                     </motion.div>
 
-                    <div className={formStyles.container}>
+                    {/* <div className={formStyles.container}>
                         <motion.div initial="hidden" animate="visible" variants={item}>
                             <div className={formStyles.setText}>Is this a paid contribution?</div>
                         </motion.div>
@@ -194,7 +194,7 @@ export function CreateProject() {
                         </div>
 
 
-                    </div>
+                    </div> */}
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
                             <a onClick={() => setContent(5)}><i className={formStyles.arrow}></i></a>
@@ -217,7 +217,7 @@ export function CreateProject() {
                     </motion.div>
                     <motion.div initial="hidden" animate="visible" exit="exit" variants={arrow}>
                         <div className={formStyles.links2}>
-                            <a onClick={() => setContent(3)}><i className={formStyles.backArrow}></i></a>
+                            <a onClick={() => setContent(2)}><i className={formStyles.backArrow}></i></a>
                         </div>
 
                     </motion.div>

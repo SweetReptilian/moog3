@@ -61,15 +61,16 @@ contract Post is
 
 
     /*
-     * safeMint allows anyone to mint a token in this project.
-     * Any time a token is minted, a new row of metadata will be
-     * dynamically inserted into the metadata table.
+        creation of a post
      */
     function addPost(string memory _postUri, address posterAddress, uint256 projId) public  {
+        _PostId.increment();
+        uint256 id = _PostId.current();
+        _postSet[posterAddress].add(id);
         _tableland.runSQL(
             address(this),
             _metadataTableId,
-            queryContract.getPostInsertStatement(_metadataTable, _postUri, posterAddress, projId)
+            queryContract.getPostInsertStatement(_metadataTable, _postUri, posterAddress, projId, id)
         );
     }
 
@@ -78,30 +79,29 @@ contract Post is
     }
 
     /*
-     * tokenURI is an example of how to turn a row in your table back into
-     * erc721 compliant metadata JSON. here, we do a simple SELECT statement
-     * with function that converts the result into json.
+        posts for each project
      */
     function postURI(uint256 projId)  public view returns (string memory) {
         // require(_PostId.current() >= contributionId, "nonexistent token");
         return  queryContract.getPostURI(projId, _metadataTable, _baseURI());
     }
+
+
     function metadataURI() public view returns (string memory) {
         
         return queryContract.metadataURI(_metadataTable, _baseURI());
 }
 
-    function updatePost(uint256 tokenId, address contributor, string memory _imageUri,string memory _profileUri, string memory _name)
+    function updatePost(uint256 tokenId, address posterAddress, string memory _postUri)
         public
     {
         require(
-            _postSet[contributor].contains(tokenId),
-            "OnlyOwner"
+            _postSet[posterAddress].contains(tokenId)
         );
         _tableland.runSQL(
             address(this),
             _metadataTableId,
-            queryContract.getUpdatePostStatement(_metadataTable, tokenId, _imageUri, _profileUri, _name)
+            queryContract.getUpdatePostStatement(_metadataTable, tokenId, _postUri)
         );
         
     }
