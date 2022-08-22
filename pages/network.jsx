@@ -33,7 +33,7 @@ export function Network() {
                 const final = [obj[0], obj[1], obj[2], obj[3], metadata.about, metadata.discord, metadata.website, metadata.twitter, metadata.github]
                 tempProject.push(final)
             }
-            for (let i = 1; i < profileData.length; i++) { // reset it to 0 when deploying
+            for (let i = 0; i < profileData.length; i++) {
                 const obj = profileData[i]
                 const metadata = await getDataFromUri(obj[4])
                 const final = [obj[0], obj[1], obj[2], obj[3], metadata.about, metadata.discord, metadata.website, metadata.twitter, metadata.github]

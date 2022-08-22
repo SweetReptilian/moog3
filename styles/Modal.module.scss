@@ -188,15 +188,23 @@
   text-transform: uppercase;
 }
 
-.galleryFlex {
+.galleryFlexNFT {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
   gap: 1rem;
   padding-bottom: 10px;
+}
+
+.displayNftSection {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .nftShowed {

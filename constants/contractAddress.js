@@ -1,2 +1,2 @@
-export const MoogDaoContractAddress = "0xC0d2B3c345BB2AC585b6bac20C9249A7d430D2dF"
-export const MooglesNFTContractAddress = ""
+export const MoogDaoContractAddress = "0x86f4768d9fe6B4785A51d8c884683813023B1308"
+export const MooglesNFTContractAddress = "0xCc563FE30d26517684af0fBF0e051d4BD5D2352F"

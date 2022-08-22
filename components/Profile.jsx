@@ -7,12 +7,14 @@ import { RiPagesLine } from "react-icons/ri"
 import { FcLikePlaceholder } from "react-icons/fc"
 import { TbBrandDiscord } from "react-icons/tb"
 import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { TbPlugConnected, TbPlugConnectedX } from "react-icons/tb"
 import getProfileData from "../utils/getProfileData"
 import { getCookies } from "cookies-next"
 import getWalletAddress from "../utils/getWalletAddress"
 import { backdrop, modal } from "../animations/modalAnimations"
+import useContract from "../hooks/useContract"
+import toast, {Toaster} from "react-hot-toast"
 
 const Profile = ({ profAddress }) => {
     const [data, setData] = useState({})
@@ -21,6 +23,7 @@ const Profile = ({ profAddress }) => {
         setOwner(res === profAddress)
     })
     const { loggedIn } = getCookies()
+    const {mintNFT} = useContract()
     useEffect(() => {
         const getData = async () => {
             let temp = await getProfileData(profAddress)
@@ -29,13 +32,13 @@ const Profile = ({ profAddress }) => {
         getData().then()
     }, [])
     const [connect, setConnect] = useState(false)
-    const [showModal, setShowModal] = useState(false)
 
     return (
         <div className={styles.mainContainer}>
             {loggedIn && <Sidebar />}
 
             <div className={styles.bigCard}>
+                <div><Toaster position="top-right" reverseOrder={false} /></div>
                 <div className={styles.presentation}>
                     <img src={data.banner} alt="" className={styles.banner} />
 
@@ -48,13 +51,13 @@ const Profile = ({ profAddress }) => {
                         <IconContext.Provider value={{ size: "29px", color: "white" }}>
                             <div className={styles.links}>
                                 <a className={styles.aDecor}
-                                    href={data.github}><AiOutlineGithub /></a>
+                                   href={data.github}><AiOutlineGithub /></a>
                                 <a className={styles.aDecor}
-                                    href={data.website}><RiPagesLine /></a>
+                                   href={data.website}><RiPagesLine /></a>
                                 <a className={styles.aDecor}
-                                    href={data.discord}><TbBrandDiscord /></a>
+                                   href={data.discord}><TbBrandDiscord /></a>
                                 <a className={styles.aDecor}
-                                    href={data.twitter}><AiOutlineTwitter /></a>
+                                   href={data.twitter}><AiOutlineTwitter /></a>
 
                             </div>
 
@@ -101,23 +104,32 @@ const Profile = ({ profAddress }) => {
                             </AnimatePresence>
                         </div> */}
 
-                        {/*typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
-                            <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                whileHover={{ scale: 0.9 }}
-                                whileTap={{ scale: 1 }}>
-                                <div>Connect</div>
+                        {typeof window !== "undefined" && loggedIn && owner && <AnimatePresence>
+                            <motion.div className={styles.iconSpace} onClick={async () => {
+                                try {
+                                    await mintNFT()
+                                    toast.success("Minted NFT Successfully")
+                                } catch (e){
+                                    console.error(e)
+                                    toast.error("You can have just 1 NFT\nOr try again if you have 0")
+                                }
+
+                                setConnect(connect => !connect)
+                            }}
+                                        whileHover={{ scale: 0.9 }}
+                                        whileTap={{ scale: 1 }}>
+                                <div>Mint NFT</div>
                                 <IconContext.Provider
                                     value={{ size: "29px", color: "white", className: styles.checkedIcon2 }}>
-
-                                    {connect ? <TbPlugConnectedX /> : <TbPlugConnected />}
+                                    <TbPlugConnected />
                                 </IconContext.Provider>
                             </motion.div>
                         </AnimatePresence>
-                        */}
+                        }
                         {!loggedIn && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
-                                whileHover={{ scale: 0.9 }}
-                                whileTap={{ scale: 1 }}>
+                                        whileHover={{ scale: 0.9 }}
+                                        whileTap={{ scale: 1 }}>
 
                                 <a href={"/"}>Login To Explore More</a>
 

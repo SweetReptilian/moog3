@@ -1,16 +1,9 @@
 import styles from "../../../styles/Profile.module.scss"
 import modalStyles from "../../../styles/Modal.module.scss"
-import someStyles from "../../../styles/AnotherStyles.module.scss"
 import Sidebar from "../../../components/Sidebar"
 import { TbBrandDiscord, TbHammer } from "react-icons/tb"
 import { IconContext } from "react-icons"
-import {
-    AiOutlineCloseCircle,
-    AiOutlineGithub,
-    AiOutlinePicture,
-    AiOutlinePlusCircle,
-    AiOutlineTwitter
-} from "react-icons/ai"
+import { AiOutlineCloseCircle, AiOutlineGithub, AiOutlinePicture, AiOutlinePlusCircle, AiOutlineTwitter } from "react-icons/ai"
 import { RiPagesLine, RiSendPlaneLine } from "react-icons/ri"
 import { FcLikePlaceholder } from "react-icons/fc"
 import { FaHands } from "react-icons/fa"
@@ -53,20 +46,16 @@ const Profile = () => {
     const [followers, setFollowers] = useState([])
     const [showContri, setShowContri] = useState(true)
     const [userNfts, setUserNfts] = useState([])
-    const [nftToSend, setNftToSend] = useState({ recipientAddress: projectCreator, tokenId: 0, erc721TokenAddress: "" })
+    const [nftToSend, setNftToSend] = useState({
+        recipientAddress: projectCreator,
+        tokenId: 0,
+        erc721TokenAddress: "0xCc563FE30d26517684af0fBF0e051d4BD5D2352F"
+    })
     const [maticDonation, setMaticDonation] = useState({ amount: 0 })
     const [contributionForm, setContributionForm] = useState({ title: "", description: "", github: "" })
     const [contributionCardData, setContributionCardData] = useState()
     const { uploadFile } = useUploadToStorage()
-    const {
-        addPost,
-        createContribution,
-        likeProject,
-        getFollower,
-        likeContribution,
-        getTokens,
-        sendNFT
-    } = useContract()
+    const { addPost, createContribution, likeProject, getFollower, likeContribution, getTokens, sendNFT } = useContract()
     const [post, setPost] = useState({ title: "", body: "", imageUri: "" })
     const handleModalNFT = () => {
         setShowNFTDiv(true)
@@ -366,31 +355,36 @@ const Profile = () => {
                                 <div className={modalStyles.containerPop}>
                                     <div className={modalStyles.displayNftSection}>
                                         <img src="" alt="" />
-                                    </div>
-                                    <div>
-                                        {
-                                            userNfts.map(item =>
-                                                <div onClick={() => {
-                                                    setNftToSend({
-                                                        recipientAddress: projectCreator,
-                                                        tokenId: item?.tokenId,
-                                                        erc721TokenAddress: "0x90B08E04F319a5468E054C14CbB270DF6CD912cb"
-                                                    })
-                                                }}>
-                                                    <div className={modalStyles.galleryFlex}>
-                                                        <img className={modalStyles.nftShowed}
-                                                             src={item?.img}
-                                                             alt="" />
-                                                        <p>{item?.title}</p>
+                                        <div>
+                                            {
+                                                userNfts.map(item =>
+                                                    <div onClick={() => {
+                                                        setShow(prevState => !prevState)
+                                                        setNftToSend({
+                                                            recipientAddress: projectCreator,
+                                                            tokenId: item?.tokenId,
+                                                            erc721TokenAddress: "0x90B08E04F319a5468E054C14CbB270DF6CD912cb"
+                                                        })
+                                                    }}>
+                                                        <div className={modalStyles.galleryFlexNFT}
+                                                             style={show ? {
+                                                                 backgroundColor: "rgba(255, 255, 255, 0.541)",
+                                                                 borderRadius: "10px"
+                                                             } : null}>
+                                                            <img className={modalStyles.nftShowed}
+                                                                 src={item?.img}
+                                                                 alt="" />
+                                                            <p>{item?.title}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            )
-                                        }
-                                        {/* here the address to send will be shown */}
-                                        <div className={modalStyles.titlesSection}>
-                                            <div className={modalStyles.titlePop}>Send to</div>
-                                            <input defaultValue={projectCreator} className={modalStyles.inputPop}
-                                                   type="text" />
+                                                )
+                                            }
+                                            {/* here the address to send will be shown */}
+                                            <div className={modalStyles.titlesSection}>
+                                                <div className={modalStyles.titlePop}>Send to</div>
+                                                <input defaultValue={projectCreator} className={modalStyles.inputPop}
+                                                       type="text" />
+                                            </div>
                                         </div>
                                     </div>
                                     <button onClick={async () => {
@@ -522,7 +516,9 @@ const Profile = () => {
             </div>
             <div className={styles.bigCard}>
 
-                <div className={styles.lookingForTitle}>We are looking for...</div>
+                {data.requirements?.length === 0 ?
+                    <div className={styles.lookingForTitle}>No requirements at the moment</div> :
+                    <div className={styles.lookingForTitle}>We are looking for...</div>}
 
                 {data.requirements?.length > 0 &&
                     <div className={styles.lookingForSectionFirst}>
@@ -543,7 +539,8 @@ const Profile = () => {
                             )
                         }
                     </div>}
-                <div className={styles.lookingForTitle}>Apply form</div>
+                {!owner && <div className={styles.lookingForTitle}>Apply for contribution</div>}
+                {owner && <div className={styles.lookingForTitle}>Add a requirement</div>}
                 <div className={styles.lookingForSection}>
 
                     {!owner && <div>

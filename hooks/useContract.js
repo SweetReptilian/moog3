@@ -23,8 +23,12 @@ const useContract = () => {
         const wallet = await sequence.getWallet()
         const provider = await wallet.getProvider()
         const signer = await wallet.getSigner()
-        const moogleContract = new ethers.Contract(MoogDaoContractAddress, MoogleNFTAbi, provider)
+        const moogleContract = new ethers.Contract(MooglesNFTContractAddress, MoogleNFTAbi, provider)
         return moogleContract.connect(signer)
+    }
+    const mintNFT = async() => {
+        const nftContract = await getContractForNFT()
+        await nftContract.safeMint()
     }
 
     const getReadContract = async () => {
@@ -86,7 +90,7 @@ const useContract = () => {
         const usersCollectibles = await indexer.getTokenBalances({
             accountAddress: accountAddress,
             includeMetadata: true,
-            contractAddress: '0x90B08E04F319a5468E054C14CbB270DF6CD912cb'
+            contractAddress: '0xCc563FE30d26517684af0fBF0e051d4BD5D2352F'
         })
         let userNftData = []
         for(let i=0; i<usersCollectibles.balances.length; i++){
@@ -161,6 +165,7 @@ const useContract = () => {
         getFollower,
         getContributionLikes,
         getTokens,
+        mintNFT,
         sendNFT
     }
 }
