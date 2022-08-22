@@ -46,8 +46,20 @@ async function main() {
         moogdao.address
     );
 
-    // Now you can call functions of the contract
+    // Initializing MoogDao contract
     await contract.setConnectionContract(Connections.address);
+
+    console.log("Deploying Moogles Contract...");
+    const Moogles = await ethers.getContractFactory("Moogles");
+    const moogles = await Moogles.deploy();
+
+    await moogles.deployed();
+    console.log("Moogles deployed to:", moogles.address);
+
+    const contract2 = Moogles.attach(moogles.address);
+
+    // Initializing the Moogles NFTcontract
+    await contract2.setConnectionContract(Connections.address);
 }
 
 main();

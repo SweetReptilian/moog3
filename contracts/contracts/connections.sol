@@ -22,20 +22,23 @@ contract connections is
     Iconnections
 {
     using Counters for Counters.Counter;
-
     using EnumerableSetUpgradeable for EnumerableSetUpgradeable.UintSet;
+
     IMoogDao private _profileMoogs;
     IQuery private _queryContract;
 
-    mapping(address => EnumerableSetUpgradeable.UintSet) _userMatches;    
-    mapping(address => uint256) _profileOwners;
     Counters.Counter private _profileIds;
     ITablelandTables private _tableland;
+    
+    mapping(address => EnumerableSetUpgradeable.UintSet) _userMatches;    
+    mapping(address => uint256) _profileOwners;
+    
     string private _chainID;
     string private _baseURIString;
     string private _metadataTable;
-    uint256 private _metadataTableId;
     string private _tablePrefix;
+    
+    uint256 private _metadataTableId;
     /**
      * @dev initialization function for upgradeable contract
      */
@@ -118,11 +121,7 @@ contract connections is
     }
 
     function metadataURI() public view returns (string memory) {
-        return string.concat(
-            _baseURI(), 
-            "SELECT%20*%20FROM%20",
-            _metadataTable
-        );
+        return _queryContract.metadataURI(_metadataTable,_baseURI());
 }
 
     /**

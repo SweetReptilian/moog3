@@ -60,12 +60,5 @@ interface Iconnections is IERC1155Upgradeable {
         view
         returns (uint32[] memory matchedIds);
 
-    /**
-     * @dev Burn token
-     */
-    // function burn(
-    //     address account,
-    //     uint256 id,
-    //     uint256 value
-    // ) external;
+
 }

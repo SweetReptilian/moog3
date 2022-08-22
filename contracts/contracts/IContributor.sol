@@ -12,4 +12,10 @@ interface IContributor  {
     function contributionURI(uint256 contributionId) external view returns (string memory);
 
     function projectContributionsURI(uint256 contributionId)  external view returns (string memory);
+
+    function likeContribution(uint256 contributionID , uint256 userID) external;
+
+    function getContributionLikes(uint256 contributionID)  external view returns (uint32[] memory matchedIds);
+
+    function getContributionsByAddress(address contributor)  external view returns (uint32[] memory contributionsIds);
 }
