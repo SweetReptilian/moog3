@@ -33,6 +33,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+** IMPORTANT! BEFORE YOU USE THIS DAPP YOU MUST LOGIN IN https://sequence.app/ AND ALLOW THE MAINNET TO YOUR WALLET (this option is shown at the bottom of the page) **
 
 ### About Moog3
 
