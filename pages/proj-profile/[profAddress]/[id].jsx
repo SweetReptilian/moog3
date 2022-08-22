@@ -1,5 +1,6 @@
 import styles from "../../../styles/Profile.module.scss"
 import modalStyles from "../../../styles/Modal.module.scss"
+import someStyles from "../../../styles/AnotherStyles.module.scss"
 import Sidebar from "../../../components/Sidebar"
 import { TbHammer } from "react-icons/tb"
 import { IconContext } from "react-icons"
@@ -279,6 +280,8 @@ const Profile = () => {
     return (
         <div className={styles.mainContainer}>
             <Sidebar />
+            {/* <div className={someStyles.settingsTitle}>Profile</div> */}
+
             <AnimatePresence exitBeforeEnter>
                 {showModal && (
                     <motion.div className={modalStyles.backdrop}

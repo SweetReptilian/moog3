@@ -1,4 +1,5 @@
 import formStyles from "../../../styles/FormSettings.module.scss"
+import someStyles from "../../../styles/AnotherStyles.module.scss"
 import { Checkbox, Spacer } from "@nextui-org/react"
 import React, { useEffect, useState } from "react"
 import Sidebar from "../../../components/Sidebar"
@@ -134,7 +135,7 @@ export function LogIn() {
         <div className={formStyles.backgroundImg}>
             <div><Toaster position="top-right" reverseOrder={false} /></div>
             <Sidebar />
-            {/* settings for users  <div className={formStyles.settingsTitle}>Settings</div> */}
+            <div className={someStyles.settingsTitle}>Settings</div>
             <div className={formStyles.mainContainer}>
                 <div className={formStyles.container}>
 
