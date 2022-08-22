@@ -35,3 +35,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 ### About Moog3
+
+Moog3 consist of a Social Good DAO Dapp where anyone can create their Profiles and trying to make their ideas come true by creating their Project profile and monetize it from one place . The cool part stands at the time a Developer or a Marketier Contributes into a Project to make the Project vision come true. The most importand stuff is that all the Data our Dapp is rendering are stored on IPFS and indexed from the MoogDao contract. We make that work by leveraging tableland which is a decentralized Database that is providing Access Controll rules from the Contract that way all the data are getting changed by real users, also every registar on the Database is stored on IPFS Through NFT.STORAGE. We also leveraged sequence wallet on every contract interaction we needed and moreover for ERC20 and ERC721 Donations (Transfers) staight from the UI. Finally we uploaded our UI into Spheron to make our dapp Fully decentralized.
