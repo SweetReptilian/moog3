@@ -133,7 +133,7 @@ export function EditProject() {
         <div className={formStyles.backgroundImg}>
             <div><Toaster position="top-right" reverseOrder={false} /></div>
             <Sidebar />
-            <div className={someStyles.settingsTitle}>Settings</div>
+            <div className={formStyles.settingsTitleTwo}>Settings</div>
 
             {/* settings for projects */}
             <div className={formStyles.mainContainer}>
