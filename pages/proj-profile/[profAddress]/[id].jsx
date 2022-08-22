@@ -32,6 +32,7 @@ import getContributionDataByProjectId from "../../../utils/getContributionDataBy
 import getPostDataById from "../../../utils/getPostDataById"
 import getProfileDataById from "../../../utils/getProfileDataById"
 import getContributionCardData from "../../../utils/getContributionCardData"
+import { sendMatic } from "../../../utils/sendMatic"
 
 const Profile = () => {
     const [connect, setConnect] = useState(false)
@@ -52,25 +53,21 @@ const Profile = () => {
     const [followers, setFollowers] = useState([])
     const [showContri, setShowContri] = useState(true)
     const [userNfts, setUserNfts] = useState([])
-    const [nftToSend, setNftToSend] = useState({
-        recipientAddress: projectCreator,
-        tokenId: 0,
-        erc721TokenAddress: ""
-    })
+    const [nftToSend, setNftToSend] = useState({ recipientAddress: projectCreator, tokenId: 0, erc721TokenAddress: "" })
     const [maticDonation, setMaticDonation] = useState({ amount: 0 })
-    const [contributionForm, setContributionForm] = useState({
-        title: "",
-        description: "",
-        github: ""
-    })
+    const [contributionForm, setContributionForm] = useState({ title: "", description: "", github: "" })
     const [contributionCardData, setContributionCardData] = useState()
     const { uploadFile } = useUploadToStorage()
-    const { addPost, createContribution, likeProject, getFollower, likeContribution, getTokens, sendNFT } = useContract()
-    const [post, setPost] = useState({
-        title: "",
-        body: "",
-        imageUri: ""
-    })
+    const {
+        addPost,
+        createContribution,
+        likeProject,
+        getFollower,
+        likeContribution,
+        getTokens,
+        sendNFT
+    } = useContract()
+    const [post, setPost] = useState({ title: "", body: "", imageUri: "" })
     const handleModalNFT = () => {
         setShowNFTDiv(true)
         setShowDaiDiv(false)
@@ -224,7 +221,7 @@ const Profile = () => {
         }
     }
     const handleMaticChange = (event) => {
-        const {name,value} = event.target
+        const { name, value } = event.target
         setMaticDonation(prevState => ({
             ...prevState,
             [name]: value
@@ -247,13 +244,12 @@ const Profile = () => {
                         <br />
                         {item?.description}
                         <br />
-                        <br />
                         {item?.github}
                     </div>
                     <div className={styles.likesSection2}>
                         <div className={styles.someSpace}>
                             <IconContext.Provider value={{ size: "29px", color: "white" }}>
-                                <span >{item?.likes}</span>
+                                <span>{item?.likes}</span>
                                 <FcLikePlaceholder />
                             </IconContext.Provider>
                         </div>
@@ -300,17 +296,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showModal && (
                     <motion.div className={modalStyles.backdrop}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
                         <motion.div className={modalStyles.modal}
-                            variants={modal}>
+                                    variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                    whileTap={{ scale: 1 }}
-                                    className={modalStyles.modalCloseIcon}
-                                    onClick={() => setShowModal(false)}>
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowModal(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -321,7 +317,7 @@ const Profile = () => {
                                         <li className={modalStyles.someFlex}>
                                             <img className={modalStyles.picModal} src={follower.imageUri} alt="" />
                                             <a href={`/profile/${follower.wallet}`}
-                                                className={modalStyles.postsContentModal}>
+                                               className={modalStyles.postsContentModal}>
                                                 {follower.name}
                                             </a>
                                         </li>)
@@ -335,17 +331,17 @@ const Profile = () => {
             <AnimatePresence exitBeforeEnter>
                 {showDonate && (
                     <motion.div className={modalStyles.backdrop}
-                        variants={backdrop}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden">
+                                variants={backdrop}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden">
                         <motion.div className={modalStyles.modal}
-                            variants={modal}>
+                                    variants={modal}>
                             <IconContext.Provider value={{ size: "25px", color: "white" }}>
                                 <motion.div whileHover={{ scale: 0.99 }}
-                                    whileTap={{ scale: 1 }}
-                                    className={modalStyles.modalCloseIcon}
-                                    onClick={() => setShowDonate(false)}>
+                                            whileTap={{ scale: 1 }}
+                                            className={modalStyles.modalCloseIcon}
+                                            onClick={() => setShowDonate(false)}>
                                     <AiOutlineCloseCircle />
                                 </motion.div>
                             </IconContext.Provider>
@@ -393,19 +389,21 @@ const Profile = () => {
                                         {/* here the address to send will be shown */}
                                         <div className={modalStyles.titlesSection}>
                                             <div className={modalStyles.titlePop}>Send to</div>
-                                            <input defaultValue={projectCreator} className={modalStyles.inputPop} type="text" />
+                                            <input defaultValue={projectCreator} className={modalStyles.inputPop}
+                                                   type="text" />
                                         </div>
                                     </div>
                                     <button onClick={async () => {
                                         try {
                                             await sendNFT(nftToSend.recipientAddress, nftToSend.tokenId, nftToSend.erc721TokenAddress)
-                                            toast.success(`Successfully transfered NFT to ${projectCreator}`)
-                                        } catch (e){
+                                            toast.success(`Successfully transferred NFT to ${projectCreator}`)
+                                        } catch (e) {
                                             console.error(e)
                                             toast.error("Hmm something didn't work\nTry again")
                                         }
 
-                                    }} className={modalStyles.modalButton}>Send!</button>
+                                    }} className={modalStyles.modalButton}>Send!
+                                    </button>
                                 </div>
                             )}
                             {showDaiDiv && (
@@ -416,17 +414,19 @@ const Profile = () => {
                                     <div>
                                         <div className={modalStyles.titlesSection}>
                                             <div className={modalStyles.titlePop}>Please, specify the amount</div>
-                                            <input onChange={handleMaticChange} name={"amount"} className={modalStyles.inputPop} type="text" />
+                                            <input onChange={handleMaticChange} name={"amount"}
+                                                   className={modalStyles.inputPop} type="text" />
 
                                             <div className={modalStyles.titlePop}>Send to</div>
-                                            <input defaultValue={projectCreator} className={modalStyles.inputPop} type="text" />
+                                            <input defaultValue={projectCreator} className={modalStyles.inputPop}
+                                                   type="text" />
                                         </div>
 
                                     </div>
                                     <button
                                         onClick={async () => {
-                                            const {amount} = maticDonation
-                                            if(amount == 0) {
+                                            const { amount } = maticDonation
+                                            if (amount == 0) {
                                                 toast.error("Don't be that cheap now!")
                                                 return
                                             }
@@ -524,45 +524,45 @@ const Profile = () => {
 
                 <div className={styles.lookingForTitle}>We are looking for...</div>
 
-                <div className={styles.lookingForSectionFirst}>
-                    {
-
-                        data.requirements?.map((item, i) =>
-                            <div className={styles.lookingForOptions}>
-                                <div className={styles.lookingForSubSection}>
-                                    <div className={styles.pLookingForName}>{item.title}</div>
-                                    <br />
-                                    <p className={styles.pLookingForTime}>{item.time}</p>
-                                    <br />
-                                    <p className={styles.pLookingForMoney}>We offer: {item.amount}</p>
-                                    <br />
-                                    <p className={styles.pLookingForTitle}>{item.interests.map(int => <span>{int}</span>)}</p>
-                                    {/* </a> */}
+                {data.requirements?.length > 0 &&
+                    <div className={styles.lookingForSectionFirst}>
+                        {
+                            data.requirements?.map((item, i) =>
+                                <div className={styles.lookingForOptions}>
+                                    <div className={styles.lookingForSubSection}>
+                                        <div className={styles.pLookingForName}>{item.title}</div>
+                                        <br />
+                                        <p className={styles.pLookingForTime}>{item.time}</p>
+                                        <br />
+                                        <p className={styles.pLookingForMoney}>We offer: {item.amount}</p>
+                                        <br />
+                                        <p className={styles.pLookingForTitle}>{item.interests.map(int =>
+                                            <span>{int}</span>)}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    }
-                </div>
+                            )
+                        }
+                    </div>}
                 <div className={styles.lookingForTitle}>Apply form</div>
                 <div className={styles.lookingForSection}>
 
                     {!owner && <div>
                         <form className={styles.contrForm}>
                             <input className={styles.formInputNoMargin} name={"title"}
-                                onChange={handleContributionChange} placeholder={"Title"}
-                                type={"text"} required />
+                                   onChange={handleContributionChange} placeholder={"Title"}
+                                   type={"text"} required />
                             <textarea className={styles.formTextArea} name={"description"}
-                                onChange={handleContributionChange}
-                                placeholder={"Why I am the best for the job..."} required />
+                                      onChange={handleContributionChange}
+                                      placeholder={"Why I am the best for the job..."} required />
                             <input className={styles.formInput} name={"github"} onChange={handleContributionChange}
-                                placeholder={"github pull request url"} />
+                                   placeholder={"github pull request url"} />
                             <AnimatePresence>
                                 <motion.div className={styles.iconSpace} onClick={() => {
                                     submitContributionForm().then()
                                     setConnect(connect => !connect)
                                 }}
-                                    whileHover={{ scale: 0.9 }}
-                                    whileTap={{ scale: 1 }}>
+                                            whileHover={{ scale: 0.9 }}
+                                            whileTap={{ scale: 1 }}>
                                     <div>Contribute</div>
                                     <IconContext.Provider
                                         value={{
@@ -604,30 +604,29 @@ const Profile = () => {
 
                         <div className={styles.postsBox}>
                             <input name={"title"} value={post.title} onChange={handleChange}
-                                className={styles.inputText} placeholder="An attractive title" type="text" />
+                                   className={styles.inputText} placeholder="An attractive title" type="text" />
 
                             <AnimatePresence>
                                 <div className={styles.iconSpaceWrite}>
                                     <textarea onChange={handleChange} name={"body"} value={post.body}
-                                        className={styles.textArea} placeholder="Any updates?" />
-                                    <div className={styles.iconSpace}> Picture preview</div>
+                                              className={styles.textArea} placeholder="Any updates?" />
 
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => {
                                             setConnect(connect => !connect)
                                             uploadPost().then()
                                         }}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -638,18 +637,18 @@ const Profile = () => {
                                             </IconContext.Provider>
                                         </motion.div>}
                                     {loading ? <TailSpin
-                                        height="15"
-                                        width="15"
-                                        color="#4e4646"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    /> :
+                                            height="15"
+                                            width="15"
+                                            color="#4e4646"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        /> :
                                         <motion.div onClick={() => setConnect(connect => !connect)}
-                                            whileHover={{ scale: 0.9 }}
-                                            whileTap={{ scale: 1 }}>
+                                                    whileHover={{ scale: 0.9 }}
+                                                    whileTap={{ scale: 1 }}>
                                             <IconContext.Provider
                                                 value={{
                                                     size: "33px",
@@ -659,10 +658,10 @@ const Profile = () => {
                                                 <label>
                                                     <AiOutlinePicture />
                                                     <input className={formStyles.uploadFiles}
-                                                        style={{ display: "none" }}
-                                                        name="image" type={"file"}
-                                                        accept="image/gif,image/jpeg,image/jpg,image/png"
-                                                        onChange={handleImageChange} />
+                                                           style={{ display: "none" }}
+                                                           name="image" type={"file"}
+                                                           accept="image/gif,image/jpeg,image/jpg,image/png"
+                                                           onChange={handleImageChange} />
                                                 </label>
                                             </IconContext.Provider>
                                         </motion.div>

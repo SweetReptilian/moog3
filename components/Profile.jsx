@@ -101,7 +101,7 @@ const Profile = ({ profAddress }) => {
                             </AnimatePresence>
                         </div> */}
 
-                        {typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
+                        {/*typeof window !== "undefined" && loggedIn && !owner && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
                                 whileHover={{ scale: 0.9 }}
                                 whileTap={{ scale: 1 }}>
@@ -113,7 +113,7 @@ const Profile = ({ profAddress }) => {
                                 </IconContext.Provider>
                             </motion.div>
                         </AnimatePresence>
-                        }
+                        */}
                         {!loggedIn && <AnimatePresence>
                             <motion.div className={styles.iconSpace} onClick={() => setConnect(connect => !connect)}
                                 whileHover={{ scale: 0.9 }}
