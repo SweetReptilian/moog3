@@ -363,7 +363,7 @@ const Profile = () => {
                                                         setNftToSend({
                                                             recipientAddress: projectCreator,
                                                             tokenId: item?.tokenId,
-                                                            erc721TokenAddress: "0x90B08E04F319a5468E054C14CbB270DF6CD912cb"
+                                                            erc721TokenAddress: "0xCc563FE30d26517684af0fBF0e051d4BD5D2352F"
                                                         })
                                                     }}>
                                                         <div className={modalStyles.galleryFlexNFT}
