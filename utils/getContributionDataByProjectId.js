@@ -1,6 +1,6 @@
 const getContributionDataByProjectId = async (id) => {
 
-    const apiReq = await fetch("/api/fetchContributionByProjId", {
+    const apiReq = await fetch("https://moog3.herokuapp.com/api/fetchContributionByProjId", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

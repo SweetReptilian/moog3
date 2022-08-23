@@ -1,6 +1,6 @@
 const getProfileDataById = async (id) => {
 
-    const apiReq = await fetch("/api/fetchUserProfileById", {
+    const apiReq = await fetch("https://moog3.herokuapp.com/api/fetchUserProfileById", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

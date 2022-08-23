@@ -1,6 +1,6 @@
 const getProfileData = async (profAddress, id) => {
 
-    const apiReq = await fetch("/api/fetchProjectProfile", {
+    const apiReq = await fetch("https://moog3.herokuapp.com/api/fetchProjectProfile", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
