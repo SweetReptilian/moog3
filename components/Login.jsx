@@ -92,8 +92,8 @@ export default function Login() {
                                     try {
                                         await connect()
                                     } catch (err) {
-                                        toast.error("Login Failed.\nTry logging in again.", {
-                                            duration: 4500
+                                        toast.error(<div><span style={{fontWeight: "bold"}}>Login Failed. Try again</span><p>Make sure you have enabled testnet on sequence wallet.</p><p>Find out how to do that <a target={"_blank"} href={"https://docs.sequence.xyz/build-with-sequence/using-testnets"}>here</a></p></div>, {
+                                            duration: 10000
                                         })
                                         setIsLoading(false)
                                     }

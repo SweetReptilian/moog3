@@ -6,8 +6,7 @@
 .pnp.js
 .next
 .idea
-.out
-
+/out
 # testing
 /coverage
 

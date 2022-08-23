@@ -40,8 +40,8 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
+        "build": "next build && next export",
+        "start": "next start"
         "export": "next build && next export"
     },
     "eslintConfig": {
@@ -68,6 +68,8 @@
         "buffer": "^6.0.3",
         "crypto-browserify": "^3.12.0",
         "eslint": "^8.22.0",
+        "express": "^4.18.1",
+        "http-proxy-middleware": "^2.0.6",
         "https-browserify": "^1.0.0",
         "postcss": "^8.4.14",
         "process": "^0.11.10",

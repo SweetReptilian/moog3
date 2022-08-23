@@ -1,6 +1,6 @@
 const getPostDataById = async (id) => {
 
-    const apiReq = await fetch("/api/fetchPostById", {
+    const apiReq = await fetch("https://moog3.herokuapp.com/api/fetchPostById", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
