@@ -33,9 +33,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-** IMPORTANT! BEFORE YOU USE THIS DAPP YOU MUST LOGIN IN https://sequence.app/ AND ALLOW THE MAINNET TO YOUR WALLET (this option is shown at the bottom of the page) **
+
 
 ### About Moog3
+
+** IMPORTANT! BEFORE YOU USE THIS DAPP YOU MUST LOGIN IN https://sequence.app/ AND ALLOW THE TESTNET TO YOUR WALLET (this option is shown at the bottom of the page) **
 
 Moog3 consist of a Social Good DAO Dapp where anyone can create their Profiles and trying to make their ideas come true by creating their Project profile and monetize it from one place. The cool part stands at the time a Developer or a Marketier Contributes into a Project to make the Project vision a reality. The most importand stuff is that all the Data our Dapp is rendering are stored on IPFS and indexed from the MoogDao contract. We make that work by leveraging tableland which is a decentralized Database that provides Access Controll rules only by our Smart Contract MoogDao. So that way all can change only by the real Moog3 users, the Tables that we created are the UserProfile-ProjectProfile-Posts-Contributions, also every registar on each table is stored on IPFS Through NFT.STORAGE. We also leveraged Sequence wallet on every contract interaction we needed and moreover for ERC20 and ERC721 Donations (Transfers) staight from the UI.We also uploaded our UI into Spheron to make our dapp Fully decentralized. Finally we made our contracts Upgradable to be able to add more niche functionallities in the future without creating new contracts, we also have plans to upload them on mainet using ChainSafe and making automated change desitions based on a voting DAO System instead of using one admin to have access to change stuff on the contract.
 
